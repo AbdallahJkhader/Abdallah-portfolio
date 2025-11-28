@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abdallah Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #1a1a1a !important;
+      color: #ffffff !important;
+      transition: all 0.3s ease;
+    }
+
+    .navbar {
+      background-color: #000 !important;
+    }
+
+    .bg-white {
+      background-color: #1a1a1a !important;
+    }
+
+    .text-secondary,
+    .text-muted,
+    .small,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    li,
+    span,
+    div {
+      color: #ffffff !important;
+    }
+
+    .text-muted {
+      color: #b0b0b0 !important;
+    }
+
+    .text-secondary {
+      color: #b0b0b0 !important;
+    }
+
+    .bi-github,
+    .bi-linkedin {
+      background-color: transparent;
+      padding: 8px;
+      border-radius: 6px;
+      color: #ffffff !important;
+    }
+   
+    body > div > nav.navbar.fixed-top {
+      z-index: 999999 !important;
+      position: fixed !important;
+      top: 0 !important;
+      width: 100% !important;
+      background-color: rgb(0, 0, 0) !important;
+      backdrop-filter: blur(10px) !important;
+      transition: all 0.3s ease !important;
+      padding-top: 0.1rem !important;
+      padding-bottom: 0.1rem !important;
+      min-height: 40px !important;
+    }
+    
+    body div.bg-dark-hero nav.navbar {
+      z-index: 999999 !important;
+      position: fixed !important;
+      top: 0 !important;
+    }
+    
+    nav[class*="navbar"] {
+      z-index: 999999 !important;
+      position: fixed !important;
+      top: 0 !important;
+    }
+    
+    body {
+      padding-top: 40px !important;
+    }
+    
+    .bg-dark-hero {
+      margin-top: -40px !important;
+      padding-top: 40px !important;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold text-white" href="#home">Abdallah J. Khader</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+        <ul class="navbar-nav mb-2 mb-lg-0 me-3">
+          <li class="nav-item"><a class="nav-link" href="#home" data-section="home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills" data-section="skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects" data-section="projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education" data-section="education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience" data-section="experience">Experience</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="bg-dark-hero">
+    <section id="home" class="hero-section d-flex align-items-center justify-content-between" style="width: 100%; height: 90vh; min-height: 90vh;">
+      <div class="hero-img">
+        <img src="personal picture.jpg" alt="Profile" class="rounded-4 hero-profile-img">
+      </div>
+      <div class="hero-text text-white">
+        <h2 class="fw-bold mb-2" id="typewriter" style="font-family: 'Montserrat', sans-serif;"></h2>
+        <div id="netdev" class="mb-2 text-secondary" style="font-size:1.5rem;font-family:'Montserrat',sans-serif;letter-spacing:1px;display:none;">.NET Developer</div>
+        
+        <div class="mb-3 d-flex align-items-center">
+          <a href="https://github.com/AbdallahJkhader" class="text-white me-3" target="_blank" title="Visit my GitHub profile"><i class="bi bi-github fs-4"></i></a>
+          <a href="https://www.linkedin.com/in/abdallah-khader-b70739230?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="text-white me-3" target="_blank" title="Visit my LinkedIn profile"><i class="bi bi-linkedin fs-4"></i></a>
+          <span class="text-white me-3" title="Email: abdallahjkhader@gmail.com"><img src="gmail icon.png" alt="Gmail" width="48" height="42" style="vertical-align: middle;"></span>
+          <span class="text-white me-3" title="Phone: +962782576216"><img src="phone number icon.jpg" alt="Phone" width="28" height="28" style="vertical-align: middle; border-radius: 50%; object-fit: cover; object-position: center;"></span>
+        </div>
+        
+        <div class="d-flex flex-wrap gap-3 mb-3">
+          <button id="downloadBtn" class="btn btn-primary" style="font-family:'Montserrat',sans-serif;">
+            View CV
+          </button>
+        </div>
+        
+        <div class="mb-3 text-secondary d-none"></div>
+        
+        <ul id="contactList" class="list-unstyled small mb-0 text-white-50" style="display:none;">
+          <li class="mb-2"><i class="bi bi-calendar-event me-2"></i> 10 December 2004</li>
+          <li class="mb-2"><i class="bi bi-geo-alt me-2"></i> Amman, Jordan</li>
+          <li class="mb-2"><i class="bi bi-envelope me-2"></i> abdallahjkhader@gmail.com</li>
+          <li class="mb-2"><i class="bi bi-telephone me-2"></i> +962782576216</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+  <div class="main-content bg-white p-0 w-100" style="min-height: 100vh; overflow: hidden; margin-top: 0;">
+    <div class="row g-0">
+      <main class="col-12 p-5">
+        <section id="skills" class="spa-section mb-5" data-aos="fade-up">
+          <h3 class="fw-bold mb-4" style="font-family: 'Montserrat', sans-serif;">Skills</h3>
+          <div class="cv-section-card">
+            <div class="row g-4">
+              <div class="col-md-6 text-center">
+                <img src="csharp icon.png" alt="C#" width="60" height="60" class="mb-2" style="border-radius: 0 !important; border: none !important; outline: none !important; box-shadow: none !important;">
+                <h5 class="fw-bold mb-2">C#</h5>
+                <p class="text-secondary mb-0">OOP, Collections, Generic & Type Safety, async/await, Clean Code</p>
+                <div class="small text-muted mt-2">Source: Esam Abdulnabi YT Series, Problem Solving</div>
+              </div>
+              <div class="col-md-6 text-center">
+                <img src="asp.net icon.png" alt="ASP.NET" width="40" height="40" class="mb-3" style="border-radius: 0 !important; border: none !important; outline: none !important; box-shadow: none !important;">
+                <h5 class="fw-bold mb-2">ASP.NET Core</h5>
+                <p class="text-secondary mb-0">MVC architecture, Web API, routing & endpoints, model binding & validation, dependency injection</p>
+                <div class="small text-muted mt-2">Source: ITI</div>
+              </div>
+              <div class="col-md-6 text-center">
+                <img src="microsoft-sql-server.jpg" alt="SQL Server" width="50" height="50" class="mb-3">
+                <h5 class="fw-bold mb-2">Entity Framework Core & SQL Server</h5>
+                <p class="text-secondary mb-0">CRUD, Joins, Stored Procedures, Indexes, Normalization, Code First & DB First, Migrations, LINQ Queries</p>
+                <div class="small text-muted mt-2">Source: ITI</div>
+              </div>
+              <div class="col-md-6 text-center">
+                <img src="web developement icon.png" alt="Web Development" width="60" height="60" class="mb-3">
+                <h5 class="fw-bold mb-2">Web Fundamentals</h5>
+                <p class="text-secondary mb-0">HTML, CSS, JS, Bootstrap, Basic UI/UX</p>
+                <div class="small text-muted mt-2">Source: YT, University</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="projects" class="spa-section mb-5" data-aos="fade-up">
+          <h3 class="fw-bold mb-4" style="font-family: 'Montserrat', sans-serif;">Projects</h3>
+          <div class="cv-section-card">
+            <div class="row g-4">
+              <div class="col-md-6 text-center">
+                <i class="bi bi-lightbulb fs-1 text-primary mb-3"></i>
+                <h5 class="fw-bold mb-2">ADHD Web Application</h5>
+                <p class="text-secondary mb-0">A university project built using .NET Core MVC to help students with ADHD manage their study sessions and tasks more effectively.</p>
+              </div>
+              <div class="col-md-6 text-center">
+                <i class="bi bi-clock fs-1 text-primary mb-3"></i>
+                <h5 class="fw-bold mb-2">Coming Soon...</h5>
+                <p class="text-secondary mb-0">More exciting projects are in development.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="education" class="spa-section mb-5" data-aos="fade-up">
+          <h3 class="fw-bold mb-4" style="font-family: 'Montserrat', sans-serif;">Education</h3>
+          <div class="cv-section-card">
+            <div class="row g-4">
+              <div class="col-md-6 text-center">
+                <img src="hu-logo.jpg" alt="HU Logo" width="60" height="60" class="rounded mb-3">
+                <h5 class="fw-bold mb-2">BSc in Computer Science and its Applications</h5>
+                <span class="badge bg-gradient-primary mb-2 fs-6 px-3 py-2">The Hashemite University</span>
+                <div class="small text-muted">GPA: 3.1</div>
+                <div class="small text-muted">10/2022 - Expected 1/2026</div>
+              </div>
+              <div class="col-md-6 text-center">
+                <img src="school.jpg" alt="School Logo" width="60" height="60" class="rounded mb-3">
+                <h5 class="fw-bold mb-2">Tawjihi (High School)</h5>
+                <span class="badge bg-gradient-primary mb-2 fs-6 px-3 py-2">Arsalan High School</span>
+                <div class="small text-muted">Average: 91.5</div>
+                <div class="small text-muted">Graduated: 2022</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="experience" class="spa-section mb-5" data-aos="fade-up">
+          <h3 class="fw-bold mb-4" style="font-family: 'Montserrat', sans-serif;">Experience</h3>
+          <div class="cv-section-card">
+            <div class="row g-4">
+              <div class="col-md-6 text-center">
+                <img src="uniflix.png" alt="Uniflix Logo" width="90" height="90" class="rounded mb-3">
+                <h5 class="fw-bold mb-2">Marketing Leader & Core Team Member</h5>
+                <span class="badge bg-gradient-primary mb-2 fs-6 px-3 py-2">Uniflix HU</span>
+                <div class="small text-muted">Feb 2024 - Nov 2024</div>
+                <ul class="small mb-0">
+                  <li class="mb-2">Led two teams in marketing and media, organized events, and built partnerships to strengthen brand presence.</li>
+                </ul>
+              </div>
+              <div class="col-md-6 text-center">
+                <i class="bi bi-headset fs-1 text-primary mb-3"></i>
+                <h5 class="fw-bold mb-2">Customer Service Agent</h5>
+                <span class="badge bg-gradient-primary mb-2 fs-6 px-3 py-2">Extensya (on behalf of Talabat)</span>
+                <div class="small text-muted">Jun 2023 - Sep 2023</div>
+                <ul class="small mb-0">
+                  <li class="mb-2">Resolved partner issues via phone and provided real-time support to ensure customer satisfaction and smooth operations.</li>
+                </ul>
+              </div>
+              <div class="col-md-6 text-center">
+                <i class="bi bi-pc-display fs-1 text-primary mb-3"></i>
+                <h5 class="fw-bold mb-2">IT System and Support Engineer (Intern)</h5>
+                <span class="badge bg-gradient-primary mb-2 fs-6 px-3 py-2">Danish Jordanian Dairy</span>
+                <div class="small text-muted">Internship</div>
+                <ul class="small mb-0">
+                  <li class="mb-2">Provided IT support, maintained systems, and contributed to the development of the company's technical infrastructure.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="projects" class="spa-section mb-5" data-aos="fade-up">
+          <h3 class="fw-bold mb-4" style="font-family: 'Montserrat', sans-serif;">Projects</h3>
+          <div class="cv-section-card">
+            <div class="row g-4">
+              <div class="col-md-6 text-center">
+                <i class="bi bi-lightbulb fs-1 text-primary mb-3"></i>
+                <h5 class="fw-bold mb-2">ADHD Web Application</h5>
+                <p class="text-secondary mb-0">A university project built using .NET Core MVC to help students with ADHD manage their study sessions and tasks more effectively.</p>
+              </div>
+              <div class="col-md-6 text-center">
+                <i class="bi bi-clock fs-1 text-primary mb-3"></i>
+                <h5 class="fw-bold mb-2">Coming Soon...</h5>
+                <p class="text-secondary mb-0">More exciting projects are in development.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+      </main>
+    </div>
+  </div>
+  <footer class="text-center py-4 text-white-50" style="background: #2a5298; font-family: 'Cairo', sans-serif;">
+    &copy; 2024 Abdallah J. Khader. All rights reserved.
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800, 
+      once: true     
+    });
+  </script>
+</body>
+</html>
