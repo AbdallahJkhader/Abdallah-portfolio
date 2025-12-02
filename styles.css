@@ -571,6 +571,9 @@ footer {
     order: -1;
     margin-top: 0;
     margin-bottom: 24px;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
   
   .hero-text {
@@ -677,6 +680,9 @@ footer {
   .hero-img {
     margin-bottom: 30px;
     order: -1;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
   
   .hero-text {
