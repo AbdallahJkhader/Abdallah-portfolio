@@ -8,7 +8,6 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Disable ALL hover effects for projects section completely */
 #projects:hover,
 #projects *:hover {
   transform: none !important;
@@ -19,7 +18,6 @@ body {
   color: inherit !important;
 }
 
-/* Override specific hover rules for projects */
 #projects .spa-section:hover,
 #projects .spa-section .col-md-6:hover,
 #projects .spa-section .col-md-6:hover *,
@@ -32,7 +30,6 @@ body {
   color: inherit !important;
 }
 
-/* Project Images Styling */
 .project-images {
   display: flex;
   flex-direction: column;
@@ -73,7 +70,6 @@ body {
   display: block;
 }
 
-/* Make the project section full width */
 #projects .row {
   max-width: 100%;
   margin: 0;
@@ -520,7 +516,6 @@ footer {
 
 
 
-/* Tablet */
 @media (max-width: 991px) {
   .hero-section {
     flex-direction: column !important;
@@ -558,7 +553,6 @@ footer {
   }
 }
 
-/* Mobile Large */
 @media (max-width: 768px) {
   .main-content {
     padding: 2rem 1.5rem;
@@ -612,7 +606,6 @@ footer {
   }
 }
 
-/* Mobile Small */
 @media (max-width: 575px) {
   .main-content {
     padding: 1.5rem 1rem;
@@ -681,7 +674,6 @@ footer {
   }
 }
 
-/*  ACCESSIBILITY  */
 @media (prefers-reduced-motion: reduce) {
   .spa-section,
   .badge,
@@ -1242,7 +1234,6 @@ main.col-12 {
   color: #e5e7eb !important;
 }
 
-/* --- Responsive hover effects --- */
 @media (max-width: 768px) {
   .spa-section .col-md-6 {
     padding: 1.2rem;
@@ -1315,7 +1306,6 @@ main.col-12 {
   }
 } 
 
-/* --- Smooth Scrolling and Enhanced Transitions --- */
 html {
   scroll-behavior: smooth;
 }
@@ -1324,7 +1314,6 @@ body {
   scroll-behavior: smooth;
 }
 
-/* --- Enhanced Hero to Main Content Transition --- */
 .bg-dark-hero {
   position: relative;
   overflow: hidden;
@@ -1338,7 +1327,6 @@ body {
   background: #1a1a1a;
 }
 
-/* --- Enhanced Section Transitions --- */
 .spa-section {
   opacity: 0;
   transform: translateY(30px);
@@ -1353,7 +1341,6 @@ body {
   }
 }
 
-/* --- Smooth Navigation Transitions --- */
 .navbar .nav-link {
   position: relative;
   transition: all 0.3s ease;
@@ -1378,13 +1365,11 @@ body {
 
 
 
-/* --- Simple Section Hover --- */
 .spa-section:hover {
   transform: none;
   transition: all 0.3s ease;
 }
 
-/* --- Card-like Item Styling --- */
 .spa-section .col-md-6 {
   position: relative;
   transition: all 0.3s ease;
@@ -1409,7 +1394,6 @@ body {
   transform: translateY(-5px);
 }
 
-/* --- Enhanced Badge Styling --- */
 .badge.bg-gradient-primary {
   transition: all 0.3s ease;
   margin: 0.2rem;
@@ -1422,24 +1406,17 @@ body {
   box-shadow: 0 4px 12px rgba(107,114,128,0.3);
 }
 
-/* --- Simple Icon Styling --- */
 .spa-section .col-md-6:hover i {
   transform: none;
   color: #9ca3af;
   transition: all 0.3s ease;
 }
 
-/* --- Simple Image Styling --- */
 .spa-section .col-md-6:hover img {
   transform: none;
   transition: all 0.3s ease;
-} 
+}
 
-/* --- Additional Visual Enhancements --- */
-
-
-
-/* --- Enhanced section spacing and visual hierarchy --- */
 .spa-section {
   margin-bottom: 4rem;
   position: relative;
@@ -1449,7 +1426,6 @@ body {
   margin-bottom: 2rem;
 }
 
-/* --- Improved text readability --- */
 .spa-section h3 {
   position: relative;
   display: inline-block;
@@ -1473,12 +1449,9 @@ body {
   transform: scaleX(1);
 }
 
-/* --- Enhanced mobile responsiveness --- */
 @media (max-width: 768px) {
-  /* Mobile specific styles */
 }
 
-/* --- Loading animation for images --- */
 img {
   opacity: 0;
   animation: fadeIn 0.8s ease forwards;
@@ -1490,14 +1463,12 @@ img {
   }
 }
 
-/* --- Enhanced focus states for accessibility --- */
 .spa-section .col-md-6:focus-within {
   outline: 2px solid #6b7280;
   outline-offset: 4px;
   border-radius: 2rem;
 }
 
-/* --- Smooth color transitions --- */
 .spa-section .col-md-6 * {
   transition: color 0.3s ease;
 }
