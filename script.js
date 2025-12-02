@@ -131,7 +131,7 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Contact info display functionality
+
 window.addEventListener('DOMContentLoaded', function() {
     var emailSpan = document.querySelector('span[title*="Email"]');
     var phoneSpan = document.querySelector('span[title*="Phone"]');
@@ -139,7 +139,7 @@ window.addEventListener('DOMContentLoaded', function() {
     var linkedinLink = document.querySelector('a[href*="linkedin"]');
     var currentOpenPanel = null;
     
-    // Close any existing panel
+    
     function closeExistingPanel() {
         if (currentOpenPanel) {
             var panel = currentOpenPanel;
@@ -166,12 +166,11 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Create animated info panels
-    function createInfoPanel(content, type) {
-        // Close any existing panel first
+       function createInfoPanel(content, type) {
+        
         closeExistingPanel();
         
-        // Create backdrop
+        
         var backdrop = document.createElement('div');
         backdrop.id = 'panel-backdrop';
         backdrop.style.cssText = `
@@ -187,7 +186,7 @@ window.addEventListener('DOMContentLoaded', function() {
         `;
         document.body.appendChild(backdrop);
         
-        // Animate backdrop in
+        
         setTimeout(() => {
             backdrop.style.opacity = '1';
         }, 10);
@@ -214,7 +213,7 @@ window.addEventListener('DOMContentLoaded', function() {
             transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         `;
         
-        // Add close button
+        
         var closeBtn = document.createElement('button');
         closeBtn.innerHTML = '×';
         closeBtn.style.cssText = `
@@ -234,16 +233,16 @@ window.addEventListener('DOMContentLoaded', function() {
         panel.appendChild(closeBtn);
         document.body.appendChild(panel);
         
-        // Store reference to current panel
+        
         currentOpenPanel = panel;
         
-        // Animate in
+        
         setTimeout(() => {
             panel.style.transform = 'translate(-50%, -50%) scale(1)';
             panel.style.opacity = '1';
         }, 10);
         
-        // Close handlers
+        
         function closePanel() {
             if (currentOpenPanel === panel) {
                 panel.style.transform = 'translate(-50%, -50%) scale(0)';
@@ -268,7 +267,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // Open link handler
+        
         function openLink(url) {
             closePanel();
             setTimeout(() => {
@@ -278,7 +277,7 @@ window.addEventListener('DOMContentLoaded', function() {
         
         closeBtn.onclick = closePanel;
         
-        // Make panel clickable to open link or copy info
+        
         panel.style.cursor = 'pointer';
         panel.onclick = function(e) {
             if (e.target === closeBtn) {
@@ -289,18 +288,18 @@ window.addEventListener('DOMContentLoaded', function() {
                 } else if (type === 'linkedin') {
                     openLink('https://www.linkedin.com/in/abdallah-khader-b70739230?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app');
                 } else if (type === 'email') {
-                    // Copy email to clipboard
+                    
                     navigator.clipboard.writeText('abdallahjkhader@gmail.com').then(() => {
-                        // Show success feedback
+                        
                         panel.innerHTML = '<i class="bi bi-check-circle fs-1"></i><br><strong>Email Copied!</strong><br><small>Email address copied to clipboard</small>';
                         setTimeout(() => {
                             closePanel();
                         }, 1500);
                     });
                 } else if (type === 'phone') {
-                    // Copy phone to clipboard
+                    
                     navigator.clipboard.writeText('+962782576216').then(() => {
-                        // Show success feedback
+                        
                         panel.innerHTML = '<i class="bi bi-check-circle fs-1"></i><br><strong>Phone Copied!</strong><br><small>Phone number copied to clipboard</small>';
                         setTimeout(() => {
                             closePanel();
@@ -310,10 +309,10 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         };
         
-        // Close on backdrop click
+        
         backdrop.onclick = closePanel;
         
-        // Auto close after 5 seconds
+        
         setTimeout(() => {
             if (currentOpenPanel === panel) {
                 closePanel();
@@ -323,7 +322,7 @@ window.addEventListener('DOMContentLoaded', function() {
         return panel;
     }
     
-    // Click handlers
+    
     if (emailSpan) {
         emailSpan.style.cursor = 'pointer';
         emailSpan.onclick = function() {
@@ -353,30 +352,30 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Contact Me button toggle
+
 window.addEventListener('DOMContentLoaded', function() {
     var downloadBtn = document.getElementById('downloadBtn');
     
-    // Download CV button functionality
+    
     if(downloadBtn) {
         downloadBtn.addEventListener('click', function() {
-            // Create a temporary link to download CV
+            
             const link = document.createElement('a');
-            link.href = 'Abdallah J.Khader CV.pdf';
+            link.href = 'Abdallah J. Khader CV.pdf';
             link.target = '_blank';
             
-            // Add click event to trigger download
+            
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
             
-            // Optional: Show a success message
+            
             const originalText = downloadBtn.innerHTML;
             downloadBtn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Opened!';
             downloadBtn.classList.remove('btn-primary');
             downloadBtn.classList.add('btn-success');
             
-            // Reset button after 3 seconds
+            
             setTimeout(() => {
                 downloadBtn.innerHTML = originalText;
                 downloadBtn.classList.remove('btn-success');

@@ -1,4 +1,4 @@
-/* ===== RESET & BASE STYLES ===== */
+
 body {
   background: #0f0f0f !important;
   color: #ffffff !important;
@@ -8,11 +8,96 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Disable ALL hover effects for projects section completely */
+#projects:hover,
+#projects *:hover {
+  transform: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  transition: none !important;
+  color: inherit !important;
+}
+
+/* Override specific hover rules for projects */
+#projects .spa-section:hover,
+#projects .spa-section .col-md-6:hover,
+#projects .spa-section .col-md-6:hover *,
+#projects .spa-section:hover * {
+  transform: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  transition: none !important;
+  color: inherit !important;
+}
+
+/* Project Images Styling */
+.project-images {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.project-row {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.project-row:first-child .project-thumb-large {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.project-row:nth-child(2) .project-thumb-large {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.project-row:last-child .project-thumb-large {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.project-thumb-large {
+  cursor: pointer;
+  width: 90%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Make the project section full width */
+#projects .row {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#projects .col-md-6 {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#projects .cv-section-card {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-/* ===== LAYOUT COMPONENTS ===== */
+
 .main-content {
   background: #fff !important;
   border-radius: 2.5rem;
@@ -26,7 +111,7 @@ html {
   z-index: 2;
 }
 
-/* ===== NAVBAR STYLES ===== */
+
 .navbar {
   background: #000 !important;
   border-radius: 0 !important;
@@ -86,7 +171,7 @@ html {
   box-shadow: none;
 }
 
-/* إزالة جميع تأثيرات focus الافتراضية */
+
 .nav-link:focus {
   outline: none !important;
   box-shadow: none !important;
@@ -106,7 +191,6 @@ html {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255,1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-/* ===== HERO SECTION ===== */
 .bg-dark-hero {
   background: #000;
   min-height: 70vh;
@@ -184,7 +268,7 @@ html {
   color: #d1d5db !important;
 }
 
-/* ===== SECTIONS ===== */
+
 .spa-section {
   border-radius: 0 !important;
   margin-bottom: 0;
@@ -239,7 +323,7 @@ html {
   margin-top: 2rem;
 }
 
-/* ===== CARD ITEMS ===== */
+
 .spa-section .col-md-6 {
   position: relative;
   transition: all 0.3s ease;
@@ -327,7 +411,7 @@ html {
   color: #e5e7eb !important;
 }
 
-/* ===== BADGES ===== */
+
 .badge.bg-gradient-primary {
   background: linear-gradient(135deg, #374151 0%, #6b7280 50%, #9ca3af 100%) !important;
   color: #ffffff !important;
@@ -348,7 +432,6 @@ html {
   box-shadow: 0 6px 20px rgba(107,114,128,0.4);
 }
 
-/* ===== TEXT COLORS ===== */
 .text-primary {
   color: #9ca3af !important;
 }
@@ -362,7 +445,7 @@ html {
   color: #d1d5db !important;
 }
 
-/* ===== LISTS ===== */
+
 .spa-section ul {
   list-style: none;
   padding-left: 0;
@@ -389,7 +472,7 @@ html {
   color: #6b7280;
 }
 
-/* ===== FOCUS STATES ===== */
+
 .spa-section:focus-within {
   outline: 2px solid #6b7280;
   outline-offset: 2px;
@@ -401,7 +484,7 @@ html {
   border-radius: 2rem;
 }
 
-/* ===== ANIMATIONS ===== */
+
 @keyframes fadeInUp {
   to {
     opacity: 1;
@@ -415,7 +498,7 @@ html {
   }
 }
 
-/* ===== FOOTER ===== */
+
 footer {
   background: #000 !important;
   color: #ffffff !important;
@@ -424,7 +507,7 @@ footer {
   box-shadow: 0 -2px 16px rgba(0,0,0,0.3);
 }
 
-/* ===== SCROLLBAR ===== */
+
 ::-webkit-scrollbar {
   width: 0.5em;
   background: transparent;
@@ -435,7 +518,7 @@ footer {
   border-radius: 1em;
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
+
 
 /* Tablet */
 @media (max-width: 991px) {
@@ -598,7 +681,7 @@ footer {
   }
 }
 
-/* ===== ACCESSIBILITY ===== */
+/*  ACCESSIBILITY  */
 @media (prefers-reduced-motion: reduce) {
   .spa-section,
   .badge,
@@ -612,7 +695,7 @@ footer {
   }
 } 
 
-/* --- Improved Section Styling --- */
+
 .spa-section {
   background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
   border-radius: 2rem;
@@ -677,7 +760,7 @@ footer {
   color: #9ca3af !important;
 }
 
-/* --- Enhanced Badge Styling --- */
+
 .badge.bg-gradient-primary {
   background: linear-gradient(135deg, #374151 0%, #6b7280 50%, #9ca3af 100%) !important;
   color: #ffffff !important;
@@ -698,7 +781,7 @@ footer {
   box-shadow: 0 6px 20px rgba(107,114,128,0.4);
 }
 
-/* --- Enhanced Icon Styling --- */
+
 .bi {
   color: #9ca3af;
   transition: all 0.3s ease;
@@ -799,7 +882,7 @@ main.col-12 {
   }
 } 
 
-/* إزالة الخط السفلي أو أي ظل من العناوين داخل أقسام السيرة الذاتية */
+
 .spa-section h3,
 .spa-section h3::after,
 .spa-section h3::before {
@@ -809,7 +892,7 @@ main.col-12 {
   background: none !important;
 } 
 
-/* إزالة جميع الظلال والحدود من الحاويات والمحتوى */
+
 .card,
 .spa-section,
 .main-content,
@@ -822,7 +905,7 @@ main {
   background-image: none !important;
 } 
 
-/* تثبيت الشريط العلوي في الأعلى */
+
 .navbar {
   position: sticky !important;
   top: 0;
@@ -830,12 +913,12 @@ main {
   transition: top 0.4s;
 }
 
-/* كلاس لإخفاء الشريط العلوي */
+
 .navbar.hide-navbar {
   top: -80px;
 } 
 
-/* --- Hover Effects for Cards, Badges, and Buttons --- */
+
 .card:hover, .card:focus {
   transform: scale(1.03);
   box-shadow: 0 8px 24px rgba(0,0,0,0.18);
@@ -858,7 +941,6 @@ main {
   box-shadow: 0 4px 16px rgba(42,82,152,0.18);
 }
 
-/* --- Responsive Profile Image and Headings --- */
 .hero-profile-img {
   width: 220px;
   height: 220px;
@@ -868,7 +950,6 @@ main {
   border: 4px solid #2a5298;
   transition: box-shadow 0.2s, border 0.2s;
 }
-/* --- Hero Section Mobile Layout Fix --- */
 @media (max-width: 991px) {
   .hero-section {
     flex-direction: column !important;
@@ -880,13 +961,13 @@ main {
   }
   
   .hero-img {
-    order: -1; /* يجعل الصورة تظهر أولاً */
+    order: -1; 
     margin-top: 0;
     margin-bottom: 24px;
   }
   
   .hero-text {
-    order: 1; /* يجعل النص يظهر ثانياً */
+    order: 1; 
     margin-top: 0;
   }
   
@@ -913,12 +994,7 @@ main {
   }
 } 
 
-/* --- Individual Item Hover Effects - Applied to All Sections --- */
 
-/* --- Grid Layout for All Sections --- */
- 
-
-/* --- Additional Section Improvements --- */
 .spa-section .row {
   margin-top: 2rem;
 }
@@ -927,7 +1003,7 @@ main {
   margin-bottom: 1.5rem;
 }
 
-/* --- Enhanced Text Styling --- */
+
 .text-primary {
   color: #9ca3af !important;
 }
@@ -941,7 +1017,7 @@ main {
   color: #d1d5db !important;
 }
 
-/* --- Improved List Styling --- */
+
 .spa-section ul {
   list-style: none;
   padding-left: 0;
@@ -968,7 +1044,7 @@ main {
   color: #6b7280;
 }
 
-/* --- Enhanced Image Styling --- */
+
 .cv-section-card img {
   border-radius: 0.8rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -979,7 +1055,7 @@ main {
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-/* --- Improved Spacing and Layout --- */
+
 main.col-12 {
   padding: 3rem 2rem !important;
 }
@@ -1009,7 +1085,7 @@ main.col-12 {
   }
 } 
 
-/* --- Final Section Polish --- */
+
 .spa-section {
   margin-bottom: 4rem;
 }
@@ -1020,31 +1096,29 @@ main.col-12 {
 
 
 
-/* --- Better Badge Alignment --- */
+
 .d-flex.flex-wrap.gap-2.justify-content-center {
   margin-top: 1rem;
 }
 
-/* --- Enhanced Section Transitions --- */
 .spa-section,
 .badge {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* --- Improved Focus States --- */
+
 .spa-section:focus-within {
   outline: 2px solid #6b7280;
   outline-offset: 2px;
 }
 
-/* --- Better Mobile Experience --- */
 @media (max-width: 991px) {
   .spa-section {
     margin-bottom: 3rem;
   }
 }
 
-/* --- Accessibility Improvements --- */
+
 @media (prefers-reduced-motion: reduce) {
   .spa-section,
   .badge,
@@ -1058,7 +1132,6 @@ main.col-12 {
   }
 } 
 
-/* --- Remove all existing card styling --- */
 .cv-section-card {
   background: none !important;
   border: none !important;
@@ -1084,7 +1157,7 @@ main.col-12 {
   border-color: transparent !important;
 }
 
-/* --- Individual Item Hover Effects for All Sections --- */
+
 .spa-section .col-md-6 {
   position: relative;
   transition: all 0.3s ease;
@@ -1103,7 +1176,6 @@ main.col-12 {
 
 
 
-/* --- Card content styling --- */
 .spa-section .col-md-6 h5 {
   color: #ffffff !important;
   font-size: 1.2rem;
@@ -1144,7 +1216,7 @@ main.col-12 {
   font-size: 0.8rem;
 }
 
-/* --- Enhanced hover effects --- */
+
 .spa-section .col-md-6:hover h5 {
   color: #ffffff !important;
 }
