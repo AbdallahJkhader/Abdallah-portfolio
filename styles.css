@@ -558,6 +558,62 @@ footer {
     padding: 2rem 1.5rem;
   }
   
+  .hero-section {
+    flex-direction: column !important;
+    text-align: center !important;
+    height: auto !important;
+    min-height: unset !important;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  
+  .hero-img {
+    order: -1;
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+  
+  .hero-text {
+    order: 1;
+    margin-top: 0;
+    max-width: 100%;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .hero-profile-img {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+  
+  .hero-text h2 {
+    font-size: 2rem;
+    text-align: center !important;
+  }
+  
+  .hero-text .text-secondary {
+    font-size: 1rem;
+    text-align: center !important;
+  }
+  
+  .hero-text .mb-3.d-flex.align-items-center {
+    justify-content: center !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 1rem !important;
+  }
+  
+  .hero-text .d-flex.flex-wrap.gap-3.mb-3 {
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  
   .spa-section {
     padding: 2rem 1.5rem;
     margin-bottom: 2rem;
@@ -614,31 +670,55 @@ footer {
   .hero-section {
     padding-top: 30px;
     padding-bottom: 30px;
+    flex-direction: column !important;
+    text-align: center !important;
   }
   
   .hero-img {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    order: -1;
   }
   
   .hero-text {
     margin-top: 20px;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
   
   .hero-profile-img {
-    width: 110px;
-    height: 110px;
+    width: 180px !important;
+    height: 180px !important;
   }
   
   .hero-text h2 {
     font-size: 1.3rem;
+    text-align: center !important;
   }
   
   .hero-text .text-secondary {
     font-size: 0.9rem;
+    text-align: center !important;
   }
   
   .hero-text ul li {
     font-size: 0.8rem;
+  }
+  
+  .hero-text .mb-3.d-flex.align-items-center {
+    justify-content: center !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 1rem !important;
+  }
+  
+  .hero-text .d-flex.flex-wrap.gap-3.mb-3 {
+    justify-content: center !important;
+    text-align: center !important;
   }
   
   .spa-section {
