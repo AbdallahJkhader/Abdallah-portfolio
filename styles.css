@@ -569,8 +569,9 @@ footer {
   
   .hero-img {
     order: -1;
-    margin-top: 0;
-    margin-bottom: 24px;
+    margin: 0 auto 24px auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
