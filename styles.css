@@ -1,6 +1,5 @@
-
 body {
-  background: #0f0f0f !important;
+  background: #0a0a0a !important;
   color: #ffffff !important;
   font-family: 'Cairo', Arial, sans-serif;
   min-height: 100vh;
@@ -76,12 +75,7 @@ body {
   padding: 0;
 }
 
-#projects .col-md-6 {
-  width: 100%;
-  max-width: 100%;
-  padding: 0;
-  margin: 0;
-}
+
 
 #projects .cv-section-card {
   background: transparent;
@@ -95,9 +89,9 @@ html {
 
 
 .main-content {
-  background: #fff !important;
+  background: transparent;
   border-radius: 2.5rem;
-  box-shadow: 0 12px 48px 0 rgba(0,0,0,0.18);
+  box-shadow: none !important;
   margin: 3rem auto;
   padding: 2.5rem 1.5rem;
   max-width: 900px;
@@ -109,7 +103,10 @@ html {
 
 
 .navbar {
-  background: #000 !important;
+  background: rgba(10, 10, 10, 0.9) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: none !important;
   border-radius: 0 !important;
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
@@ -157,8 +154,8 @@ html {
   width: 100%;
 }
 
-.nav-link.active, 
-.nav-link:focus, 
+.nav-link.active,
+.nav-link:focus,
 .nav-link:hover {
   color: #ffffff !important;
   background: transparent !important;
@@ -188,7 +185,7 @@ html {
 }
 
 .bg-dark-hero {
-  background: #000;
+  background: #0a0a0a;
   min-height: 70vh;
   width: 100vw;
   position: relative;
@@ -223,7 +220,7 @@ html {
   height: 220px;
   object-fit: cover;
   border-radius: 50% !important;
-  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
   filter: grayscale(30%);
   border: 4px solid #fff;
 }
@@ -265,18 +262,9 @@ html {
 }
 
 
-.spa-section {
-  border-radius: 0 !important;
-  margin-bottom: 0;
-  box-shadow: none !important;
-  border: none !important;
-  background: transparent !important;
-  padding-left: 0;
-  padding-right: 0;
-}
 
 .spa-section:last-child {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 
 .spa-section h3 {
@@ -326,9 +314,9 @@ html {
   border-radius: 1rem;
   padding: 1.5rem;
   margin-bottom: 1rem;
-  background: #1a1a1a;
-  border: 1px solid #333;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  background: transparent;
+  border: 1px solid transparent;
+  box-shadow: none;
   min-height: 200px;
   display: flex;
   flex-direction: column;
@@ -338,10 +326,10 @@ html {
 }
 
 .spa-section .col-md-6:hover {
-  background: #2d2d2d;
-  border-color: #4a5568;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-  transform: translateY(-5px);
+  background: transparent;
+  border-color: #6b7280;
+  box-shadow: none;
+  transform: none;
 }
 
 .spa-section .col-md-6 h5 {
@@ -414,7 +402,7 @@ html {
   font-weight: 600;
   font-size: 0.8rem;
   padding: 0.4rem 0.8rem;
-  box-shadow: 0 4px 12px rgba(107,114,128,0.3);
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
   border: none;
   margin: 0.2rem;
   border-radius: 1rem;
@@ -425,7 +413,7 @@ html {
 
 .badge.bg-gradient-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(107,114,128,0.4);
+  box-shadow: 0 6px 20px rgba(107, 114, 128, 0.4);
 }
 
 .text-primary {
@@ -496,11 +484,21 @@ html {
 
 
 footer {
-  background: #000 !important;
+  position: relative !important;
+  z-index: 100 !important;
+  display: block !important;
+  width: 100% !important;
+  background: #000000 !important;
   color: #ffffff !important;
   font-size: 1.05rem;
   letter-spacing: 0.5px;
-  box-shadow: 0 -2px 16px rgba(0,0,0,0.3);
+  box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.3);
+  padding: 1.5rem 0 !important;
+  margin-top: auto !important;
+}
+
+body.light-mode footer {
+  background: #2a5298 !important;
 }
 
 
@@ -525,29 +523,29 @@ footer {
     padding-top: 40px;
     padding-bottom: 40px;
   }
-  
+
   .hero-img {
     order: -1;
     margin-top: 0;
     margin-bottom: 24px;
   }
-  
+
   .hero-text {
     order: 1;
     margin-top: 0;
     max-width: 100%;
   }
-  
+
   .hero-profile-img {
     width: 150px;
     height: 150px;
     margin: 0 auto;
   }
-  
+
   .hero-text h2 {
     font-size: 2rem;
   }
-  
+
   .spa-section {
     margin-bottom: 3rem;
   }
@@ -557,7 +555,7 @@ footer {
   .main-content {
     padding: 2rem 1.5rem;
   }
-  
+
   .hero-section {
     flex-direction: column !important;
     text-align: center !important;
@@ -566,7 +564,7 @@ footer {
     padding-top: 40px;
     padding-bottom: 40px;
   }
-  
+
   .hero-img {
     order: -1;
     margin: 0 auto 24px auto !important;
@@ -576,7 +574,7 @@ footer {
     justify-content: center !important;
     align-items: center !important;
   }
-  
+
   .hero-text {
     order: 1;
     margin-top: 0;
@@ -587,23 +585,23 @@ footer {
     align-items: center !important;
     justify-content: center !important;
   }
-  
+
   .hero-profile-img {
     width: 150px;
     height: 150px;
     margin: 0 auto;
   }
-  
+
   .hero-text h2 {
     font-size: 2rem;
     text-align: center !important;
   }
-  
+
   .hero-text .text-secondary {
     font-size: 1rem;
     text-align: center !important;
   }
-  
+
   .hero-text .mb-3.d-flex.align-items-center {
     justify-content: center !important;
     text-align: center !important;
@@ -612,55 +610,55 @@ footer {
     align-items: center !important;
     gap: 1rem !important;
   }
-  
+
   .hero-text .d-flex.flex-wrap.gap-3.mb-3 {
     justify-content: center !important;
     text-align: center !important;
   }
-  
+
   .spa-section {
     padding: 2rem 1.5rem;
     margin-bottom: 2rem;
     border-radius: 1.5rem;
   }
-  
+
   .spa-section h3 {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
   }
-  
+
   .spa-section h3::after {
     width: 50px;
     height: 2px;
   }
-  
+
   .spa-section .col-md-6 {
     padding: 1.2rem;
     border-radius: 0.8rem;
     min-height: 180px;
   }
-  
+
   .spa-section .col-md-6:hover {
     transform: translateY(-3px);
   }
-  
+
   .spa-section .col-md-6 h5 {
     font-size: 1.1rem;
   }
-  
+
   .spa-section .col-md-6 i {
     font-size: 1.8rem;
   }
-  
+
   .badge.bg-gradient-primary {
     font-size: 0.8rem;
     padding: 0.5rem 1rem;
   }
-  
+
   .spa-section .row {
     margin-top: 1.5rem;
   }
-  
+
   .spa-section .col-md-6 {
     margin-bottom: 1rem;
   }
@@ -668,16 +666,17 @@ footer {
 
 @media (max-width: 575px) {
   .main-content {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1rem 0 1rem !important;
+    margin-bottom: 0 !important;
   }
-  
+
   .hero-section {
     padding-top: 30px;
     padding-bottom: 30px;
     flex-direction: column !important;
     text-align: center !important;
   }
-  
+
   .hero-img {
     margin-bottom: 30px;
     order: -1;
@@ -685,7 +684,7 @@ footer {
     justify-content: center !important;
     align-items: center !important;
   }
-  
+
   .hero-text {
     margin-top: 20px;
     text-align: center !important;
@@ -694,26 +693,26 @@ footer {
     align-items: center !important;
     justify-content: center !important;
   }
-  
+
   .hero-profile-img {
     width: 180px !important;
     height: 180px !important;
   }
-  
+
   .hero-text h2 {
     font-size: 1.3rem;
     text-align: center !important;
   }
-  
+
   .hero-text .text-secondary {
     font-size: 0.9rem;
     text-align: center !important;
   }
-  
+
   .hero-text ul li {
     font-size: 0.8rem;
   }
-  
+
   .hero-text .mb-3.d-flex.align-items-center {
     justify-content: center !important;
     text-align: center !important;
@@ -722,39 +721,39 @@ footer {
     align-items: center !important;
     gap: 1rem !important;
   }
-  
+
   .hero-text .d-flex.flex-wrap.gap-3.mb-3 {
     justify-content: center !important;
     text-align: center !important;
   }
-  
+
   .spa-section {
     padding: 1.5rem 1rem;
     border-radius: 1rem;
   }
-  
+
   .spa-section h3 {
     font-size: 1.5rem;
   }
-  
+
   .spa-section .col-md-6 {
     padding: 1rem;
     border-radius: 0.8rem;
     min-height: 160px;
   }
-  
+
   .spa-section .col-md-6:hover {
     transform: translateY(-2px);
   }
-  
+
   .spa-section .col-md-6 h5 {
     font-size: 1rem;
   }
-  
+
   .spa-section .col-md-6 i {
     font-size: 1.6rem;
   }
-  
+
   .spa-section ul li {
     padding-left: 1.2rem;
     margin-bottom: 0.6rem;
@@ -762,26 +761,27 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .spa-section,
   .badge,
   .bi {
     transition: none;
   }
-  
+
   .spa-section:hover,
   .badge:hover {
     transform: none;
   }
-} 
+}
 
 
 .spa-section {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  background: #000000 !important;
   border-radius: 2rem;
   padding: 3rem 2.5rem;
   margin-bottom: 3rem;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 4px 20px rgba(0,0,0,0.2);
-  border: 1px solid #333;
+  box-shadow: none;
+  border: none;
   position: relative;
   overflow: hidden;
   min-height: 350px;
@@ -819,13 +819,15 @@ footer {
   margin-bottom: 1.5rem;
 }
 
-.card h5, .card h6 {
+.card h5,
+.card h6 {
   color: #ffffff !important;
   font-size: 1.4rem;
   margin-bottom: 1.5rem;
 }
 
-.card p, .card li {
+.card p,
+.card li {
   color: #e5e7eb !important;
   font-size: 1.1rem;
   line-height: 1.8;
@@ -846,7 +848,7 @@ footer {
   font-weight: 600;
   font-size: 0.9rem;
   padding: 0.6rem 1.2rem;
-  box-shadow: 0 4px 12px rgba(107,114,128,0.3);
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
   border: none;
   margin: 0.3rem;
   border-radius: 1rem;
@@ -857,7 +859,7 @@ footer {
 
 .badge.bg-gradient-primary:hover {
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 6px 20px rgba(107,114,128,0.4);
+  box-shadow: 0 6px 20px rgba(107, 114, 128, 0.4);
 }
 
 
@@ -900,7 +902,7 @@ footer {
 
 .hero-text a:hover {
   color: #d1d5db !important;
-} 
+}
 
 main.col-12 {
   padding: 2rem 3rem !important;
@@ -912,26 +914,26 @@ main.col-12 {
     margin-bottom: 2rem;
     border-radius: 1.5rem;
   }
-  
+
   .spa-section h3 {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
   }
-  
+
   .spa-section h3::after {
     width: 50px;
     height: 2px;
   }
-  
+
   .cv-section-card {
     padding: 1.5rem 1rem;
     border-radius: 1rem;
   }
-  
+
   .cv-section-card h5 {
     font-size: 1.1rem;
   }
-  
+
   .badge.bg-gradient-primary {
     font-size: 0.8rem;
     padding: 0.5rem 1rem;
@@ -943,23 +945,23 @@ main.col-12 {
     padding: 1.5rem 1rem;
     border-radius: 1rem;
   }
-  
+
   .spa-section h3 {
     font-size: 1.5rem;
   }
-  
+
   .cv-section-card {
     padding: 1rem 0.8rem;
   }
-  
+
   .cv-section-card h5 {
     font-size: 1rem;
   }
-  
+
   .cv-section-card .bi {
     font-size: 2rem;
   }
-} 
+}
 
 
 .spa-section h3,
@@ -969,20 +971,18 @@ main.col-12 {
   box-shadow: none !important;
   content: none !important;
   background: none !important;
-} 
+}
 
 
 .card,
 .spa-section,
 .main-content,
-div,
 section,
 main {
-  box-shadow: none !important;
-  border: none !important;
-  outline: none !important;
-  background-image: none !important;
-} 
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
 
 
 .navbar {
@@ -995,29 +995,33 @@ main {
 
 .navbar.hide-navbar {
   top: -80px;
-} 
+}
 
 
-.card:hover, .card:focus {
+.card:hover,
+.card:focus {
   transform: scale(1.03);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   transition: transform 0.2s, box-shadow 0.2s;
   z-index: 2;
 }
 
-.badge:hover, .badge:focus {
+.badge:hover,
+.badge:focus {
   transform: scale(1.08);
-  box-shadow: 0 4px 12px rgba(42,82,152,0.15);
+  box-shadow: 0 4px 12px rgba(42, 82, 152, 0.15);
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
 }
 
-.btn, .btn:focus {
+.btn,
+.btn:focus {
   transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
+
 .btn:hover {
   transform: scale(1.04);
-  box-shadow: 0 4px 16px rgba(42,82,152,0.18);
+  box-shadow: 0 4px 16px rgba(42, 82, 152, 0.18);
 }
 
 .hero-profile-img {
@@ -1025,10 +1029,11 @@ main {
   height: 220px;
   object-fit: cover;
   border-radius: 24px;
-  box-shadow: 0 4px 24px rgba(42,82,152,0.18);
+  box-shadow: 0 4px 24px rgba(42, 82, 152, 0.18);
   border: 4px solid #2a5298;
   transition: box-shadow 0.2s, border 0.2s;
 }
+
 @media (max-width: 991px) {
   .hero-section {
     flex-direction: column !important;
@@ -1038,40 +1043,43 @@ main {
     padding-top: 40px;
     padding-bottom: 40px;
   }
-  
+
   .hero-img {
-    order: -1; 
+    order: -1;
     margin-top: 0;
     margin-bottom: 24px;
   }
-  
+
   .hero-text {
-    order: 1; 
+    order: 1;
     margin-top: 0;
   }
-  
+
   .hero-profile-img {
     width: 150px;
     height: 150px;
     margin: 0 auto;
   }
-  
+
   .hero-text h2 {
     font-size: 2rem;
   }
 }
+
 @media (max-width: 575px) {
   .hero-profile-img {
     width: 110px;
     height: 110px;
   }
+
   .hero-text h2 {
     font-size: 1.3rem;
   }
+
   .spa-section h3 {
     font-size: 1.2rem;
   }
-} 
+}
 
 
 .spa-section .row {
@@ -1080,6 +1088,41 @@ main {
 
 .spa-section .col-md-6 {
   margin-bottom: 1.5rem;
+}
+
+/* Global Card Refinement for all sections */
+#projects .col-6,
+#projects .col-md-6,
+#skills .col-md-6,
+#education .col-md-6,
+#experience .col-md-6,
+.cv-section-card div[class*="col-"] {
+  position: relative !important;
+  transition: all 0.3s ease !important;
+  border-radius: 1rem !important;
+  padding: 1.5rem !important;
+  background: transparent !important;
+  margin-bottom: 0 !important;
+  border: 2px solid transparent !important;
+  box-shadow: none !important;
+  min-height: 200px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+#projects .col-6:hover,
+#projects .col-md-6:hover,
+#skills .col-md-6:hover,
+#education .col-md-6:hover,
+#experience .col-md-6:hover,
+.cv-section-card div[class*="col-"]:hover {
+  background: transparent !important;
+  border: 2px solid #6b7280 !important;
+  box-shadow: none !important;
+  transform: none !important;
 }
 
 
@@ -1126,12 +1169,12 @@ main {
 
 .cv-section-card img {
   border-radius: 0.8rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 }
 
 .cv-section-card:hover img {
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -1143,11 +1186,11 @@ main.col-12 {
   main.col-12 {
     padding: 2rem 1.5rem !important;
   }
-  
+
   .spa-section .row {
     margin-top: 1.5rem;
   }
-  
+
   .spa-section .col-md-6 {
     margin-bottom: 1rem;
   }
@@ -1157,12 +1200,12 @@ main.col-12 {
   main.col-12 {
     padding: 1.5rem 1rem !important;
   }
-  
+
   .spa-section ul li {
     padding-left: 1.2rem;
     margin-bottom: 0.6rem;
   }
-} 
+}
 
 
 .spa-section {
@@ -1199,17 +1242,18 @@ main.col-12 {
 
 
 @media (prefers-reduced-motion: reduce) {
+
   .spa-section,
   .badge,
   .bi {
     transition: none;
   }
-  
+
   .spa-section:hover,
   .badge:hover {
     transform: none;
   }
-} 
+}
 
 .cv-section-card {
   background: none !important;
@@ -1247,7 +1291,7 @@ main.col-12 {
 
 .spa-section .col-md-6:hover {
   background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 4px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 4px 20px rgba(0, 0, 0, 0.2);
   border: 1px solid #333;
   transform: translateY(-5px);
   border-radius: 2rem;
@@ -1327,15 +1371,15 @@ main.col-12 {
     border-radius: 0.8rem;
     min-height: 180px;
   }
-  
+
   .spa-section .col-md-6:hover {
     transform: translateY(-3px);
   }
-  
+
   .spa-section .col-md-6 h5 {
     font-size: 1.1rem;
   }
-  
+
   .spa-section .col-md-6 i {
     font-size: 1.8rem;
   }
@@ -1347,51 +1391,51 @@ main.col-12 {
     border-radius: 0.8rem;
     min-height: 160px;
   }
-  
+
   .spa-section .col-md-6:hover {
     transform: translateY(-2px);
   }
-  
+
   .spa-section .col-md-6 h5 {
     font-size: 1rem;
   }
-  
+
   .spa-section .col-md-6 i {
     font-size: 1.6rem;
   }
-} 
+}
 
 @media (max-width: 575px) {
   .hero-section {
     padding-top: 30px;
     padding-bottom: 30px;
   }
-  
+
   .hero-img {
     margin-bottom: 20px;
   }
-  
+
   .hero-text {
     margin-top: 20px;
   }
-  
+
   .hero-profile-img {
     width: 110px;
     height: 110px;
   }
-  
+
   .hero-text h2 {
     font-size: 1.3rem;
   }
-  
+
   .hero-text .text-secondary {
     font-size: 0.9rem;
   }
-  
+
   .hero-text ul li {
     font-size: 0.8rem;
   }
-} 
+}
 
 html {
   scroll-behavior: smooth;
@@ -1402,16 +1446,48 @@ body {
 }
 
 .bg-dark-hero {
-  position: relative;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  background: #0a0a0a;
+  padding-top: 80px;
+  padding-bottom: 2rem;
   overflow: hidden;
 }
 
 .main-content {
   position: relative;
   z-index: 2;
-  margin-top: -50px;
-  padding-top: 50px;
-  background: #1a1a1a;
+  margin-left: 260px !important;
+  /* Move closer to name */
+  margin-right: 15% !important;
+  /* Prevent right overflow */
+  margin-top: 100vh !important;
+  padding: 2.5rem 1.5rem;
+  max-width: 950px;
+  background: #000000;
+  width: auto;
+}
+
+.main-content main.col-12 {
+  padding: 2rem 3rem !important;
+  margin: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 991px) {
+  .main-content {
+    margin-right: auto !important;
+    margin-left: auto !important;
+    width: 95%;
+  }
+
+  .spa-section h3 {
+    display: block !important;
+  }
 }
 
 .spa-section {
@@ -1457,15 +1533,20 @@ body {
   transition: all 0.3s ease;
 }
 
-.spa-section .col-md-6 {
+
+
+.spa-section .col-md-6,
+.spa-section .col-6,
+.cv-section-card .col-md-6,
+.cv-section-card .col-6 {
   position: relative;
   transition: all 0.3s ease;
   border-radius: 1rem;
   padding: 1.5rem;
   margin-bottom: 1rem;
-  background: #1a1a1a;
-  border: 1px solid #333;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  background: transparent;
+  border: 1px solid transparent;
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); Removed as requested */
   min-height: 200px;
   display: flex;
   flex-direction: column;
@@ -1474,11 +1555,40 @@ body {
   text-align: center;
 }
 
-.spa-section .col-md-6:hover {
-  background: #2d2d2d;
-  border-color: #4a5568;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-  transform: translateY(-5px);
+.spa-section .col-md-6:hover,
+.spa-section .col-6:hover,
+.cv-section-card .col-md-6:hover,
+.cv-section-card .col-6:hover {
+  background: transparent;
+  border-color: #ffffff;
+  /* White border in Dark Mode */
+  box-shadow: none;
+  transform: none;
+  /* Removed transform as requested */
+}
+
+/* Light Mode Overrides */
+body.light-mode .spa-section .col-md-6:hover,
+body.light-mode .spa-section .col-6:hover,
+body.light-mode .cv-section-card .col-md-6:hover,
+body.light-mode .cv-section-card .col-6:hover {
+  border-color: #000000;
+  /* Black border in Light Mode */
+}
+
+.project-btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.project-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .badge.bg-gradient-primary {
@@ -1490,7 +1600,7 @@ body {
 
 .badge.bg-gradient-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(107,114,128,0.3);
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
 }
 
 .spa-section .col-md-6:hover i {
@@ -1518,6 +1628,12 @@ body {
   display: inline-block;
 }
 
+@media (min-width: 992px) {
+  .spa-section h3 {
+    display: none !important;
+  }
+}
+
 .spa-section h3::after {
   content: '';
   position: absolute;
@@ -1536,8 +1652,7 @@ body {
   transform: scaleX(1);
 }
 
-@media (max-width: 768px) {
-}
+@media (max-width: 768px) {}
 
 img {
   opacity: 0;
@@ -1569,10 +1684,488 @@ img {
   position: relative;
   z-index: 1;
 }
+
 #about.spa-section h3,
 #about.spa-section p,
 #about.spa-section strong {
   color: inherit !important;
-} 
+}
 
- 
+/* Light Mode Styles */
+body.light-mode {
+  background: #f8f9fa !important;
+  color: #212529 !important;
+}
+
+body.light-mode .navbar.fixed-top {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.light-mode .navbar-brand {
+  color: #212529 !important;
+}
+
+body.light-mode .nav-link {
+  color: #495057 !important;
+}
+
+body.light-mode .nav-link:hover,
+body.light-mode .nav-link.active {
+  color: #000 !important;
+}
+
+body.light-mode .bg-dark-hero {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+body.light-mode .hero-text h2,
+body.light-mode .hero-text,
+body.light-mode .hero-text i {
+  color: #212529 !important;
+}
+
+body.light-mode .hero-text .text-secondary,
+body.light-mode .hero-text .text-white-50,
+body.light-mode .hero-text a {
+  color: #495057 !important;
+}
+
+body.light-mode .hero-profile-img {
+  border-color: #212529 !important;
+}
+
+body.light-mode .spa-section {
+  background: #ffffff;
+  border-color: #e9ecef;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .spa-section h3 {
+  color: #212529;
+}
+
+body.light-mode .spa-section p,
+body.light-mode .spa-section .row,
+body.light-mode .spa-section ul li {
+  color: #495057 !important;
+}
+
+body.light-mode .spa-section .col-md-6 {
+  background: #f8f9fa;
+  border-color: #dee2e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .spa-section .col-md-6:hover {
+  background: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .spa-section .col-md-6 h5 {
+  color: #212529 !important;
+}
+
+body.light-mode footer {
+  background: #f8f9fa !important;
+  color: #212529 !important;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+
+/* Comprehensive Light Mode Overrides */
+body.light-mode .main-content {
+  background: #ffffff !important;
+  box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
+body.light-mode h5,
+body.light-mode h6,
+body.light-mode p,
+body.light-mode span,
+body.light-mode div,
+body.light-mode li {
+  color: #212529 !important;
+}
+
+body.light-mode .text-white {
+  color: #212529 !important;
+}
+
+body.light-mode .text-muted,
+body.light-mode .text-secondary {
+  color: #6c757d !important;
+}
+
+/* Fix navbar text in light mode */
+body.light-mode .navbar-brand {
+  color: #000 !important;
+}
+
+body.light-mode .nav-link {
+  color: #495057 !important;
+}
+
+body.light-mode .nav-link:hover,
+body.light-mode .nav-link.active {
+  color: #000 !important;
+}
+
+/* Fix buttons in light mode */
+body.light-mode .btn-primary {
+  background-color: #0d6efd !important;
+  border-color: #0d6efd !important;
+  color: #fff !important;
+}
+
+body.light-mode .btn-outline-primary {
+  color: #0d6efd !important;
+  border-color: #0d6efd !important;
+}
+
+body.light-mode .btn-outline-primary:hover {
+  background-color: #0d6efd !important;
+  color: #fff !important;
+}
+
+/* Fix badge colors in light mode */
+body.light-mode .badge {
+  color: #fff !important;
+}
+
+body.light-mode .badge.bg-gradient-primary {
+  background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%) !important;
+  color: #fff !important;
+}
+
+/* Fix hero section specifically */
+body.light-mode .hero-text .text-white {
+  color: #212529 !important;
+}
+
+/* Ensure icons on hero section are visible */
+body.light-mode .hero-text i {
+  color: #212529 !important;
+}
+
+/* Fix toggle button icon in light mode */
+body.light-mode #themeToggle {
+  color: #212529 !important;
+}
+
+
+
+/* Fix Open for Opportunities badge in light mode */
+body.light-mode .badge {
+  background: rgba(16, 185, 129, 0.1) !important;
+  color: #059669 !important;
+  /* Darker green for legibility */
+  border-color: rgba(52, 211, 153, 0.3) !important;
+}
+
+/* Fix Section Backgrounds */
+body.light-mode .spa-section {
+  background: #f8f9fa !important;
+  /* Light gray to distinguish from main background if needed, or back to transparent if we want cards to pop */
+  /* actually, let's make it transparent again but fix the cards */
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  border-radius: 0 !important;
+}
+
+/* Fix Card Backgrounds inside sections */
+body.light-mode .spa-section .col-md-6 {
+  background: #ffffff !important;
+  border: 1px solid #f1f5f9 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+  border-radius: 1rem !important;
+}
+
+body.light-mode .spa-section .col-md-6:hover {
+  background: #e5e7eb !important;
+  /* Slightly darker gray on hover */
+}
+
+/* Fix all text inside sections */
+body.light-mode .spa-section h3,
+body.light-mode .spa-section h5 {
+  color: #111827 !important;
+  /* Almost black */
+}
+
+body.light-mode .spa-section p,
+body.light-mode .spa-section span,
+body.light-mode .spa-section div,
+body.light-mode .spa-section li {
+  color: #374151 !important;
+  /* Dark gray */
+}
+
+/* Fix badges inside cards */
+body.light-mode .badge.bg-gradient-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  /* Blue gradient */
+  color: #ffffff !important;
+}
+
+/* Fix silver text visibility in light mode */
+body.light-mode .text-secondary,
+body.light-mode .text-muted,
+body.light-mode .small {
+  color: #4b5563 !important;
+  /* Darker gray specifically for light mode */
+}
+
+/* Ensure sources and specific notes are visible */
+body.light-mode .spa-section .small.text-muted {
+  color: #6b7280 !important;
+  /* Slightly lighter than main text but still visible */
+}
+
+
+
+/* Correct Hover Color for Cards in Light Mode to be Dark, not White */
+body.light-mode .spa-section .col-md-6:hover p,
+body.light-mode .spa-section .col-md-6:hover .small,
+body.light-mode .spa-section .col-md-6:hover span,
+body.light-mode .spa-section .col-md-6:hover li {
+  color: #111827 !important;
+  /* Force dark text on hover */
+}
+
+/* Fix Hero Section Background to be Black in Light Mode (as requested by 'sections that should be black became white') */
+/* Wait, the user said 'sections that were supposed to be black in the dark section became white' - implying they WANT the contrast */
+
+/* Revert Hero Section to Dark in Light Mode? Or maybe they mean the cards? */
+/* Let's try to make the cards have a distinct background in light mode so they don't blend in too much, 
+   but the user specifically complained about things becoming white that should be black. 
+   If they mean the dark mode design was better, I should probably respect the dark theme as default 
+   and only change what's necessary for light mode. */
+
+/* However, for 'text disappearing on hover', that is a definite bug. */
+body.light-mode .spa-section .col-md-6:hover {
+  background: #f3f4f6 !important;
+  /* Keep it light gray, don't make it too dark or text might need to flip again */
+}
+
+/* Explicitly preserve Dark Mode (Default) styling for cards */
+body:not(.light-mode) .spa-section .col-md-6 {
+  background: #1a1a1a !important;
+  border-color: #333 !important;
+  color: #ffffff !important;
+}
+
+body:not(.light-mode) .spa-section .col-md-6 h5,
+body:not(.light-mode) .spa-section .col-md-6 p,
+body:not(.light-mode) .spa-section .col-md-6 span,
+body:not(.light-mode) .spa-section .col-md-6 .small,
+body:not(.light-mode) .spa-section .col-md-6 li {
+  color: #ffffff !important;
+}
+
+body:not(.light-mode) .spa-section .col-md-6:hover {
+  background: #2d2d2d !important;
+}
+
+body:not(.light-mode) .spa-section .col-md-6:hover h5,
+body:not(.light-mode) .spa-section .col-md-6:hover p,
+body:not(.light-mode) .spa-section .col-md-6:hover span,
+body:not(.light-mode) .spa-section .col-md-6:hover .small,
+body:not(.light-mode) .spa-section .col-md-6:hover li {
+  color: #e5e7eb !important;
+}
+
+body:not(.light-mode) .text-muted,
+body:not(.light-mode) .text-secondary {
+  color: #9ca3af !important;
+}
+
+
+
+/* Make main-content black in dark mode for consistency */
+body:not(.light-mode) .main-content {
+  background: #0a0a0a !important;
+  box-shadow: 0 12px 48px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* --- Light Mode Redesign --- */
+body.light-mode {
+  background: #e9ecef !important;
+  color: #1f2937 !important;
+}
+
+body.light-mode .bg-dark-hero {
+  background: #e9ecef !important;
+}
+
+body.light-mode .spa-section {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+body.light-mode .navbar {
+  background: rgba(233, 236, 239, 0.9) !important;
+  border-bottom: none !important;
+  backdrop-filter: blur(10px);
+}
+
+body.light-mode .nav-link {
+  color: #4b5563 !important;
+}
+
+body.light-mode .nav-link:hover,
+body.light-mode .nav-link.active {
+  color: #2563eb !important;
+}
+
+body.light-mode .navbar-toggler {
+  border-color: #374151;
+}
+
+body.light-mode .navbar-toggler-icon {
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox=\'0 0 30 30\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath stroke=\'rgba%2855, 65, 81, 1%29\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' d=\'M4 7h22M4 15h22M4 23h22\'/%3E%3C/svg%3E');
+}
+
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
+body.light-mode h5,
+body.light-mode h6 {
+  color: #111827 !important;
+}
+
+body.light-mode p,
+body.light-mode li,
+body.light-mode span,
+body.light-mode div {
+  color: #374151 !important;
+}
+
+body.light-mode .text-secondary,
+body.light-mode .text-muted {
+  color: #6b7280 !important;
+}
+
+body.light-mode .spa-section .col-md-6 {
+  background: #ffffff !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  border-radius: 1rem !important;
+}
+
+body.light-mode .spa-section .col-md-6:hover {
+  background: #ffffff !important;
+  transform: translateY(-5px) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  border-color: #2563eb !important;
+}
+/* Social Icons Fix */
+.social-icon-link {
+  color: #ffffff !important;
+  transition: all 0.3s ease !important;
+}
+
+.social-icon-link:hover {
+  transform: translateY(-3px);
+  color: #e5e7eb !important;
+}
+
+body.light-mode .social-icon-link {
+  color: #1f2937 !important;
+}
+
+body.light-mode .social-icon-link:hover {
+  color: #2563eb !important;
+}
+
+
+/* Status Badge Styling */
+.status-badge {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  /* Default Dark Mode: Leaning to Black (Subtle Dark) */
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Light Mode: Leaning to White (Subtle Light) */
+body.light-mode .status-badge {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+
+/* Contact Info Panel and Backdrop (The Message) */
+#panel-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-info-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: rgba(10, 10, 10, 0.95); /* Leaning to Black (Dark Mode) */
+  color: #ffffff;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  z-index: 1000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  text-align: center;
+  min-width: 300px;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .contact-info-panel {
+  background: #2563eb; /* Leaning to Blue (Light Mode) */
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
+}
+
+.contact-info-panel button {
+  /* Close Button */
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: inherit; /* Inherit white from parent */
+  font-size: 2rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.contact-info-panel button:hover {
+  opacity: 1;
+}
+
