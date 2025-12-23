@@ -2070,6 +2070,7 @@ body.light-mode .spa-section .col-md-6:hover {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
   border-color: #2563eb !important;
 }
+
 /* Social Icons Fix */
 .social-icon-link {
   color: #ffffff !important;
@@ -2129,11 +2130,12 @@ body.light-mode .status-badge {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
-  background: rgba(10, 10, 10, 0.95); /* Leaning to Black (Dark Mode) */
+  background: rgba(10, 10, 10, 0.95);
+  /* Leaning to Black (Dark Mode) */
   color: #ffffff;
   padding: 2rem;
   border-radius: 15px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.2rem;
@@ -2145,7 +2147,8 @@ body.light-mode .status-badge {
 }
 
 body.light-mode .contact-info-panel {
-  background: #2563eb; /* Leaning to Blue (Light Mode) */
+  background: #2563eb;
+  /* Leaning to Blue (Light Mode) */
   color: #ffffff;
   border: none;
   box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
@@ -2158,7 +2161,8 @@ body.light-mode .contact-info-panel {
   right: 15px;
   background: none;
   border: none;
-  color: inherit; /* Inherit white from parent */
+  color: inherit;
+  /* Inherit white from parent */
   font-size: 2rem;
   cursor: pointer;
   opacity: 0.8;
@@ -2169,3 +2173,19 @@ body.light-mode .contact-info-panel {
   opacity: 1;
 }
 
+#themeToggle,
+#themeToggle:hover,
+#themeToggle:focus,
+#themeToggle:active {
+  background-color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  body.light-mode .spa-section {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+}
