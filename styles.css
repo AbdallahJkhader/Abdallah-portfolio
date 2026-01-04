@@ -1857,8 +1857,7 @@ body.light-mode .badge {
 /* Fix Section Backgrounds */
 body.light-mode .spa-section {
   background: #f8f9fa !important;
-  /* Light gray to distinguish from main background if needed, or back to transparent if we want cards to pop */
-  /* actually, let's make it transparent again but fix the cards */
+
   background: transparent !important;
   background-image: none !important;
   box-shadow: none !important;
@@ -1929,18 +1928,10 @@ body.light-mode .spa-section .col-md-6:hover li {
 }
 
 /* Fix Hero Section Background to be Black in Light Mode (as requested by 'sections that should be black became white') */
-/* Wait, the user said 'sections that were supposed to be black in the dark section became white' - implying they WANT the contrast */
 
-/* Revert Hero Section to Dark in Light Mode? Or maybe they mean the cards? */
-/* Let's try to make the cards have a distinct background in light mode so they don't blend in too much, 
-   but the user specifically complained about things becoming white that should be black. 
-   If they mean the dark mode design was better, I should probably respect the dark theme as default 
-   and only change what's necessary for light mode. */
-
-/* However, for 'text disappearing on hover', that is a definite bug. */
 body.light-mode .spa-section .col-md-6:hover {
   background: #f3f4f6 !important;
-  /* Keep it light gray, don't make it too dark or text might need to flip again */
+
 }
 
 /* Explicitly preserve Dark Mode (Default) styling for cards */
@@ -2260,7 +2251,7 @@ body.light-mode .contact-info-panel {
 
   body:not(.light-mode) .spa-section {
     background: transparent !important;
-    /* Blur removed here as it's now on main-content */
+
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     border-radius: 1.5rem !important;
@@ -2292,7 +2283,7 @@ body.light-mode .contact-info-panel {
 
   body.light-mode .spa-section {
     background: transparent !important;
-    /* Blur removed here as it's now on main-content */
+
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     border-radius: 1.5rem !important;
@@ -2398,7 +2389,7 @@ body.light-mode .navbar-brand {
 
 /* ===== MODERN UI ELEMENTS FOR LIGHT MODE ===== */
 
-/* 1. Unify and Modernize Project Buttons & Details Buttons */
+
 body.light-mode .project-btn,
 body.light-mode .btn-outline-info,
 body.light-mode .btn-outline-primary {

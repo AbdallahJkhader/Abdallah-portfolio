@@ -207,7 +207,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
         var backdrop = document.createElement('div');
         backdrop.id = 'panel-backdrop';
-        // Styles moved to styles.css (#panel-backdrop)
+
         document.body.appendChild(backdrop);
 
 
@@ -221,12 +221,12 @@ window.addEventListener('DOMContentLoaded', function () {
             panel.classList.add('phone-popup-mode');
         }
         panel.innerHTML = content;
-        // Styles moved to styles.css (.contact-info-panel)
+
 
 
         var closeBtn = document.createElement('button');
         closeBtn.innerHTML = '×';
-        // Styles for button moved to styles.css (.contact-info-panel button)
+
 
         panel.appendChild(closeBtn);
         document.body.appendChild(panel);
@@ -302,7 +302,7 @@ window.addEventListener('DOMContentLoaded', function () {
             } else if (type === 'phone') {
 
                 navigator.clipboard.writeText('+962782576216').then(() => {
-                    // Remove transparency class so the success message has a proper background frame
+
                     panel.classList.remove('phone-popup-mode');
                     panel.innerHTML = '<i class="bi bi-check-circle fs-1"></i><br><strong>Phone Copied!</strong><br><small>Phone number copied to clipboard</small>';
                     setTimeout(() => {
@@ -316,12 +316,7 @@ window.addEventListener('DOMContentLoaded', function () {
         backdrop.onclick = closePanel;
 
 
-        // Auto-close removed as per user request
-        // setTimeout(() => {
-        //     if (currentOpenPanel === panel) {
-        //         closePanel();
-        //     }
-        // }, 5000);
+
 
         return panel;
     }
@@ -337,7 +332,7 @@ window.addEventListener('DOMContentLoaded', function () {
     if (phoneSpan) {
         phoneSpan.style.cursor = 'pointer';
         phoneSpan.onclick = function () {
-            // Check current theme to select appropriate icon
+
             const isLightMode = document.body.classList.contains('light-mode');
             const iconSrc = isLightMode ? 'phone number black.png' : 'phone number white.png';
 
@@ -359,15 +354,14 @@ window.addEventListener('DOMContentLoaded', function () {
         };
     }
 
-    // Open Details "Coming Soon" Logic
-    // Open Details Logic
+
     const detailBtns = document.querySelectorAll('.details-btn');
     detailBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            // If it is the Focus & Read button, show specific details
+
             if (btn.id === 'focusReadBtn') {
-                // Interactive Carousel Logic for Focus & Read
-                // Focus & Read Carousel Data
+
+
                 const slides = [
                     // Slide 1: Overview (Original)
                     {
@@ -514,13 +508,13 @@ window.addEventListener('DOMContentLoaded', function () {
                     `;
                 }
 
-                // Wrap initial content
+
                 const wrapperHTML = `<div id="fr-carousel-content">${getSlideHTML(0)}</div>`;
 
-                // Create panel
+
                 const panel = createInfoPanel(wrapperHTML, 'project-details');
 
-                // Function to manage navigation
+
                 function attachNavListeners(currentIndex) {
                     const contentContainer = document.getElementById('fr-carousel-content');
                     if (!contentContainer) return;
@@ -547,10 +541,10 @@ window.addEventListener('DOMContentLoaded', function () {
                     }
                 }
 
-                // Initial attachment
+
                 attachNavListeners(0);
             } else if (btn.id === 'restoMBtn') {
-                // RestoM Carousel Data
+
                 const restoSlides = [
                     // Slide 1: Overview
                     {
@@ -678,13 +672,13 @@ window.addEventListener('DOMContentLoaded', function () {
                     `;
                 }
 
-                // Wrap initial content
+
                 const wrapperHTML = `<div id="rm-carousel-content">${getRestoSlideHTML(0)}</div>`;
 
-                // Create panel
+
                 const panel = createInfoPanel(wrapperHTML, 'project-details');
 
-                // Function to manage navigation
+
                 function attachRestoNavListeners(currentIndex) {
                     const contentContainer = document.getElementById('rm-carousel-content');
                     if (!contentContainer) return;
@@ -711,7 +705,7 @@ window.addEventListener('DOMContentLoaded', function () {
                     }
                 }
 
-                // Initial attachment
+
                 attachRestoNavListeners(0);
 
             } else {
@@ -781,9 +775,5 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Update panel click handler to support coming-soon auto-close if needed, though default 5s works.
-    // The createInfoPanel implementation already handles 5s timeout.
-    // If we want immediate close on click for 'coming-soon' just like others:
-    // Existing logic for 'email'/'phone' etc is inside the createInfoPanel closure which we are not modifying here directly
-    // but we can rely on the default behavior or standard close.
+
 });
