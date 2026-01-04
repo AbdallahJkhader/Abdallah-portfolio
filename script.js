@@ -134,7 +134,7 @@ window.addEventListener('scroll', () => {
 
 window.addEventListener('DOMContentLoaded', function () {
     const text1 = "Hello, I'm Abdallah";
-    const text2 = "Software Developer | .NET";
+    const text2 = "Associate Software Engineer | .NET Developer";
     const el1 = document.getElementById('typewriter');
     const el2 = document.getElementById('netdev');
     let i = 0, j = 0;
@@ -217,6 +217,9 @@ window.addEventListener('DOMContentLoaded', function () {
 
         var panel = document.createElement('div');
         panel.className = 'contact-info-panel';
+        if (type === 'phone') {
+            panel.classList.add('phone-popup-mode');
+        }
         panel.innerHTML = content;
         // Styles moved to styles.css (.contact-info-panel)
 
@@ -270,37 +273,42 @@ window.addEventListener('DOMContentLoaded', function () {
             }, 300);
         }
 
-        closeBtn.onclick = closePanel;
-
+        closeBtn.onclick = function (e) {
+            e.stopPropagation(); // Prevent bubbling to panel
+            closePanel();
+        };
 
         panel.style.cursor = 'pointer';
         panel.onclick = function (e) {
-            if (e.target === closeBtn) {
-                closePanel();
-            } else {
-                if (type === 'github') {
-                    openLink('https://github.com/AbdallahJkhader');
-                } else if (type === 'linkedin') {
-                    openLink('https://www.linkedin.com/in/abdallah-khader-b70739230?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app');
-                } else if (type === 'email') {
+            // Check if the click originated from the button or its children (just in case)
+            if (e.target === closeBtn || closeBtn.contains(e.target)) {
+                return; // Already handled by closeBtn.onclick
+            }
 
-                    navigator.clipboard.writeText('abdallahjkhader@gmail.com').then(() => {
+            // Otherwise, handle panel click (Link opening / Copy)
+            if (type === 'github') {
+                openLink('https://github.com/AbdallahJkhader');
+            } else if (type === 'linkedin') {
+                openLink('https://www.linkedin.com/in/abdallah-khader-b70739230?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app');
+            } else if (type === 'email') {
 
-                        panel.innerHTML = '<i class="bi bi-check-circle fs-1"></i><br><strong>Email Copied!</strong><br><small>Email address copied to clipboard</small>';
-                        setTimeout(() => {
-                            closePanel();
-                        }, 1500);
-                    });
-                } else if (type === 'phone') {
+                navigator.clipboard.writeText('abdallahjkhader@gmail.com').then(() => {
 
-                    navigator.clipboard.writeText('+962782576216').then(() => {
+                    panel.innerHTML = '<i class="bi bi-check-circle fs-1"></i><br><strong>Email Copied!</strong><br><small>Email address copied to clipboard</small>';
+                    setTimeout(() => {
+                        closePanel();
+                    }, 1500);
+                });
+            } else if (type === 'phone') {
 
-                        panel.innerHTML = '<i class="bi bi-check-circle fs-1"></i><br><strong>Phone Copied!</strong><br><small>Phone number copied to clipboard</small>';
-                        setTimeout(() => {
-                            closePanel();
-                        }, 1500);
-                    });
-                }
+                navigator.clipboard.writeText('+962782576216').then(() => {
+                    // Remove transparency class so the success message has a proper background frame
+                    panel.classList.remove('phone-popup-mode');
+                    panel.innerHTML = '<i class="bi bi-check-circle fs-1"></i><br><strong>Phone Copied!</strong><br><small>Phone number copied to clipboard</small>';
+                    setTimeout(() => {
+                        closePanel();
+                    }, 1500);
+                });
             }
         };
 
@@ -308,11 +316,12 @@ window.addEventListener('DOMContentLoaded', function () {
         backdrop.onclick = closePanel;
 
 
-        setTimeout(() => {
-            if (currentOpenPanel === panel) {
-                closePanel();
-            }
-        }, 5000);
+        // Auto-close removed as per user request
+        // setTimeout(() => {
+        //     if (currentOpenPanel === panel) {
+        //         closePanel();
+        //     }
+        // }, 5000);
 
         return panel;
     }
@@ -328,7 +337,11 @@ window.addEventListener('DOMContentLoaded', function () {
     if (phoneSpan) {
         phoneSpan.style.cursor = 'pointer';
         phoneSpan.onclick = function () {
-            createInfoPanel('<img src="phone number icon.png" alt="Phone" width="34" height="34" style="vertical-align: middle; border-radius: 50%; object-fit: cover; object-position: center;"><br><strong>+962 78 257 6216</strong><br><small>Call or message this number</small>', 'phone');
+            // Check current theme to select appropriate icon
+            const isLightMode = document.body.classList.contains('light-mode');
+            const iconSrc = isLightMode ? 'phone number black.png' : 'phone number white.png';
+
+            createInfoPanel('<img src="' + iconSrc + '" alt="Phone Number" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">', 'phone');
         };
     }
 
@@ -347,10 +360,364 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     // Open Details "Coming Soon" Logic
+    // Open Details Logic
     const detailBtns = document.querySelectorAll('.details-btn');
     detailBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            createInfoPanel('<i class="bi bi-hourglass-split fs-1"></i><br><strong>Coming Soon!</strong><br><small>This feature is under development</small>', 'coming-soon');
+        btn.addEventListener('click', (e) => {
+            // If it is the Focus & Read button, show specific details
+            if (btn.id === 'focusReadBtn') {
+                // Interactive Carousel Logic for Focus & Read
+                // Focus & Read Carousel Data
+                const slides = [
+                    // Slide 1: Overview (Original)
+                    {
+                        id: 1,
+                        title: 'Focus & Read',
+                        icon: 'focusandreadlogo.jpg',
+                        iconWidth: 80,
+                        content: `
+                            <p class="small mb-3">
+                                Distraction-free educational web application built with ASP.NET Core MVC, specifically designed
+                                for neurodivergent learners, particularly students with ADHD, to boost focus, organizational skills, and
+                                productivity. The platform integrates multiple smart tools, including customizable Pomodoro timers
+                                and a Virtual Classes feature. Key AI-powered features include Intelligent Summarization and Quiz
+                                generation.
+                            </p>
+                            <p class="small mb-3">
+                                My role focused heavily on Back-End development. Implemented as a B.Sc. graduation project at
+                                The Hashemite University.
+                            </p>
+                        `
+                    },
+                    // Slide 2: Problem Statement (Original)
+                    {
+                        id: 2,
+                        title: 'Problem Statement',
+                        icon: 'ADHD icon.png',
+                        iconWidth: 70,
+                        content: `
+                            <p class="small mb-3">
+                                Traditional study tools often lack features specifically tailored for neurodivergent minds.
+                                Students with ADHD frequently struggle with maintaining focus, organizing tasks, and managing time effectively
+                                in standard learning environments, leading to decreased productivity and academic stress.
+                                There is a need for a specialized platform that combines distraction-blocking, smart scheduling,
+                                and accessible reading formats in one cohesive environment.
+                            </p>
+                        `
+                    },
+                    // Slide 3: Requirements (Original)
+                    {
+                        id: 3,
+                        title: 'Requirement Document',
+                        icon: 'req doc icon.png',
+                        iconWidth: 70,
+                        content: `
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <h6 class="fw-bold text-primary mb-2">Functional Reqs:</h6>
+                                    <ul class="small mb-0">
+                                        <li>User Authentication & Profile Management</li>
+                                        <li>Timer and Focus Tools</li>
+                                        <li>AI Features (Summarization, Quizzes, Flashcards)</li>
+                                        <li>Progress Tracker & Organization Tools</li>
+                                        <li>Study tools like notes & videos</li>
+                                    </ul>
+                                </div>
+                                <div class="col-12">
+                                    <h6 class="fw-bold text-primary mb-2">Non-Functional Reqs:</h6>
+                                    <ul class="small mb-0">
+                                        <li><strong>Accessibility:</strong> WCAG 2.1 compliance for neurodivergent users.</li>
+                                        <li><strong>Performance:</strong> Fast load times (< 2s) for study and focus tools.</li>
+                                        <li><strong>Reliability:</strong> 99.9% uptime for study sessions.</li>
+                                        <li><strong>Scalability:</strong> Support widespread student usage.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        `
+                    },
+                    // Slide 4: Project Video
+                    {
+                        id: 4,
+                        title: 'Project Video',
+                        icon: 'focusandreadlogo.jpg',
+                        iconWidth: 50,
+                        content: `
+                            <div class="w-100 text-center">
+                                <video controls class="rounded shadow-sm" style="max-width: 100%; max-height: 380px; width: auto; height: auto; background-color: #000;">
+                                    <source src="focus video.MP4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        `
+                    },
+                    // Slide 5: Used Technologies
+                    {
+                        id: 5,
+                        title: 'Used Technologies',
+                        icon: 'web technologies icon.png',
+                        iconWidth: 50,
+                        content: `
+                             <div class="p-2">
+                                <div class="mb-4">
+                                    <h6 class="fw-bold text-light mb-2"><i class="bi bi-hdd-stack me-2 text-info"></i>Backend & Database</h6>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-gradient-primary">ASP.NET Core MVC</span>
+                                        <span class="badge bg-gradient-primary">C#</span>
+                                        <span class="badge bg-gradient-primary">SQL Server</span>
+                                        <span class="badge bg-gradient-primary">Entity Framework Core</span>
+                                        <span class="badge bg-gradient-primary">Clean Architecture</span>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <h6 class="fw-bold text-light mb-2"><i class="bi bi-window-sidebar me-2 text-info"></i>Frontend & UI</h6>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-gradient-primary">HTML5</span>
+                                        <span class="badge bg-gradient-primary">CSS3</span>
+                                        <span class="badge bg-gradient-primary">JavaScript</span>
+                                        <span class="badge bg-gradient-primary">Bootstrap 5</span>
+                                        <span class="badge bg-gradient-primary">Responsive Design</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold text-light mb-2"><i class="bi bi-robot me-2 text-info"></i>AI & Tools</h6>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-gradient-primary">Groq API</span>
+                                        <span class="badge bg-gradient-primary">Git & GitHub</span>
+                                        <span class="badge bg-gradient-primary">Visual Studio</span>
+                                        <span class="badge bg-gradient-primary">Agile/Scrum</span>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    }
+                ];
+
+                function getSlideHTML(slideIndex) {
+                    const slide = slides[slideIndex];
+                    const hasPrev = slideIndex > 0;
+                    const hasNext = slideIndex < slides.length - 1;
+
+                    return `
+                        <div id="fr-slide-${slide.id}" class="text-start p-3 fade-in">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="${slide.icon}" alt="${slide.title}" width="${slide.iconWidth}" class="rounded-3 shadow-sm me-3" style="object-fit: contain;">
+                                <h4 class="fw-bold mb-0">${slide.title}</h4>
+                                <div class="ms-auto d-flex gap-2">
+                                    ${hasPrev ? `<i id="fr-prev-btn" class="bi bi-arrow-left-circle-fill fs-2 cursor-pointer text-info" role="button" title="Previous"></i>` : ''}
+                                    ${hasNext ? `<i id="fr-next-btn" class="bi bi-arrow-right-circle-fill fs-2 cursor-pointer text-info" role="button" title="Next"></i>` : ''}
+                                </div>
+                            </div>
+                            <div class="carousel-content">
+                                ${slide.content}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Wrap initial content
+                const wrapperHTML = `<div id="fr-carousel-content">${getSlideHTML(0)}</div>`;
+
+                // Create panel
+                const panel = createInfoPanel(wrapperHTML, 'project-details');
+
+                // Function to manage navigation
+                function attachNavListeners(currentIndex) {
+                    const contentContainer = document.getElementById('fr-carousel-content');
+                    if (!contentContainer) return;
+
+                    const prevBtn = document.getElementById('fr-prev-btn');
+                    const nextBtn = document.getElementById('fr-next-btn');
+
+                    if (prevBtn) {
+                        prevBtn.onclick = (e) => {
+                            e.stopPropagation();
+                            const newIndex = currentIndex - 1;
+                            contentContainer.innerHTML = getSlideHTML(newIndex);
+                            attachNavListeners(newIndex);
+                        };
+                    }
+
+                    if (nextBtn) {
+                        nextBtn.onclick = (e) => {
+                            e.stopPropagation();
+                            const newIndex = currentIndex + 1;
+                            contentContainer.innerHTML = getSlideHTML(newIndex);
+                            attachNavListeners(newIndex);
+                        };
+                    }
+                }
+
+                // Initial attachment
+                attachNavListeners(0);
+            } else if (btn.id === 'restoMBtn') {
+                // RestoM Carousel Data
+                const restoSlides = [
+                    // Slide 1: Overview
+                    {
+                        id: 1,
+                        title: 'RestoM',
+                        icon: 'RestoM logo.jpg',
+                        iconWidth: 80,
+                        content: `
+                            <p class="small mb-3">
+                                A comprehensive Restaurant Management System designed to streamline operations, from order taking to kitchen execution and billing. 
+                                Built with a robust ASP.NET Core Web API backend and an efficient Entity Framework data layer, it ensures consistency and speed in high-pressure environments.
+                            </p>
+                            <p class="small mb-3">
+                                Key features include real-time order processing, inventory tracking, and detailed analytics for business insights.
+                            </p>
+                        `
+                    },
+                    // Slide 2: Problem Statement
+                    {
+                        id: 2,
+                        title: 'Problem Statement',
+                        icon: 'RestoM logo.jpg',
+                        iconWidth: 60,
+                        content: `
+                            <p class="small mb-3">
+                                Manual restaurant operations often lead to miscommunication between the front-of-house and kitchen, resulting in incorrect orders and delays. 
+                                Inventory mismanagement can cause unexpected shortages, while a lack of data visibility hinders strategic decision-making. 
+                                RestoM addresses these inefficiencies by digitizing the entire workflow.
+                            </p>
+                        `
+                    },
+                    // Slide 3: Requirements
+                    {
+                        id: 3,
+                        title: 'Key Requirements',
+                        icon: 'req doc icon.png',
+                        iconWidth: 60,
+                        content: `
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <h6 class="fw-bold text-primary mb-2">Functional Modules:</h6>
+                                    <ul class="small mb-0">
+                                        <li><strong>POS System:</strong> Fast order entry and billing.</li>
+                                        <li><strong>Kitchen Display System (KDS):</strong> Real-time order updates for chefs.</li>
+                                        <li><strong>Inventory Management:</strong> Auto-deduction of stock based on recipes.</li>
+                                        <li><strong>Analytics Dashboard:</strong> Sales reports and performance metrics.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        `
+                    },
+                    // Slide 4: Project Video
+                    {
+                        id: 4,
+                        title: 'Project Video',
+                        icon: 'RestoM logo.jpg',
+                        iconWidth: 50,
+                        content: `
+                            <div class="w-100 text-center">
+                                <video controls class="rounded shadow-sm" style="max-width: 100%; max-height: 380px; width: auto; height: auto; background-color: #000;">
+                                    <source src="RestoM video.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        `
+                    },
+                    // Slide 5: Used Technologies
+                    {
+                        id: 5,
+                        title: 'Used Technologies',
+                        icon: 'web technologies icon.png',
+                        iconWidth: 50,
+                        content: `
+                             <div class="p-2">
+                                <div class="mb-4">
+                                    <h6 class="fw-bold text-light mb-2"><i class="bi bi-hdd-stack me-2 text-info"></i>Backend & Database</h6>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-gradient-primary">ASP.NET Core Web API</span>
+                                        <span class="badge bg-gradient-primary">C#</span>
+                                        <span class="badge bg-gradient-primary">SQL Server</span>
+                                        <span class="badge bg-gradient-primary">Entity Framework Core</span>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <h6 class="fw-bold text-light mb-2"><i class="bi bi-window-sidebar me-2 text-info"></i>Frontend & Interfaces</h6>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-gradient-primary">HTML5/CSS3</span>
+                                        <span class="badge bg-gradient-primary">JavaScript</span>
+                                        <span class="badge bg-gradient-primary">Bootstrap 5</span>
+                                        <span class="badge bg-gradient-primary">Swagger UI</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold text-light mb-2"><i class="bi bi-tools me-2 text-info"></i>Tools</h6>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-gradient-primary">Git & GitHub</span>
+                                        <span class="badge bg-gradient-primary">Visual Studio</span>
+                                        <span class="badge bg-gradient-primary">Postman</span>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    }
+                ];
+
+                function getRestoSlideHTML(slideIndex) {
+                    const slide = restoSlides[slideIndex];
+                    const hasPrev = slideIndex > 0;
+                    const hasNext = slideIndex < restoSlides.length - 1;
+
+                    return `
+                        <div id="rm-slide-${slide.id}" class="text-start p-3 fade-in">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="${slide.icon}" alt="${slide.title}" width="${slide.iconWidth}" class="rounded-3 shadow-sm me-3" style="object-fit: contain;">
+                                <h4 class="fw-bold mb-0">${slide.title}</h4>
+                                <div class="ms-auto d-flex gap-2">
+                                    ${hasPrev ? `<i id="rm-prev-btn" class="bi bi-arrow-left-circle-fill fs-2 cursor-pointer text-info" role="button" title="Previous"></i>` : ''}
+                                    ${hasNext ? `<i id="rm-next-btn" class="bi bi-arrow-right-circle-fill fs-2 cursor-pointer text-info" role="button" title="Next"></i>` : ''}
+                                </div>
+                            </div>
+                            <div class="carousel-content">
+                                ${slide.content}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Wrap initial content
+                const wrapperHTML = `<div id="rm-carousel-content">${getRestoSlideHTML(0)}</div>`;
+
+                // Create panel
+                const panel = createInfoPanel(wrapperHTML, 'project-details');
+
+                // Function to manage navigation
+                function attachRestoNavListeners(currentIndex) {
+                    const contentContainer = document.getElementById('rm-carousel-content');
+                    if (!contentContainer) return;
+
+                    const prevBtn = document.getElementById('rm-prev-btn');
+                    const nextBtn = document.getElementById('rm-next-btn');
+
+                    if (prevBtn) {
+                        prevBtn.onclick = (e) => {
+                            e.stopPropagation();
+                            const newIndex = currentIndex - 1;
+                            contentContainer.innerHTML = getRestoSlideHTML(newIndex);
+                            attachRestoNavListeners(newIndex);
+                        };
+                    }
+
+                    if (nextBtn) {
+                        nextBtn.onclick = (e) => {
+                            e.stopPropagation();
+                            const newIndex = currentIndex + 1;
+                            contentContainer.innerHTML = getRestoSlideHTML(newIndex);
+                            attachRestoNavListeners(newIndex);
+                        };
+                    }
+                }
+
+                // Initial attachment
+                attachRestoNavListeners(0);
+
+            } else {
+                // Default "Coming Soon" for other buttons
+                createInfoPanel('<i class="bi bi-hourglass-split fs-1"></i><br><strong>Coming Soon!</strong><br><small>This feature is under development</small>', 'coming-soon');
+            }
         });
     });
 });

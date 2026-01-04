@@ -115,7 +115,8 @@
       <div class="hero-text text-white">
         <h2 class="fw-bold mb-2" id="typewriter" style="font-family: 'Montserrat', sans-serif;"></h2>
         <div id="netdev" class="mb-3 text-white fw-bold"
-          style="font-size:1.5rem;font-family:'Montserrat',sans-serif;letter-spacing:1px;display:none;">.NET Developer
+          style="font-size:1.5rem;font-family:'Montserrat',sans-serif;letter-spacing:1px;display:none;">Associate
+          Software Engineer | .NET Developer
         </div>
 
 
@@ -129,15 +130,16 @@
           <span class="text-white me-3" title="Email: abdallahjkhader@gmail.com"><img src="gmail icon.png" alt="Gmail"
               width="40" height="35" style="vertical-align: middle;"></span>
           <span class="text-white me-3" title="Phone: +962782576216"><img src="phone number icon.png" alt="Phone"
-              width="34" height="34"
-              style="vertical-align: middle; border-radius: 50%; object-fit: cover; object-position: center;"></span>
+              width="34" height="34" style="vertical-align: middle;"></span>
         </div>
 
         <div class="d-flex flex-wrap gap-3 mb-3 align-items-center">
-          <button id="downloadBtn" class="btn btn-primary" style="font-family:'Montserrat',sans-serif;">
+          <button id="downloadBtn" class="btn btn-outline-primary btn-sm project-btn"
+            style="font-family:'Montserrat',sans-serif;">
             View CV
           </button>
-          <span class="badge status-badge fade-in-up" style="animation-delay: 2.5s;">
+          <span class="btn btn-outline-success btn-sm project-btn fade-in-up"
+            style="animation-delay: 2.5s; cursor: default;">
             Open for Opportunities
           </span>
         </div>
@@ -163,32 +165,26 @@
           <div class="cv-section-card">
             <div class="row g-4">
               <div class="col-md-6 text-center">
-                <img src="csharp icon.png" alt="C#" width="60" height="60" class="mb-2"
-                  style="border-radius: 0 !important; border: none !important; outline: none !important; box-shadow: none !important;">
-                <h5 class="fw-bold mb-2">C#</h5>
-                <p class="text-secondary mb-0">OOP, Collections, Generic & Type Safety, async/await, Clean Code</p>
-                <div class="small text-muted mt-2">Source: Esam Abdulnabi YT Series, Problem Solving</div>
+                <img src="lanfuages and framworks icon.png" alt="Languages & Frameworks" width="60" height="60"
+                  class="mb-3">
+                <h5 class="fw-bold mb-2">Languages & Frameworks</h5>
+                <p class="text-secondary mb-0">C#, SQL, JS, ASP.NET Core MVC, Web API</p>
               </div>
               <div class="col-md-6 text-center">
-                <img src="asp.net icon.png" alt="ASP.NET" width="40" height="40" class="mb-3"
-                  style="border-radius: 0 !important; border: none !important; outline: none !important; box-shadow: none !important;">
-                <h5 class="fw-bold mb-2">ASP.NET Core</h5>
-                <p class="text-secondary mb-0">MVC architecture, Web API, routing & endpoints, model binding &
-                  validation, dependency injection</p>
-                <div class="small text-muted mt-2">Source: ITI</div>
+                <img src="database icon.webp" alt="Database & ORM" width="60" height="60" class="mb-3">
+                <h5 class="fw-bold mb-2">Database & ORM</h5>
+                <p class="text-secondary mb-0">SQL Server, Linq, ADO.NET, Entity Framework, CRUD, Stored procedures</p>
               </div>
               <div class="col-md-6 text-center">
-                <img src="microsoft-sql-server.jpg" alt="SQL Server" width="50" height="50" class="mb-3">
-                <h5 class="fw-bold mb-2">Entity Framework Core & SQL Server</h5>
-                <p class="text-secondary mb-0">Stored Procedures, Indexes, Normalization, Code First & DB First,
-                  Migrations, LINQ Queries, ADO.NET</p>
-                <div class="small text-muted mt-2">Source: ITI</div>
+                <img src="web technologies icon.png" alt="Web Technologies" width="60" height="60" class="mb-3">
+                <h5 class="fw-bold mb-2">Web Technologies</h5>
+                <p class="text-secondary mb-0">HTML, CSS, Bootstrap</p>
               </div>
               <div class="col-md-6 text-center">
-                <img src="web developement icon.png" alt="Web Development" width="60" height="60" class="mb-3">
-                <h5 class="fw-bold mb-2">Web Fundamentals</h5>
-                <p class="text-secondary mb-0">HTML, CSS, JS, Bootstrap, Basic UI/UX</p>
-                <div class="small text-muted mt-2">Source: YT, University</div>
+                <img src="clean code icon.png" alt="Architecture & Clean Code" width="60" height="60" class="mb-3">
+                <h5 class="fw-bold mb-2">Architecture & Clean Code</h5>
+                <p class="text-secondary mb-0">OOP, Code first & DB first, Repository Pattern, Dependency Injection,
+                  Restful API</p>
               </div>
             </div>
           </div>
@@ -207,7 +203,7 @@
                   neurodivergent students, offering smart tools to increase focus and reduce distraction during study.
                 </p>
                 <div class="mt-auto d-flex justify-content-center gap-2">
-                  <button class="btn btn-outline-info btn-sm details-btn project-btn">
+                  <button id="focusReadBtn" class="btn btn-outline-info btn-sm details-btn project-btn">
                     Open Details
                   </button>
                   <a href="https://github.com/AbdallahJkhader/ADHDWebapp" target="_blank"
@@ -226,7 +222,7 @@
                   with an analytics dashboard. Developed with ASP.NET Core Web API and Entity Framework.</p>
 
                 <div class="mt-auto d-flex justify-content-center gap-2">
-                  <button class="btn btn-outline-info btn-sm details-btn project-btn">
+                  <button id="restoMBtn" class="btn btn-outline-info btn-sm details-btn project-btn">
                     Open Details
                   </button>
                   <a href="https://github.com/AbdallahJkhader/RestoM" target="_blank"
@@ -245,16 +241,16 @@
             <div class="row g-4">
               <div class="col-md-6 text-center">
                 <img src="hu-logo.jpg" alt="HU Logo" width="60" height="60" class="rounded mb-3">
-                <h5 class="fw-bold mb-2">BSc in Computer Science and its Applications</h5>
-                <span class="badge bg-gradient-primary mb-2 fs-6 px-3 py-2">The Hashemite University</span>
+                <h5 class="fw-bold mb-2">BSc in Computer Science and Applications</h5>
+                <span class="btn btn-outline-primary btn-sm project-btn mb-2 border-2">The Hashemite University</span>
                 <div class="small text-muted">GPA: 3.1</div>
-                <div class="small text-muted">10/2022 - Expected 1/2026</div>
+                <div class="small text-muted">10/2022 - 1/2026</div>
               </div>
               <div class="col-md-6 text-center">
                 <img src="school.jpg" alt="School Logo" width="60" height="60" class="rounded mb-3">
                 <h5 class="fw-bold mb-2">Tawjihi (High School)</h5>
-                <span class="badge bg-gradient-primary mb-2 fs-6 px-3 py-2">Arsalan High School</span>
-                <div class="small text-muted">Average: 91.5</div>
+                <span class="btn btn-outline-primary btn-sm project-btn mb-2 border-2">Arsalan High School</span>
+                <div class="small text-muted">Score: 91.5</div>
                 <div class="small text-muted">Graduated: 2022</div>
               </div>
             </div>
@@ -267,7 +263,8 @@
               <div class="col-md-6 text-center">
                 <img src="Extensya logo.jpeg" alt="Extensya Logo" width="90" height="90" class="rounded mb-3">
                 <h5 class="fw-bold mb-2">Customer Service Agent</h5>
-                <span class="badge bg-gradient-primary mb-2 fs-6 px-3 py-2">Extensya (on behalf of Talabat)</span>
+                <span class="btn btn-outline-primary btn-sm project-btn mb-2 border-2">Extensya (on behalf of
+                  Talabat)</span>
                 <div class="small text-muted">Jun 2023 - Sep 2023</div>
                 <ul class="small mb-0">
                   <li class="mb-2">Resolved partner issues via phone and provided real-time support to ensure customer
@@ -278,7 +275,7 @@
                 <img src="Danish Jordanian Dairy logo.jpeg" alt="Danish Jordanian Dairy Logo" width="90" height="90"
                   class="rounded mb-3">
                 <h5 class="fw-bold mb-2">IT System and Support Engineer (Intern)</h5>
-                <span class="badge bg-gradient-primary mb-2 fs-6 px-3 py-2">Danish Jordanian Dairy</span>
+                <span class="btn btn-outline-primary btn-sm project-btn mb-2 border-2">Danish Jordanian Dairy</span>
                 <div class="small text-muted">Jul 2025 - Sep 2025</div>
                 <ul class="small mb-0">
                   <li class="mb-2">Provided IT support, maintained systems, and contributed to the development of the
@@ -291,8 +288,8 @@
       </main>
     </div>
   </div>
-  <footer class="text-center py-4 text-white" style="background: #2a5298; font-family: 'Cairo', sans-serif;">
-    Built with love by Abdallah J. Khader (Last updated on 23 Dec, 2025)
+  <footer class="text-center py-4 text-white" style="background: transparent;">
+    Built with <i class="bi bi-heart-fill text-danger"></i> by Abdallah J. Khader (Last updated on Jan, 2026)
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>

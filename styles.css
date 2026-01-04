@@ -7,27 +7,7 @@ body {
   scroll-behavior: smooth;
 }
 
-#projects:hover,
-#projects *:hover {
-  transform: none !important;
-  background: none !important;
-  box-shadow: none !important;
-  border: none !important;
-  transition: none !important;
-  color: inherit !important;
-}
-
-#projects .spa-section:hover,
-#projects .spa-section .col-md-6:hover,
-#projects .spa-section .col-md-6:hover *,
-#projects .spa-section:hover * {
-  transform: none !important;
-  background: none !important;
-  box-shadow: none !important;
-  border: none !important;
-  transition: none !important;
-  color: inherit !important;
-}
+/* Removed aggressive #projects hover resets to allow button interactions */
 
 .project-images {
   display: flex;
@@ -488,17 +468,23 @@ footer {
   z-index: 100 !important;
   display: block !important;
   width: 100% !important;
-  background: #000000 !important;
+  background: transparent !important;
   color: #ffffff !important;
+  font-family: 'Montserrat', Arial, sans-serif;
   font-size: 1.05rem;
   letter-spacing: 0.5px;
-  box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: none !important;
   padding: 1.5rem 0 !important;
   margin-top: auto !important;
+  border-top: none !important;
 }
 
 body.light-mode footer {
-  background: #2a5298 !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff !important;
+  box-shadow: none !important;
 }
 
 
@@ -2014,9 +2000,9 @@ body.light-mode .spa-section {
 }
 
 body.light-mode .navbar {
-  background: rgba(233, 236, 239, 0.9) !important;
+  background: #ffffff !important;
   border-bottom: none !important;
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
 }
 
 body.light-mode .nav-link {
@@ -2188,4 +2174,402 @@ body.light-mode .contact-info-panel {
     border-bottom-left-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
   }
+}
+
+/* ===== Desktop: Connected Sections (Dark Mode = Black Container, Light Mode = White Container) ===== */
+@media (min-width: 992px) {
+
+  /* Dark Mode: Black container with connected black sections */
+  body:not(.light-mode) .main-content {
+    background: #000000 !important;
+    border-radius: 2rem !important;
+    padding: 2rem !important;
+  }
+
+  body:not(.light-mode) .spa-section {
+    background: #000000 !important;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 2rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  body:not(.light-mode) .spa-section:last-child {
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+  }
+
+  body:not(.light-mode) .spa-section:first-child {
+    border-top-left-radius: 2rem !important;
+    border-top-right-radius: 2rem !important;
+  }
+
+  body:not(.light-mode) .spa-section:last-child {
+    border-bottom-left-radius: 2rem !important;
+    border-bottom-right-radius: 2rem !important;
+  }
+
+  /* Light Mode: White container with connected white sections */
+  body.light-mode .main-content {
+    background: #ffffff !important;
+    border-radius: 2rem !important;
+    padding: 2rem !important;
+  }
+
+  body.light-mode .spa-section {
+    background: #ffffff !important;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 2rem !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+  }
+
+  body.light-mode .spa-section:last-child {
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+  }
+
+  body.light-mode .spa-section:first-child {
+    border-top-left-radius: 2rem !important;
+    border-top-right-radius: 2rem !important;
+  }
+
+  body.light-mode .spa-section:last-child {
+    border-bottom-left-radius: 2rem !important;
+    border-bottom-right-radius: 2rem !important;
+  }
+}
+
+/* ===== Mobile: Separated Sections in Both Modes ===== */
+@media (max-width: 991px) {
+  .main-content {
+    width: 100% !important;
+    padding: 0.2rem !important;
+    /* Apply Blur to the ENTIRE container so gaps are also blurred */
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    /* Optional: very slight tint to enhance blur perception */
+    background: rgba(0, 0, 0, 0.02) !important;
+  }
+
+  /* Dark Mode: Transparent sections (blur handled by main-content) with Solid Cards */
+  body:not(.light-mode) .main-content {
+    /* Background tint for dark mode */
+    background: rgba(0, 0, 0, 0.1) !important;
+  }
+
+  body:not(.light-mode) .spa-section {
+    background: transparent !important;
+    /* Blur removed here as it's now on main-content */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-radius: 1.5rem !important;
+    margin-bottom: 2rem !important;
+    padding: 2rem 1.5rem !important;
+    border-bottom: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  body:not(.light-mode) .spa-section .col-md-6,
+  body:not(.light-mode) .spa-section .col-6 {
+    background: #111111 !important;
+    /* Solid Dark Background for Cards */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    z-index: 2;
+  }
+
+  body:not(.light-mode) .spa-section:last-child {
+    margin-bottom: 1rem !important;
+  }
+
+  /* Light Mode: Transparent sections (blur handled by main-content) with Solid Cards */
+  body.light-mode .main-content {
+    /* Background tint for light mode */
+    background: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  body.light-mode .spa-section {
+    background: transparent !important;
+    /* Blur removed here as it's now on main-content */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-radius: 1.5rem !important;
+    margin-bottom: 2rem !important;
+    padding: 2rem 1.5rem !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  body.light-mode .spa-section .col-md-6,
+  body.light-mode .spa-section .col-6 {
+    background: #ffffff !important;
+    /* Solid White Background for Cards */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    z-index: 2;
+  }
+
+  body.light-mode .spa-section:last-child {
+    margin-bottom: 1rem !important;
+  }
+}
+
+/* ===== CRITICAL: FORCE DARK TEXT IN LIGHT MODE ===== */
+body.light-mode .text-white,
+body.light-mode .text-white-50,
+body.light-mode .text-light,
+body.light-mode .text-muted,
+body.light-mode .text-secondary {
+  color: #1f2937 !important;
+  /* Forces dark color even on muted text */
+}
+
+/* Force headings and paragraphs inside cards to be dark */
+body.light-mode .spa-section h1,
+body.light-mode .spa-section h2,
+body.light-mode .spa-section h3,
+body.light-mode .spa-section h4,
+body.light-mode .spa-section h5,
+body.light-mode .spa-section h6,
+body.light-mode .spa-section p,
+body.light-mode .spa-section span,
+body.light-mode .spa-section li,
+body.light-mode .spa-section div,
+body.light-mode .spa-section i,
+body.light-mode .spa-section a {
+  color: #000000 !important;
+}
+
+/* Ensure small text is slightly lighter but still very dark */
+body.light-mode .spa-section .small,
+body.light-mode .spa-section small {
+  color: #374151 !important;
+}
+
+/* Specific fix for the hero text which might be using text-white class */
+body.light-mode .hero-text .text-white,
+body.light-mode .hero-text h2,
+body.light-mode .hero-text div {
+  color: #000000 !important;
+}
+
+/* Dark Mode Button Styling (Matching Light Mode Shape/Interaction) */
+body:not(.light-mode) .project-btn,
+body:not(.light-mode) .btn-outline-info,
+body:not(.light-mode) .btn-outline-primary {
+  background-color: transparent !important;
+  color: #3b82f6 !important;
+  /* Slightly lighter blue for dark mode contrast */
+  border: 2px solid #3b82f6 !important;
+  border-radius: 12px !important;
+  /* Unified Shape */
+  padding: 0.6rem 1.5rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  font-size: 0.8rem !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
+}
+
+body:not(.light-mode) .project-btn:hover,
+body:not(.light-mode) .btn-outline-info:hover,
+body:not(.light-mode) .btn-outline-primary:hover {
+  background: #3b82f6 !important;
+  /* Solid Blue Fill using shorthand */
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+  opacity: 1 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4) !important;
+}
+
+body.light-mode .social-icon-link,
+body.light-mode .social-icon-link i {
+  color: #000000 !important;
+}
+
+body.light-mode .navbar-brand {
+  color: #000000 !important;
+}
+
+/* ===== MODERN UI ELEMENTS FOR LIGHT MODE ===== */
+
+/* 1. Unify and Modernize Project Buttons & Details Buttons */
+body.light-mode .project-btn,
+body.light-mode .btn-outline-info,
+body.light-mode .btn-outline-primary {
+  background-color: transparent !important;
+  /* Transparent Background */
+  color: #2563eb !important;
+  /* Blue Text */
+  border: 2px solid #2563eb !important;
+  border-radius: 12px !important;
+  /* Softer Rounded Corners */
+  padding: 0.6rem 1.5rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  font-size: 0.8rem !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
+}
+
+body.light-mode .project-btn:hover,
+body.light-mode .btn-outline-info:hover,
+body.light-mode .btn-outline-primary:hover {
+  background-color: #2563eb !important;
+  /* Blue Background on Hover */
+  color: #ffffff !important;
+  /* White Text on Hover */
+  border-color: #2563eb !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3) !important;
+}
+
+/* 2. Modernize Badges (Company/University Labels) */
+body.light-mode .badge,
+body.light-mode .badge.bg-gradient-primary {
+  background: #000000 !important;
+  /* Solid Black */
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  /* Slightly softer corners but distinct */
+  padding: 0.5rem 1rem !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Contact Info Panel Styles (Popup) */
+#panel-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-info-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+
+  /* Standard Card Style (Default) */
+  background: rgba(10, 10, 10, 0.95);
+  /* Dark background by default */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+
+  z-index: 10001;
+  text-align: center;
+  max-width: 700px;
+  max-height: 90vh;
+  width: auto;
+  min-width: 300px;
+  /* Min width for text popups */
+  color: #ffffff;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Light Mode Overrides for Standard Panel */
+body.light-mode .contact-info-panel {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #000000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Special Phone Popup Mode (Transparent, No Frame, Image Only) */
+.contact-info-panel.phone-popup-mode {
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  min-width: auto !important;
+  /* Allow it to shrink to image size */
+}
+
+.contact-info-panel img {
+  /* Default Icon Size */
+  max-width: 100%;
+  height: auto;
+}
+
+/* Specific sizing for the phone popup image */
+.contact-info-panel.phone-popup-mode img {
+  max-width: 220px !important;
+  /* Smaller size as requested */
+  border-radius: 20px;
+  /* Nice rounding for the phone image */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  /* Shadow on the image itself, not the container */
+}
+
+.contact-info-panel button {
+  position: absolute;
+  top: 10px;
+  /* Inside the card by default */
+  right: 10px;
+  /* Inside the card by default */
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  /* Subtle default background */
+  border-radius: 50%;
+  border: none;
+  color: inherit;
+  /* Inherit color from parent (white/black) */
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.3s;
+  z-index: 10005;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 4px;
+}
+
+/* Specific button style for Phone Popup (Outside and distinctive) */
+.contact-info-panel.phone-popup-mode button {
+  top: -40px;
+  right: -20px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.contact-info-panel button:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+body.light-mode .badge:hover {
+  transform: translateY(-1px) !important;
+}
+
+/* Ensure sources and specific notes are PURE BLACK */
+body.light-mode .spa-section .small.text-muted,
+body.light-mode .text-muted {
+  color: #000000 !important;
+  font-weight: 500 !important;
 }
