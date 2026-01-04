@@ -468,23 +468,25 @@ footer {
   z-index: 100 !important;
   display: block !important;
   width: 100% !important;
-  background: transparent !important;
+  background: rgba(10, 10, 10, 0.7) !important;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   color: #ffffff !important;
   font-family: 'Montserrat', Arial, sans-serif;
   font-size: 1.05rem;
   letter-spacing: 0.5px;
-  box-shadow: none !important;
-  padding: 1.5rem 0 !important;
-  margin-top: auto !important;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2) !important;
+  padding: 2rem 0 !important;
+  margin-top: -2rem !important;
+  /* Pull up to connect with last section */
   border-top: none !important;
 }
 
 body.light-mode footer {
-  background: rgba(0, 0, 0, 0.8) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: #ffffff !important;
-  box-shadow: none !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+  color: #000000 !important;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.05) !important;
+  border-top: none !important;
 }
 
 
@@ -1991,9 +1993,10 @@ body.light-mode .spa-section {
 }
 
 body.light-mode .navbar {
-  background: #ffffff !important;
+  background: rgba(255, 255, 255, 0.7) !important;
   border-bottom: none !important;
-  backdrop-filter: none;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
 }
 
 body.light-mode .nav-link {
@@ -2446,7 +2449,8 @@ body.light-mode .badge.bg-gradient-primary {
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(5px);
-  z-index: 10000;
+  z-index: 1000000;
+  /* Higher than navbar (999999) */
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -2467,7 +2471,8 @@ body.light-mode .badge.bg-gradient-primary {
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 
-  z-index: 10001;
+  z-index: 1000001;
+  /* Higher than backdrop */
   text-align: center;
   max-width: 700px;
   max-height: 90vh;
@@ -2533,7 +2538,8 @@ body.light-mode .contact-info-panel {
   cursor: pointer;
   opacity: 0.7;
   transition: all 0.3s;
-  z-index: 10005;
+  z-index: 1000005;
+  /* Higher than panel */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2563,4 +2569,176 @@ body.light-mode .spa-section .small.text-muted,
 body.light-mode .text-muted {
   color: #000000 !important;
   font-weight: 500 !important;
+}
+
+/* Mobile Optimizations for Project Details Modal */
+@media (max-width: 768px) {
+  .contact-info-panel {
+    width: 90% !important;
+    max-width: 90% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+    padding: 1.5rem 1rem !important;
+    /* Revert top padding to save space */
+    border-radius: 1rem !important;
+    max-height: 85vh;
+    overflow-y: auto;
+    margin: 0 !important;
+  }
+
+  /* Add padding to the header row to reserve space for the close button */
+  .contact-info-panel .d-flex.align-items-center.mb-3 {
+    padding-right: 35px !important;
+    position: relative;
+  }
+
+  .contact-info-panel h4 {
+    font-size: 1.2rem !important;
+    padding-right: 0 !important;
+    /* Remove specific h4 padding */
+  }
+
+  .contact-info-panel .carousel-content p,
+  .contact-info-panel .carousel-content li {
+    font-size: 0.95rem !important;
+    line-height: 1.5;
+  }
+
+  .contact-info-panel img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .contact-info-panel button {
+    top: 15px !important;
+    /* Align effectively with header */
+    right: 10px !important;
+    width: 30px;
+    /* Slightly smaller */
+    height: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    z-index: 10006 !important;
+    font-size: 1.2rem !important;
+  }
+
+  /* Adjust navigation arrows for mobile */
+  .bi-arrow-left-circle-fill,
+  .bi-arrow-right-circle-fill {
+    font-size: 1.8rem !important;
+  }
+
+  /* Ensure video is responsive */
+  .contact-info-panel video {
+    max-height: 250px !important;
+  }
+}
+
+/* =========================================
+   STICKY SIDEBAR LAYOUT (Desktop Only)
+   ========================================= */
+@media (min-width: 992px) {
+
+  /* When scrolled, change hero layout */
+  body.scrolled-sidebar-active .hero-section {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    /* Vertically center content */
+    padding: 100px 1rem 0 1rem !important;
+    /* Add top padding to clear container/navbar */
+    /* transition: all 0.4s ease; REMOVED to prevent floating/centering jump */
+    width: 260px !important;
+    /* Strictly restrict width so it looks like sidebar */
+    position: fixed !important;
+    /* Ensure it stays fixed */
+    top: 0;
+    /* Start from top of viewport */
+    left: 0;
+    height: 100vh;
+    /* Full viewport height */
+    z-index: 50;
+  }
+
+  /* Animate only the image for the "moves up slightly" effect */
+  body.scrolled-sidebar-active .hero-profile-img {
+    width: 140px !important;
+    height: 140px !important;
+    border-width: 3px !important;
+    transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease;
+    transform: translateY(-10px);
+    /* Move up slightly */
+  }
+
+  body.scrolled-sidebar-active .hero-img {
+    margin-right: 0 !important;
+    margin-bottom: 0.5rem !important;
+    /* Reduced margin so text is closer */
+    transition: margin 0.3s ease;
+    justify-content: center !important;
+  }
+
+  body.scrolled-sidebar-active .hero-profile-img {
+    width: 140px !important;
+    height: 140px !important;
+    border-width: 3px !important;
+  }
+
+  body.scrolled-sidebar-active .hero-text {
+    text-align: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    opacity: 0;
+    /* Start hidden */
+    animation: simpleFadeIn 0.5s forwards;
+    /* Appears suddenly/smoothly */
+  }
+
+  @keyframes simpleFadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  body.scrolled-sidebar-active .hero-text h2 {
+    font-size: 1.3rem !important;
+    /* Slightly smaller for sidebar */
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Show the subtitle again if it was hidden, or keep it small */
+  body.scrolled-sidebar-active #netdev {
+    font-size: 0.9rem !important;
+    margin-bottom: 1rem !important;
+    display: block !important;
+  }
+
+  /* Adjust social icons container */
+  body.scrolled-sidebar-active .hero-text .mb-3.d-flex.align-items-center {
+    justify-content: center !important;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  body.scrolled-sidebar-active .social-icon-link i {
+    font-size: 1.2rem !important;
+  }
+
+  body.scrolled-sidebar-active .hero-text img {
+    /* Scale down contact icons */
+    width: 24px !important;
+    height: auto !important;
+  }
+
+  /* Hide or adjust buttons to fit sidebar */
+  body.scrolled-sidebar-active .hero-text .d-flex.flex-wrap.gap-3.mb-3 {
+    justify-content: center !important;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem !important;
+  }
+
+  body.scrolled-sidebar-active .project-btn {
+    width: 100%;
+    font-size: 0.75rem !important;
+  }
 }

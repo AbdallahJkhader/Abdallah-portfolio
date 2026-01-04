@@ -775,5 +775,18 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-
+    // Sticky Sidebar Layout Logic
+    window.addEventListener('scroll', function () {
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+            const skillsTop = skillsSection.getBoundingClientRect().top;
+            // Trigger when skills section is near the top (e.g., under navbar + some offset)
+            // 150px is roughly navbar height (80px) + some buffer
+            if (skillsTop <= 150) {
+                document.body.classList.add('scrolled-sidebar-active');
+            } else {
+                document.body.classList.remove('scrolled-sidebar-active');
+            }
+        }
+    });
 });
