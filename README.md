@@ -39,9 +39,9 @@ Since this is a static front-end project, you can run it easily:
 2.  Open the `index.html` file in any web browser.
 
 ## 📬 Contact Me
-*   **LinkedIn:** [Abdallah Khader](https://www.linkedin.com/in/abdallah-j-khader-b70739230)
+*   **LinkedIn:**  [Abdallah J. Khader](https://www.linkedin.com/in/abdallah-j-khader-b70739230)
 *   **GitHub:** [AbdallahJkhader](https://github.com/AbdallahJkhader)
 *   **Email:** abdallahjkhader@gmail.com
 
 ---
-Developed by **Abdallah J. Khader** | Made with ❤️ in 2026
+Developed by **Abdallah J. Khader** | Made with ❤️ in 2025
