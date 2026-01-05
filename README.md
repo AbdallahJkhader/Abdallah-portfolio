@@ -44,4 +44,4 @@ Since this is a static front-end project, you can run it easily:
 *   **Email:** abdallahjkhader@gmail.com
 
 ---
-Developed by **Abdallah J. Khader** | Made with ❤️ in 2026
+Developed by **Abdallah J. Khader** | Made with ❤️ in 2025
