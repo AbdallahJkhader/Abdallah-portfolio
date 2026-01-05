@@ -144,6 +144,7 @@ window.addEventListener('DOMContentLoaded', function () {
             i++;
             setTimeout(typeWriter1, 55);
         } else {
+            
             if (el2) {
                 el2.textContent = '';
                 el2.style.display = 'block';
