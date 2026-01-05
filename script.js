@@ -289,7 +289,7 @@ window.addEventListener('DOMContentLoaded', function () {
             if (type === 'github') {
                 openLink('https://github.com/AbdallahJkhader');
             } else if (type === 'linkedin') {
-                openLink('https://www.linkedin.com/in/abdallah-khader-b70739230?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app');
+                openLink('https://www.linkedin.com/in/abdallah-j-khader-b70739230');
             } else if (type === 'email') {
 
                 navigator.clipboard.writeText('abdallahjkhader@gmail.com').then(() => {
@@ -347,12 +347,10 @@ window.addEventListener('DOMContentLoaded', function () {
         };
     }
 
-    if (linkedinLink) {
-        linkedinLink.onclick = function (e) {
-            e.preventDefault();
-            createInfoPanel('<i class="bi bi-linkedin fs-1"></i><br><strong>linkedin.com/in/abdallah-khader-b70739230</strong><br><small>Click to open profile</small>', 'linkedin');
-        };
-    }
+    linkedinLink.onclick = function (e) {
+        e.preventDefault();
+        createInfoPanel('<i class="bi bi-linkedin fs-1"></i><br><strong>linkedin.com/in/abdallah-j-khader-b70739230</strong><br><small>Click to open profile</small>', 'linkedin');
+    };
 
 
     const detailBtns = document.querySelectorAll('.details-btn');
