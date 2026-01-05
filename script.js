@@ -361,7 +361,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
                 const slides = [
-                    // Slide 1: Overview (Original)
+                    // Slide 1: Overview
                     {
                         id: 1,
                         title: 'Focus & Read',
@@ -369,15 +369,10 @@ window.addEventListener('DOMContentLoaded', function () {
                         iconWidth: 80,
                         content: `
                             <p class="small mb-3">
-                                Distraction-free educational web application built with ASP.NET Core MVC, specifically designed
-                                for neurodivergent learners, particularly students with ADHD, to boost focus, organizational skills, and
-                                productivity. The platform integrates multiple smart tools, including customizable Pomodoro timers
-                                and a Virtual Classes feature. Key AI-powered features include Intelligent Summarization and Quiz
-                                generation.
+                                An integrated web platform specifically designed to assist students with ADHD in organizing their academic lives, improving focus, and leveraging AI to simplify the learning process.
                             </p>
                             <p class="small mb-3">
-                                My role focused heavily on Back-End development. Implemented as a B.Sc. graduation project at
-                                The Hashemite University.
+                                The project provides a structured environment tailored for neurodivergent minds, combining intelligent file management, deep focus tracking, and smart study tools. It helps students stay motivated through streak tracking while enabling teachers to monitor progress and engagement.
                             </p>
                         `
                     },
@@ -397,31 +392,28 @@ window.addEventListener('DOMContentLoaded', function () {
                             </p>
                         `
                     },
-                    // Slide 3: Requirements (Original)
+                    // Slide 3: Key Features
                     {
                         id: 3,
-                        title: 'Requirement Document',
+                        title: 'Key Features',
                         icon: 'req doc icon.png',
                         iconWidth: 70,
                         content: `
                             <div class="row">
                                 <div class="col-12 mb-3">
-                                    <h6 class="fw-bold text-primary mb-2">Functional Reqs:</h6>
+                                    <h6 class="fw-bold text-primary mb-2">Smart Dashboard & Focus:</h6>
                                     <ul class="small mb-0">
-                                        <li>User Authentication & Profile Management</li>
-                                        <li>Timer and Focus Tools</li>
-                                        <li>AI Features (Summarization, Quizzes, Flashcards)</li>
-                                        <li>Progress Tracker & Organization Tools</li>
-                                        <li>Study tools like notes & videos</li>
+                                        <li><strong>Tracking:</strong> Daily/Weekly stats, Streak system.</li>
+                                        <li><strong>File Manager:</strong> Support for PDF, Word, PPT, Videos.</li>
+                                        <li><strong>Content Viewer:</strong> Read & extract text directly in-browser.</li>
+                                        <li><strong>Focus Tools:</strong> Pomodoro Timer, Notifications.</li>
                                     </ul>
                                 </div>
                                 <div class="col-12">
-                                    <h6 class="fw-bold text-primary mb-2">Non-Functional Reqs:</h6>
+                                    <h6 class="fw-bold text-primary mb-2">AI & Collaboration:</h6>
                                     <ul class="small mb-0">
-                                        <li><strong>Accessibility:</strong> WCAG 2.1 compliance for neurodivergent users.</li>
-                                        <li><strong>Performance:</strong> Fast load times (< 2s) for study and focus tools.</li>
-                                        <li><strong>Reliability:</strong> 99.9% uptime for study sessions.</li>
-                                        <li><strong>Scalability:</strong> Support widespread student usage.</li>
+                                        <li><strong>AI Companion:</strong> Summaries, Interactive Quizzes, Flashcards (Llama 3).</li>
+                                        <li><strong>Classes:</strong> Resource sharing, Group chats, Teacher analytics.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -442,10 +434,10 @@ window.addEventListener('DOMContentLoaded', function () {
                             </div>
                         `
                     },
-                    // Slide 5: Used Technologies
+                    // Slide 5: Tech Stack
                     {
                         id: 5,
-                        title: 'Used Technologies',
+                        title: 'Tech Stack',
                         icon: 'web technologies icon.png',
                         iconWidth: 50,
                         content: `
@@ -456,27 +448,23 @@ window.addEventListener('DOMContentLoaded', function () {
                                         <span class="badge bg-gradient-primary">ASP.NET Core MVC</span>
                                         <span class="badge bg-gradient-primary">C#</span>
                                         <span class="badge bg-gradient-primary">SQL Server</span>
-                                        <span class="badge bg-gradient-primary">Entity Framework Core</span>
-                                        <span class="badge bg-gradient-primary">Clean Architecture</span>
+                                        <span class="badge bg-gradient-primary">EF Core</span>
+                                        <span class="badge bg-gradient-primary">OpenXML & iText7</span>
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <h6 class="fw-bold text-light mb-2"><i class="bi bi-window-sidebar me-2 text-info"></i>Frontend & UI</h6>
+                                    <h6 class="fw-bold text-light mb-2"><i class="bi bi-window-sidebar me-2 text-info"></i>Frontend</h6>
                                     <div class="d-flex flex-wrap gap-2">
                                         <span class="badge bg-gradient-primary">HTML5</span>
                                         <span class="badge bg-gradient-primary">CSS3</span>
                                         <span class="badge bg-gradient-primary">JavaScript</span>
                                         <span class="badge bg-gradient-primary">Bootstrap 5</span>
-                                        <span class="badge bg-gradient-primary">Responsive Design</span>
                                     </div>
                                 </div>
                                 <div>
-                                    <h6 class="fw-bold text-light mb-2"><i class="bi bi-robot me-2 text-info"></i>AI & Tools</h6>
+                                    <h6 class="fw-bold text-light mb-2"><i class="bi bi-robot me-2 text-info"></i>AI Integration</h6>
                                     <div class="d-flex flex-wrap gap-2">
-                                        <span class="badge bg-gradient-primary">Groq API</span>
-                                        <span class="badge bg-gradient-primary">Git & GitHub</span>
-                                        <span class="badge bg-gradient-primary">Visual Studio</span>
-                                        <span class="badge bg-gradient-primary">Agile/Scrum</span>
+                                        <span class="badge bg-gradient-primary">Groq API (Llama-3.3-70b-versatile)</span>
                                     </div>
                                 </div>
                             </div>
@@ -552,11 +540,10 @@ window.addEventListener('DOMContentLoaded', function () {
                         iconWidth: 80,
                         content: `
                             <p class="small mb-3">
-                                A comprehensive Restaurant Management System designed to streamline operations, from order taking to kitchen execution and billing. 
-                                Built with a robust ASP.NET Core Web API backend and an efficient Entity Framework data layer, it ensures consistency and speed in high-pressure environments.
+                                RestoM is a comprehensive, full-stack restaurant management solution designed to bridge the gap between front-of-house service and kitchen operations.
                             </p>
                             <p class="small mb-3">
-                                Key features include real-time order processing, inventory tracking, and detailed analytics for business insights.
+                                It provides a real-time, unified platform for managing orders, tables, and inventory, ensuring a seamless flow from order taking to meal preparation and billing.
                             </p>
                         `
                     },
@@ -574,21 +561,21 @@ window.addEventListener('DOMContentLoaded', function () {
                             </p>
                         `
                     },
-                    // Slide 3: Requirements
+                    // Slide 3: Key Features
                     {
                         id: 3,
-                        title: 'Key Requirements',
+                        title: 'Key Features',
                         icon: 'req doc icon.png',
                         iconWidth: 60,
                         content: `
                             <div class="row">
                                 <div class="col-12 mb-3">
-                                    <h6 class="fw-bold text-primary mb-2">Functional Modules:</h6>
                                     <ul class="small mb-0">
-                                        <li><strong>POS System:</strong> Fast order entry and billing.</li>
-                                        <li><strong>Kitchen Display System (KDS):</strong> Real-time order updates for chefs.</li>
-                                        <li><strong>Inventory Management:</strong> Auto-deduction of stock based on recipes.</li>
-                                        <li><strong>Analytics Dashboard:</strong> Sales reports and performance metrics.</li>
+                                        <li><strong>POS & Ordering:</strong> Intuitive interface (ordering.html) for dynamic orders.</li>
+                                        <li><strong>KDS:</strong> Real-time kitchen dashboard (kitchen.html) to replace paper tickets.</li>
+                                        <li><strong>Inventory:</strong> Robust tracking (Inventory.html) to minimize waste.</li>
+                                        <li><strong>Table Management:</strong> Visual seating (Tabels.html) to assign orders.</li>
+                                        <li><strong>Reporting:</strong> Professional invoices (invoices.html) & sales insights.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -609,10 +596,10 @@ window.addEventListener('DOMContentLoaded', function () {
                             </div>
                         `
                     },
-                    // Slide 5: Used Technologies
+                    // Slide 5: Built With
                     {
                         id: 5,
-                        title: 'Used Technologies',
+                        title: 'Built With',
                         icon: 'web technologies icon.png',
                         iconWidth: 50,
                         content: `
@@ -622,25 +609,16 @@ window.addEventListener('DOMContentLoaded', function () {
                                     <div class="d-flex flex-wrap gap-2">
                                         <span class="badge bg-gradient-primary">ASP.NET Core Web API</span>
                                         <span class="badge bg-gradient-primary">C#</span>
-                                        <span class="badge bg-gradient-primary">SQL Server</span>
                                         <span class="badge bg-gradient-primary">Entity Framework Core</span>
+                                        <span class="badge bg-gradient-primary">SQL Server</span>
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <h6 class="fw-bold text-light mb-2"><i class="bi bi-window-sidebar me-2 text-info"></i>Frontend & Interfaces</h6>
+                                    <h6 class="fw-bold text-light mb-2"><i class="bi bi-window-sidebar me-2 text-info"></i>Frontend</h6>
                                     <div class="d-flex flex-wrap gap-2">
-                                        <span class="badge bg-gradient-primary">HTML5/CSS3</span>
-                                        <span class="badge bg-gradient-primary">JavaScript</span>
-                                        <span class="badge bg-gradient-primary">Bootstrap 5</span>
-                                        <span class="badge bg-gradient-primary">Swagger UI</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold text-light mb-2"><i class="bi bi-tools me-2 text-info"></i>Tools</h6>
-                                    <div class="d-flex flex-wrap gap-2">
-                                        <span class="badge bg-gradient-primary">Git & GitHub</span>
-                                        <span class="badge bg-gradient-primary">Visual Studio</span>
-                                        <span class="badge bg-gradient-primary">Postman</span>
+                                        <span class="badge bg-gradient-primary">Vanilla JavaScript</span>
+                                        <span class="badge bg-gradient-primary">HTML5</span>
+                                        <span class="badge bg-gradient-primary">CSS3</span>
                                     </div>
                                 </div>
                             </div>
