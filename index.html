@@ -49,11 +49,30 @@
     }
 
     .bi-github,
-    .bi-linkedin {
+    .bi-linkedin,
+    .bi-whatsapp,
+    .bi-envelope-fill,
+    .bi-phone-fill {
       background-color: transparent;
       padding: 8px;
       border-radius: 6px;
       color: #ffffff !important;
+      opacity: 1 !important;
+      transition: color 0.3s ease;
+    }
+
+    .bi-whatsapp::before,
+    .bi-envelope-fill::before,
+    .bi-phone-fill::before {
+      color: inherit !important;
+    }
+
+    body.light-mode .bi-github,
+    body.light-mode .bi-linkedin,
+    body.light-mode .bi-whatsapp,
+    body.light-mode .bi-envelope-fill,
+    body.light-mode .bi-phone-fill {
+      color: #000000 !important;
     }
 
 
@@ -98,10 +117,11 @@
       <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
         <ul class="navbar-nav mb-2 mb-lg-0 me-3">
           <li class="nav-item"><a class="nav-link" href="#home" data-section="home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about" data-section="about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#skills" data-section="skills">Skills</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects" data-section="projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#education" data-section="education">Education</a></li>
           <li class="nav-item"><a class="nav-link" href="#experience" data-section="experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#education" data-section="education">Education</a></li>
         </ul>
       </div>
     </div>
@@ -109,48 +129,48 @@
   <div class="bg-dark-hero">
     <section id="home" class="hero-section d-flex align-items-center justify-content-between"
       style="width: 100%; height: 90vh; min-height: 90vh;">
-      <div class="hero-img">
+      <div class="hero-img mb-3">
         <img src="personal picture.jpg" alt="Profile" class="rounded-4 hero-profile-img">
       </div>
       <div class="hero-text text-white">
-        <h2 class="fw-bold mb-2" id="typewriter" style="font-family: 'Montserrat', sans-serif;"></h2>
-        <div id="netdev" class="mb-3 text-white fw-bold"
-          style="font-size:1.5rem;font-family:'Montserrat',sans-serif;letter-spacing:1px;display:none;">Associate
-          Software Engineer | .NET Developer
+        <div class="mb-3 text-start">
+          <h2 class="fw-bold mb-2" id="typewriter" style="font-family: 'Montserrat', sans-serif; min-height: 2.5rem;">
+          </h2>
+          <!-- Ensure min-height prevents layout jump -->
+          <div id="netdev" class="text-white fw-bold"
+            style="font-size:1.1rem;font-family:'Montserrat',sans-serif;letter-spacing:1px;display:none;">Associate
+            Software Engineer | .NET Developer
+          </div>
         </div>
 
+        <div class="d-flex flex-column align-items-start w-100 mt-2">
+          <!-- Action Buttons Row -->
+          <div class="d-flex gap-2 justify-content-start w-100 mb-3">
+            <button id="sayHiBtn" class="btn btn-primary project-btn mb-0" style="width: 120px;">Say Hi</button>
+            <button id="downloadBtn" class="btn btn-outline-primary project-btn mb-0"
+              style="font-family:'Montserrat',sans-serif; width: 120px;">
+              View CV
+            </button>
+          </div>
 
-
-        <div class="mb-3 d-flex align-items-center">
-          <a href="https://github.com/AbdallahJkhader" class="social-icon-link text-white me-3" target="_blank"
-            title="Visit my GitHub profile"><i class="bi bi-github fs-4"></i></a>
-          <a href="https://www.linkedin.com/in/abdallah-j-khader-b70739230" class="social-icon-link text-white me-3"
-            target="_blank" title="Visit my LinkedIn profile"><i class="bi bi-linkedin fs-4"></i></a>
-          <span class="text-white me-3" title="Email: abdallahjkhader@gmail.com"><img src="gmail icon.png" alt="Gmail"
-              width="40" height="35" style="vertical-align: middle;"></span>
-          <span class="text-white me-3" title="Phone: +962782576216"><img src="phone number icon.png" alt="Phone"
-              width="34" height="34" style="vertical-align: middle;"></span>
+          <!-- Hidden Contact Tools (Appears below buttons) -->
+          <div class="contact-tools-hidden text-start w-100"
+            style="display: none; opacity: 0; transition: all 0.3s ease;">
+            <div class="d-flex align-items-center justify-content-start gap-3 p-2 rounded-3"
+              style="background: rgba(255,255,255,0.05); width: fit-content;">
+              <a href="https://github.com/AbdallahJkhader" class="social-icon-link text-white" target="_blank"
+                title="Visit my GitHub profile"><i class="bi bi-github fs-5"></i></a>
+              <a href="https://www.linkedin.com/in/abdallah-j-khader-b70739230" class="social-icon-link text-white"
+                target="_blank" title="Visit my LinkedIn profile"><i class="bi bi-linkedin fs-5"></i></a>
+              <a href="https://wa.me/962782576216" class="social-icon-link text-white" target="_blank"
+                title="Chat on WhatsApp"><i class="bi bi-whatsapp fs-5"></i></a>
+              <a href="#" id="emailLink" class="social-icon-link text-white" title="Email: abdallahjkhader@gmail.com"><i
+                  class="bi bi-envelope-fill fs-5"></i></a>
+              <a href="#" id="phoneLink" class="social-icon-link text-white" title="Phone: +962782576216"><i
+                  class="bi bi-phone-fill fs-5"></i></a>
+            </div>
+          </div>
         </div>
-
-        <div class="d-flex flex-wrap gap-3 mb-3 align-items-center">
-          <button id="downloadBtn" class="btn btn-outline-primary btn-sm project-btn"
-            style="font-family:'Montserrat',sans-serif;">
-            View CV
-          </button>
-          <span class="btn btn-outline-success btn-sm project-btn fade-in-up"
-            style="animation-delay: 2.5s; cursor: default;">
-            Open for Opportunities
-          </span>
-        </div>
-
-        <div class="mb-3 text-secondary d-none"></div>
-
-        <ul id="contactList" class="list-unstyled small mb-0 text-white-50" style="display:none;">
-          <li class="mb-2"><i class="bi bi-calendar-event me-2"></i> 10 December 2004</li>
-          <li class="mb-2"><i class="bi bi-geo-alt me-2"></i> Amman, Jordan</li>
-          <li class="mb-2"><i class="bi bi-envelope me-2"></i> abdallahjkhader@gmail.com</li>
-          <li class="mb-2"><i class="bi bi-telephone me-2"></i> +962782576216</li>
-        </ul>
       </div>
     </section>
     </section>
@@ -159,129 +179,197 @@
   <div class="main-content p-0 w-100" style="min-height: 100vh; overflow: hidden; margin-top: 0;">
     <div class="row g-0">
       <main class="col-12 p-5">
+        <section id="about" class="spa-section mb-5" data-aos="fade-up">
+          <h3 class="fw-bold mb-4" style="font-family: 'Montserrat', sans-serif;">About</h3>
+          <div class="row g-4 align-items-center">
+            <div class="col-lg-6">
+              <p class="text-secondary" style="font-size: 1.1rem; line-height: 1.8;">
+                Associate Software Engineer (.NET) with hands-on experience in C#, ASP.NET Core (MVC & Web API) and
+                Entity
+                Framework Core. Focused on backend development, building RESTful APIs, implementing business logic,
+                and
+                integrating SQL Server using Code First and DB First. Contributed to academic and learning projects,
+                with
+                a solid understanding of OOP and clean code principles. Seeking to grow technical expertise within
+                professional .NET teams.
+              </p>
+            </div>
+            <div class="col-lg-6">
+              <div class="code-window">
+                <div class="code-header">
+                  <span class="dot dot-red"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-green"></span>
+                </div>
+                <pre
+                  class="code-content"><code id="about-code" class="language-csharp"><!-- Code typed via JS --></code></pre>
+              </div>
+            </div>
+          </div>
+        </section>
         <section id="skills" class="spa-section mb-5" data-aos="fade-up">
           <h3 class="fw-bold mb-4" style="font-family: 'Montserrat', sans-serif;">Skills</h3>
           <div class="cv-section-card">
             <div class="row g-4">
-              <div class="col-md-6 text-center">
+              <div class="col-md-6 text-center" data-aos="zoom-in" data-aos-delay="0" data-aos-duration="1500">
                 <img src="lanfuages and framworks icon.png" alt="Languages & Frameworks" width="60" height="60"
                   class="mb-3">
-                <h5 class="fw-bold mb-2">Languages & Frameworks</h5>
-                <p class="text-secondary mb-0">C#, SQL, JS, ASP.NET Core MVC, Web API</p>
+                <h5 class="fw-bold mb-2">.NET Backend Development</h5>
+                <p class="text-secondary mb-0">C#, ASP.NET Core (Web API, MVC), RESTful APIs.</p>
               </div>
-              <div class="col-md-6 text-center">
+              <div class="col-md-6 text-center" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1500">
                 <img src="database icon.webp" alt="Database & ORM" width="60" height="60" class="mb-3">
                 <h5 class="fw-bold mb-2">Database & ORM</h5>
-                <p class="text-secondary mb-0">SQL Server, Linq, ADO.NET, Entity Framework, CRUD, Stored procedures</p>
+                <p class="text-secondary mb-0">SQL Server, Entity Framework Core (Code First & DB First), ADO.NET, LINQ,
+                  CRUD.</p>
               </div>
-              <div class="col-md-6 text-center">
-                <img src="web technologies icon.png" alt="Web Technologies" width="60" height="60" class="mb-3">
-                <h5 class="fw-bold mb-2">Web Technologies</h5>
-                <p class="text-secondary mb-0">HTML, CSS, Bootstrap</p>
-              </div>
-              <div class="col-md-6 text-center">
+              <div class="col-md-6 text-center" data-aos="zoom-in" data-aos-delay="600" data-aos-duration="1500">
                 <img src="clean code icon.png" alt="Architecture & Clean Code" width="60" height="60" class="mb-3">
                 <h5 class="fw-bold mb-2">Architecture & Clean Code</h5>
-                <p class="text-secondary mb-0">OOP, Code first & DB first, Repository Pattern, Dependency Injection,
-                  Restful API</p>
+                <p class="text-secondary mb-0">OOP, Repository Pattern, Dependency Injection, SOLID principles.</p>
+              </div>
+              <div class="col-md-6 text-center" data-aos="zoom-in" data-aos-delay="900" data-aos-duration="1500">
+                <img src="web technologies icon.png" alt="Web Technologies" width="60" height="60" class="mb-3">
+                <h5 class="fw-bold mb-2">Web Technologies & Tools</h5>
+                <p class="text-secondary mb-0">HTML, CSS, JS, Bootstrap, Git/GitHub.</p>
               </div>
             </div>
           </div>
         </section>
         <section id="projects" class="spa-section mb-5" data-aos="fade-up">
-          <h3 class="fw-bold mb-4" style="font-family: 'Montserrat', sans-serif;">Projects</h3>
-          <div class="cv-section-card">
-            <div class="row g-4 justify-content-center">
+          <h3 class="fw-bold mb-5 ps-3 border-start border-5 border-primary text-start">Projects</h3>
+          <div class="row g-4">
 
-              <!-- Project 1: Focus & Read -->
-              <div class="col-md-6 text-center">
-                <img src="focusandreadlogo.jpg" alt="Focus & Read Logo" width="80" height="80" class="rounded mb-3"
-                  style="object-fit: cover;">
-                <h4 class="fw-bold mb-3" style="font-family: 'Montserrat', sans-serif;">Focus & Read</h4>
-                <p class="text-secondary mb-3 small">Integrated learning environment designed for ADHD and
-                  neurodivergent students, offering smart tools to increase focus and reduce distraction during study.
-                </p>
-                <div class="mt-auto d-flex justify-content-center gap-2">
-                  <button id="focusReadBtn" class="btn btn-outline-info btn-sm details-btn project-btn">
-                    Open Details
-                  </button>
-                  <a href="https://github.com/AbdallahJkhader/ADHDWebapp" target="_blank"
-                    class="btn btn-outline-primary btn-sm project-btn">
-                    Source Code
-                  </a>
+            <!-- Project 1 -->
+            <div class="col-md-6">
+              <div class="modern-card">
+                <div class="modern-card-img-wrapper">
+                  <img src="focusandreadlogo.jpg" alt="Focus & Read" class="modern-card-img">
+                </div>
+                <div class="modern-card-body">
+                  <h4 class="card-title">Focus & Read</h4>
+                  <p class="card-text">Integrated learning environment designed for ADHD and neurodivergent students,
+                    offering smart tools to increase focus and reduce distraction during study.</p>
+                  <div class="card-tags">
+                    <span class="card-tag">ASP.NET Core MVC</span>
+                    <span class="card-tag">SQL Server</span>
+                    <span class="card-tag">HTML/CSS/JS</span>
+                    <span class="card-tag">Bootstrap</span>
+                  </div>
+                  <div class="card-actions">
+                    <a href="#" id="focusReadBtn" class="card-link details-btn">Details</a>
+                    <a href="https://github.com/AbdallahJkhader/ADHDWebapp" target="_blank" class="card-link">Source
+                      Code</a>
+                  </div>
                 </div>
               </div>
+            </div>
 
-              <!-- Project 2: Restaurant Management System -->
-              <div class="col-md-6 text-center">
-                <img src="RestoM logo.jpg" alt="Restaurant Management System" width="80" height="80"
-                  class="rounded mb-3" style="object-fit: cover;">
-                <h4 class="fw-bold mb-3" style="font-family: 'Montserrat', sans-serif;">RestoM</h4>
-                <p class="text-secondary mb-3 small">Full-stack restaurant system managing orders, inventory, and tables
-                  with an analytics dashboard. Developed with ASP.NET Core Web API and Entity Framework.</p>
-
-                <div class="mt-auto d-flex justify-content-center gap-2">
-                  <button id="restoMBtn" class="btn btn-outline-info btn-sm details-btn project-btn">
-                    Open Details
-                  </button>
-                  <a href="https://github.com/AbdallahJkhader/RestoM" target="_blank"
-                    class="btn btn-outline-primary btn-sm project-btn">
-                    Source Code
-                  </a>
+            <!-- Project 2 -->
+            <div class="col-md-6">
+              <div class="modern-card">
+                <div class="modern-card-img-wrapper">
+                  <img src="RestoM logo.jpg" alt="RestoM" class="modern-card-img">
+                </div>
+                <div class="modern-card-body">
+                  <h4 class="card-title">RestoM</h4>
+                  <p class="card-text">Full-stack restaurant system managing orders, inventory, and tables with an
+                    analytics dashboard. Robust backend logic.</p>
+                  <div class="card-tags">
+                    <span class="card-tag">ASP.NET Core Web API</span>
+                    <span class="card-tag">EF Core</span>
+                    <span class="card-tag">SQL Server</span>
+                    <span class="card-tag">HTML/CSS/JS</span>
+                  </div>
+                  <div class="card-actions">
+                    <a href="#" id="restoMBtn" class="card-link details-btn">Details</a>
+                    <a href="https://github.com/AbdallahJkhader/RestoM" target="_blank" class="card-link">Source
+                      Code</a>
+                  </div>
                 </div>
               </div>
+            </div>
 
-            </div>
-          </div>
-        </section>
-        <section id="education" class="spa-section mb-5" data-aos="fade-up">
-          <h3 class="fw-bold mb-4" style="font-family: 'Montserrat', sans-serif;">Education</h3>
-          <div class="cv-section-card">
-            <div class="row g-4">
-              <div class="col-md-6 text-center">
-                <img src="hu-logo.jpg" alt="HU Logo" width="60" height="60" class="rounded mb-3">
-                <h5 class="fw-bold mb-2">BSc in Computer Science and Applications</h5>
-                <span class="btn btn-outline-primary btn-sm project-btn mb-2 border-2">The Hashemite University</span>
-                <div class="small text-muted">GPA: 3.1</div>
-                <div class="small text-muted">10/2022 - 1/2026</div>
-              </div>
-              <div class="col-md-6 text-center">
-                <img src="school.jpg" alt="School Logo" width="60" height="60" class="rounded mb-3">
-                <h5 class="fw-bold mb-2">Tawjihi (High School)</h5>
-                <span class="btn btn-outline-primary btn-sm project-btn mb-2 border-2">Arsalan High School</span>
-                <div class="small text-muted">Score: 91.5</div>
-                <div class="small text-muted">Graduated: 2022</div>
-              </div>
-            </div>
           </div>
         </section>
         <section id="experience" class="spa-section mb-5" data-aos="fade-up">
-          <h3 class="fw-bold mb-4" style="font-family: 'Montserrat', sans-serif;">Experience</h3>
-          <div class="cv-section-card">
-            <div class="row g-4">
-              <div class="col-md-6 text-center">
-                <img src="Extensya logo.jpeg" alt="Extensya Logo" width="90" height="90" class="rounded mb-3">
-                <h5 class="fw-bold mb-2">Customer Service Agent</h5>
-                <span class="btn btn-outline-primary btn-sm project-btn mb-2 border-2">Extensya (on behalf of
-                  Talabat)</span>
-                <div class="small text-muted">Jun 2023 - Sep 2023</div>
-                <ul class="small mb-0">
-                  <li class="mb-2">Resolved partner issues via phone and provided real-time support to ensure customer
-                    satisfaction and smooth operations.</li>
-                </ul>
-              </div>
-              <div class="col-md-6 text-center">
-                <img src="Danish Jordanian Dairy logo.jpeg" alt="Danish Jordanian Dairy Logo" width="90" height="90"
-                  class="rounded mb-3">
-                <h5 class="fw-bold mb-2">IT System and Support Engineer (Intern)</h5>
-                <span class="btn btn-outline-primary btn-sm project-btn mb-2 border-2">Danish Jordanian Dairy</span>
-                <div class="small text-muted">Jul 2025 - Sep 2025</div>
-                <ul class="small mb-0">
-                  <li class="mb-2">Provided IT support, maintained systems, and contributed to the development of the
-                    company's technical infrastructure.</li>
-                </ul>
+          <h3 class="fw-bold mb-5 ps-3 border-start border-5 border-primary text-start">Experience</h3>
+          <div class="row g-4 justify-content-center">
+
+            <div class="col-md-6">
+              <div class="modern-card">
+                <div class="modern-card-img-wrapper">
+                  <img src="Extensya logo.jpeg" alt="Extensya" class="modern-card-img logo-card-img">
+                </div>
+                <div class="modern-card-body">
+                  <h4 class="card-title">Customer Service Agent</h4>
+                  <div class="card-tags">
+                    <span class="card-tag info-tag">Extensya (Talabat)</span>
+                    <span class="card-tag info-tag">Jun 23 - Sep 23</span>
+                  </div>
+                  <p class="card-text">Resolved partner issues via phone and provided real-time support to ensure
+                    customer satisfaction and smooth operations.</p>
+                </div>
               </div>
             </div>
+
+            <div class="col-md-6">
+              <div class="modern-card">
+                <div class="modern-card-img-wrapper">
+                  <img src="Danish Jordanian Dairy logo.jpeg" alt="Danish Jordanian Dairy"
+                    class="modern-card-img logo-card-img">
+                </div>
+                <div class="modern-card-body">
+                  <h4 class="card-title">IT Support Engineer (Intern)</h4>
+                  <div class="card-tags">
+                    <span class="card-tag info-tag">Danish Jordanian Dairy</span>
+                    <span class="card-tag info-tag">Jul 25 - Sep 25</span>
+                  </div>
+                  <p class="card-text">Provided IT support, maintained systems, and contributed to the development
+                    of the company's technical infrastructure.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+        <section id="education" class="spa-section mb-5" data-aos="fade-up">
+          <h3 class="fw-bold mb-5 ps-3 border-start border-5 border-primary text-start">Education</h3>
+          <div class="row g-4 justify-content-center">
+
+            <div class="col-md-6">
+              <div class="modern-card">
+                <div class="modern-card-img-wrapper">
+                  <img src="hu-logo.jpg" alt="HU" class="modern-card-img logo-card-img">
+                </div>
+                <div class="modern-card-body">
+                  <h4 class="card-title">Computer Science and Applications</h4>
+                  <div class="card-tags">
+                    <span class="card-tag info-tag">The Hashemite University</span>
+                    <span class="card-tag info-tag">GPA: 3.1</span>
+                  </div>
+                  <p class="card-text">Bachelor of Science degree focused on software engineering, algorithms, and
+                    data structures.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="modern-card">
+                <div class="modern-card-img-wrapper">
+                  <img src="school.jpg" alt="School" class="modern-card-img logo-card-img">
+                </div>
+                <div class="modern-card-body">
+                  <h4 class="card-title">Tawjihi (High School)</h4>
+                  <div class="card-tags">
+                    <span class="card-tag info-tag">Arsalan High School</span>
+                    <span class="card-tag info-tag">Score: 91.5</span>
+                  </div>
+                  <p class="card-text">Scientific stream. Graduated with high honors.</p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </section>
       </main>
@@ -297,6 +385,24 @@
     AOS.init({
       duration: 800,
       once: true
+    });
+  </script>
+  <script>
+    document.getElementById('sayHiBtn').addEventListener('click', function () {
+      const tools = document.querySelector('.contact-tools-hidden');
+      if (tools.style.display === 'none') {
+        tools.style.display = 'block';
+        setTimeout(() => {
+          tools.style.opacity = '1';
+          tools.style.transform = 'translateY(0)';
+        }, 10);
+      } else {
+        tools.style.opacity = '0';
+        tools.style.transform = 'translateY(-10px)';
+        setTimeout(() => {
+          tools.style.display = 'none';
+        }, 300);
+      }
     });
   </script>
 </body>

@@ -95,7 +95,7 @@ function debounce(func, wait) {
 // Intersection Observer for Scroll Spy
 const observerOptions = {
     root: null,
-    rootMargin: '-20% 0px -50% 0px', // Active when element is near top-center
+    rootMargin: '-30% 0px -70% 0px', // Active when element crosses the upper part of the screen
     threshold: 0
 };
 
@@ -144,7 +144,7 @@ window.addEventListener('DOMContentLoaded', function () {
             i++;
             setTimeout(typeWriter1, 55);
         } else {
-            
+
             if (el2) {
                 el2.textContent = '';
                 el2.style.display = 'block';
@@ -168,8 +168,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 window.addEventListener('DOMContentLoaded', function () {
-    var emailSpan = document.querySelector('span[title*="Email"]');
-    var phoneSpan = document.querySelector('span[title*="Phone"]');
+    var emailSpan = document.getElementById('emailLink');
+    var phoneSpan = document.getElementById('phoneLink');
     var githubLink = document.querySelector('a[href*="github"]');
     var linkedinLink = document.querySelector('a[href*="linkedin"]');
     var currentOpenPanel = null;
@@ -291,6 +291,8 @@ window.addEventListener('DOMContentLoaded', function () {
                 openLink('https://github.com/AbdallahJkhader');
             } else if (type === 'linkedin') {
                 openLink('https://www.linkedin.com/in/abdallah-j-khader-b70739230');
+            } else if (type === 'whatsapp') {
+                openLink('https://wa.me/962782576216');
             } else if (type === 'email') {
 
                 navigator.clipboard.writeText('abdallahjkhader@gmail.com').then(() => {
@@ -323,20 +325,19 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    if (emailSpan) {
-        emailSpan.style.cursor = 'pointer';
-        emailSpan.onclick = function () {
+    var emailLink = document.getElementById('emailLink');
+    if (emailLink) {
+        emailLink.onclick = function (e) {
+            e.preventDefault();
             createInfoPanel('<img src="gmail icon.png" alt="Gmail" width="40" height="35" style="vertical-align: middle;"><br><strong>abdallahjkhader@gmail.com</strong><br><small>Click to copy email address</small>', 'email');
         };
     }
 
     if (phoneSpan) {
-        phoneSpan.style.cursor = 'pointer';
-        phoneSpan.onclick = function () {
-
+        phoneSpan.onclick = function (e) {
+            e.preventDefault();
             const isLightMode = document.body.classList.contains('light-mode');
             const iconSrc = isLightMode ? 'phone number black.png' : 'phone number white.png';
-
             createInfoPanel('<img src="' + iconSrc + '" alt="Phone Number" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">', 'phone');
         };
     }
@@ -353,10 +354,19 @@ window.addEventListener('DOMContentLoaded', function () {
         createInfoPanel('<i class="bi bi-linkedin fs-1"></i><br><strong>linkedin.com/in/abdallah-j-khader-b70739230</strong><br><small>Click to open profile</small>', 'linkedin');
     };
 
+    var whatsappLink = document.querySelector('a[href*="wa.me"]');
+    if (whatsappLink) {
+        whatsappLink.onclick = function (e) {
+            e.preventDefault();
+            createInfoPanel('<i class="bi bi-whatsapp fs-1"></i><br><strong>Opening WhatsApp...</strong><br><small>You are going to WhatsApp, are you sure?</small>', 'whatsapp');
+        };
+    }
+
 
     const detailBtns = document.querySelectorAll('.details-btn');
     detailBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
+            e.preventDefault();
 
             if (btn.id === 'focusReadBtn') {
 
@@ -754,16 +764,85 @@ window.addEventListener('DOMContentLoaded', function () {
 
     // Sticky Sidebar Layout Logic
     window.addEventListener('scroll', function () {
-        const skillsSection = document.getElementById('skills');
-        if (skillsSection) {
-            const skillsTop = skillsSection.getBoundingClientRect().top;
-            // Trigger when skills section is near the top (e.g., under navbar + some offset)
-            // 150px is roughly navbar height (80px) + some buffer
-            if (skillsTop <= 150) {
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+            const aboutTop = aboutSection.getBoundingClientRect().top;
+            // Trigger when About section is entering view (e.g., nearing top)
+            // 400px allows it to trigger smoothly as the user scrolls down from Hero
+            if (aboutTop <= 400) {
                 document.body.classList.add('scrolled-sidebar-active');
             } else {
                 document.body.classList.remove('scrolled-sidebar-active');
             }
         }
     });
+});
+
+/* Typewriter Logic for About Section */
+window.addEventListener('DOMContentLoaded', function () {
+    const aboutSection = document.getElementById('about');
+    const summaryEl = document.getElementById('about-summary');
+    const codeEl = document.getElementById('about-code');
+
+    const summaryText = "Associate Software Engineer (.NET) with hands-on experience in C#, ASP.NET Core (MVC & Web API) and Entity Framework Core. Focused on backend development, building RESTful APIs, implementing business logic, and integrating SQL Server using Code First and DB First. Contributed to academic and learning projects, with a solid understanding of OOP and clean code principles. Seeking to grow technical expertise within professional .NET teams.";
+
+    const codeTextSimple = `public class Developer
+{
+    public string Name => "Abdallah J. Khader";
+    public DateTime BirthDate => new DateTime(2004, 12, 10);
+    public string Location => "Amman, Jordan";
+    public List<string> OpenTo => ["Onsite", "Freelancing", "Remote"];
+    public bool IsAvailable => OpenTo.Count > 0;
+
+    public string Create() => "She said: 'We need commitment'. I did: 'git commit'.";
+}
+
+Console.WriteLine(new Developer().Create());`;
+
+    const codeTextColored = `<span class="code-keyword">public class</span> <span class="code-class">Developer</span>
+{
+    <span class="code-keyword">public string</span> Name => <span class="code-string">"Abdallah J. Khader"</span>;
+    <span class="code-keyword">public</span> <span class="code-class">DateTime</span> BirthDate => <span class="code-keyword">new</span> <span class="code-class">DateTime</span>(<span class="code-number">2004</span>, <span class="code-number">12</span>, <span class="code-number">10</span>);
+    <span class="code-keyword">public string</span> Location => <span class="code-string">"Amman, Jordan"</span>;
+    <span class="code-keyword">public</span> <span class="code-class">List</span>&lt;<span class="code-keyword">string</span>&gt; OpenTo => [<span class="code-string">"Onsite"</span>, <span class="code-string">"Freelancing"</span>, <span class="code-string">"Remote"</span>];
+    <span class="code-keyword">public bool</span> IsAvailable => OpenTo.Count > <span class="code-number">0</span>;
+
+    <span class="code-keyword">public string</span> <span class="code-method">Create</span>() => <span class="code-string">"She said: 'We need commitment'. I did: 'git commit'."</span>;
+}
+
+<span class="code-class">Console</span>.<span class="code-method">WriteLine</span>(<span class="code-keyword">new</span> <span class="code-class">Developer</span>().<span class="code-method">Create</span>());`;
+
+    let started = false;
+
+    const aboutObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !started) {
+                started = true;
+                // Only type the code, summary is static now.
+                typeText(codeEl, codeTextSimple, 2, () => {
+                    // Restore Colors after typing finishes
+                    codeEl.innerHTML = codeTextColored;
+                });
+            }
+        });
+    }, { threshold: 0.3 });
+
+    if (aboutSection) {
+        aboutObserver.observe(aboutSection);
+    }
+
+    function typeText(element, text, speed, callback) {
+        let i = 0;
+        element.textContent = "";
+        function type() {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else {
+                if (callback) callback();
+            }
+        }
+        type();
+    }
 });
