@@ -83,9 +83,9 @@ html {
 
 
 .navbar {
-  background: rgba(10, 10, 10, 0.9) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(10, 10, 10, 0.7) !important;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   border: none !important;
   border-radius: 0 !important;
   padding-top: 1.2rem;
@@ -654,7 +654,7 @@ body.light-mode footer {
 
 @media (max-width: 575px) {
   .main-content {
-    padding: 1.5rem 1rem 0 1rem !important;
+    padding: 1.5rem 0.5rem 0 0.5rem !important;
     margin-bottom: 0 !important;
   }
 
@@ -716,7 +716,7 @@ body.light-mode footer {
   }
 
   .spa-section {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 0.5rem;
     border-radius: 1rem;
   }
 
@@ -728,6 +728,26 @@ body.light-mode footer {
     padding: 1rem;
     border-radius: 0.8rem;
     min-height: 160px;
+  }
+
+  /* PROJECT SPECIAL FIX: Remove padding from project columns to make cards wider */
+  #projects .col-md-6 {
+    padding: 0 !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Extreme Width Fix: Remove section padding and pull row outwards */
+  #projects.spa-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #projects .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
   }
 
   .spa-section .col-md-6:hover {
@@ -2843,7 +2863,7 @@ body.scrolled-sidebar-active .project-btn {
   width: 100%;
   font-size: 0.75rem !important;
 }
-}
+
 
 /* Code Window Styling */
 .code-window {
@@ -3224,3 +3244,248 @@ body.light-mode .logo-card-img {
 section h3 {
   text-align: center;
 }
+
+/* =========================================
+   Mobile Header Customization (User Request)
+   ========================================= */
+
+@media (max-width: 991px) {
+
+  /* CRITICAL FIX: Force bg-dark-hero to pure black in dark mode on mobile */
+  body:not(.light-mode) .bg-dark-hero {
+    background: #0a0a0a !important;
+    background-image: none !important;
+    background-color: #0a0a0a !important;
+  }
+
+  /* Dark Mode: Make pills solid black to blend with background (No White Shadow/Glow) */
+  body:not(.light-mode) .navbar-brand,
+  body:not(.light-mode) #themeToggle,
+  body:not(.light-mode) .navbar-toggler {
+    background: #0a0a0a !important;
+    border: 1px solid #0a0a0a !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .navbar {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    padding-top: 1rem;
+  }
+
+  .navbar .container-fluid {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Shared "Pops/Pill" Style */
+  .navbar-brand,
+  #themeToggle,
+  .navbar-toggler {
+    background: rgba(20, 20, 20, 0.85);
+    /* Dark background for pop */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    /* Ensure centering in pill */
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  /* Light Mode Overrides for Mobile Pills */
+  body.light-mode .navbar-brand,
+  body.light-mode #themeToggle,
+  body.light-mode .navbar-toggler {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: #000000 !important;
+  }
+
+  /* Ensure icons/text inside match light mode */
+  body.light-mode #themeToggle i,
+  body.light-mode .navbar-toggler-icon,
+  body.light-mode .navbar-brand {
+    color: #000000 !important;
+  }
+
+  /* Fix toggler icon color in light mode (since it uses SVG background) */
+  body.light-mode .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280,0,0,1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+
+  }
+
+  /* 1. Theme Toggle on the Left */
+  #themeToggle {
+    order: 1;
+    margin-right: 0;
+    z-index: 1001;
+    width: 45px;
+    /* Circular/Pill aspect */
+    height: 45px;
+    padding: 0;
+  }
+
+  /* 2. Brand Name Centered */
+  .navbar-brand {
+    order: 2;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 !important;
+    font-size: 1rem;
+    /* Adjust for pill size */
+    padding: 0.5rem 1.5rem;
+    white-space: nowrap;
+  }
+
+  /* 3. Toggler (Menu) on the Right */
+  .navbar-toggler {
+    order: 3;
+    z-index: 1001;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    /* Override bootstrap border */
+    width: 45px;
+    height: 45px;
+    padding: 0;
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+
+  .navbar-toggler-icon {
+    width: 1.2em;
+    height: 1.2em;
+  }
+
+  /* 4. Collapse Menu Styling */
+  .navbar-collapse {
+    order: 4;
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(15px);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  body.light-mode .navbar-collapse {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  }
+}
+
+
+@media (min-width: 992px) {
+  .navbar-brand {
+    order: 1;
+  }
+
+  #themeToggle {
+    order: 2;
+    margin-right: auto;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-collapse {
+    order: 3;
+  }
+}
+
+/* =========================================
+   Fix for Unwanted White Gradient on Mobile
+   ========================================= */
+body:not(.light-mode) .bg-dark-hero {
+  background: #0a0a0a !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body:not(.light-mode) .bg-dark-hero::before,
+body:not(.light-mode) .bg-dark-hero::after {
+  display: none !important;
+  background: none !important;
+}
+
+/* =========================================
+   NUCLEAR OPTION: REMOVE ALL TOP GRADIENTS
+   ========================================= */
+body:not(.light-mode)::before,
+body:not(.light-mode)::after,
+html:not(.light-mode)::before,
+html:not(.light-mode)::after,
+body:not(.light-mode) .navbar::before,
+body:not(.light-mode) .navbar::after,
+body:not(.light-mode) .bg-dark-hero::before,
+body:not(.light-mode) .bg-dark-hero::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+}
+
+body:not(.light-mode) {
+  background-color: #0a0a0a !important;
+  background: #0a0a0a !important;
+  background-image: none !important;
+}
+
+body:not(.light-mode) .navbar {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Ensure topmost container is black */
+body:not(.light-mode) .bg-dark-hero {
+  background-color: #0a0a0a !important;
+  background: #0a0a0a !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* =========================================
+   FINAL FIX FOR WHITE GLOW/BACKGROUND
+   ========================================= */
+html,
+body {
+  background-color: #0a0a0a !important;
+  background: #0a0a0a !important;
+}
+
+body:not(.light-mode) .bg-dark-hero,
+body:not(.light-mode) .navbar,
+body:not(.light-mode) .container-fluid,
+body:not(.light-mode) .hero-section {
+  background-color: transparent !important;
+  /* Let body black show through */
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body:not(.light-mode) .bg-dark-hero {
+  background-color: #0a0a0a !important;
+  /* Ensure hero base is black */
+}
+
+/* Force removal of any possible white radial gradients on pseudo-elements */
+*::before,
+*::after {
+  background-image: none !important;
+}
+
+/* Re-enable specific needed pseudos if necessary, but nuke the white ones */
