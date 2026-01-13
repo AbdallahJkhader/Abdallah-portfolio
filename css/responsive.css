@@ -200,17 +200,33 @@
     /* Small Phone Overlap Fix (< 400px) */
     @media (max-width: 400px) {
         .navbar-brand {
-            font-size: 0.95rem !important;
-            padding: 0.4rem 0.7rem !important;
-            max-width: 150px;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            font-size: 1.05rem !important;
+            padding: 0.45rem 0.8rem !important;
+            max-width: 210px !important;
+            /* Increased to fit "Abdallah J Khader" fully on iPhone X (375px) */
+            overflow: visible !important;
+            text-overflow: clip !important;
         }
 
         #themeToggle,
         .navbar-toggler {
-            width: 40px !important;
-            height: 40px !important;
+            width: 42px !important;
+            height: 42px !important;
+        }
+    }
+
+    /* Extra Small Phone Fix (< 340px) */
+    @media (max-width: 340px) {
+        .navbar-brand {
+            font-size: 0.92rem !important;
+            padding: 0.4rem 0.6rem !important;
+            max-width: 175px !important;
+        }
+
+        #themeToggle,
+        .navbar-toggler {
+            width: 38px !important;
+            height: 38px !important;
         }
     }
 
