@@ -1,0 +1,68 @@
+/* Base Styles & Resets */
+body {
+    background: #0a0a0a !important;
+    color: #ffffff !important;
+    font-family: 'Cairo', Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: #0a0a0a !important;
+    background: #0a0a0a !important;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 0.5em;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c5cae9;
+    border-radius: 1em;
+}
+
+/* Global Text Utilities */
+.text-primary {
+    color: #9ca3af !important;
+}
+
+.text-muted {
+    color: #9ca3af !important;
+    font-weight: 500;
+}
+
+.text-secondary {
+    color: #d1d5db !important;
+}
+
+/* Light Mode Base Overrides */
+body.light-mode {
+    background: #e9ecef !important;
+    color: #1f2937 !important;
+}
+
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
+body.light-mode h5,
+body.light-mode h6,
+body.light-mode p,
+body.light-mode span,
+body.light-mode div,
+body.light-mode li {
+    color: #212529 !important;
+}
+
+body.light-mode .text-white,
+body.light-mode .text-white-50,
+body.light-mode .text-light,
+body.light-mode .text-muted,
+body.light-mode .text-secondary {
+    color: #1f2937 !important;
+    /* Forces dark color even on muted text */
+}

@@ -1,0 +1,328 @@
+/* Main Layout */
+.main-content {
+    position: relative;
+    z-index: 2;
+    margin-left: 260px !important;
+    margin-right: 15% !important;
+    margin-top: 100vh !important;
+    padding: 2.5rem 1.5rem;
+    max-width: 950px;
+    background: #000000;
+    width: auto;
+}
+
+.main-content main.col-12 {
+    padding: 2rem 3rem !important;
+    margin: 0;
+    max-width: 100%;
+}
+
+/* Hero Section */
+.bg-dark-hero {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    background: #0a0a0a;
+    padding-top: 80px;
+    padding-bottom: 2rem;
+    overflow: hidden;
+}
+
+.hero-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 40vh;
+    height: auto;
+    padding: 0 2rem 2rem 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-img {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-width: 220px;
+    margin-right: 2.5rem;
+}
+
+.hero-profile-img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50% !important;
+    box-shadow: 0 4px 24px rgba(42, 82, 152, 0.18);
+    border: 4px solid #2a5298;
+    transition: box-shadow 0.2s, border 0.2s;
+    filter: grayscale(30%);
+}
+
+.hero-text {
+    flex: 1 1 0;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.hero-text h2 {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+/* SPA Sections */
+.spa-section {
+    /* opacity: 0; REMOVED: Conflict with AOS */
+    /* transform: translateY(30px); REMOVED: Conflict with AOS */
+    /* animation: fadeInUp 0.8s ease forwards; REMOVED: Conflict with AOS */
+    /* animation-delay: calc(var(--section-index, 0) * 0.2s); REMOVED: Conflict with AOS */
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.spa-section:hover {
+    transform: none;
+    transition: all 0.3s ease;
+}
+
+.spa-section h3 {
+    color: #ffffff;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-bottom: 1rem;
+    display: inline-block;
+}
+
+.spa-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #6b7280, #9ca3af);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s ease;
+}
+
+.spa-section:hover h3::after {
+    transform: scaleX(1);
+}
+
+.spa-section p {
+    color: #e5e7eb;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* SPA Section Columns/Cards */
+.spa-section .col-md-6,
+.spa-section .col-6 {
+    position: relative;
+    transition: all 0.3s ease;
+    border-radius: 2rem;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    background: transparent;
+    border: 1px solid transparent;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.spa-section .col-md-6:hover {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 4px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid #333;
+    transform: translateY(-5px);
+    border-radius: 2rem;
+}
+
+.spa-section .col-md-6 h5 {
+    color: #ffffff !important;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+}
+
+/* Modern Image Styling for Sections (Icons directly in cols) */
+.spa-section .col-md-6>img {
+    border-radius: 1rem;
+    /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    /* Subtle shadow */
+    transition: all 0.3s ease;
+    max-width: 90%;
+    /* Ensure responsiveness */
+    height: auto;
+    display: block;
+    margin: 0 auto 1rem auto;
+    /* Center and spacing */
+}
+
+.spa-section .col-md-6:hover>img {
+    transform: scale(1.05);
+    /* Slight zoom on hover */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    /* Deeper shadow on hover */
+}
+
+.spa-section .col-md-6 i {
+    color: #9ca3af;
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.spa-section ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: #e5e7eb;
+    line-height: 1.6;
+    list-style: none;
+}
+
+.spa-section ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #6b7280;
+    font-weight: bold;
+}
+
+/* About Section Specifics */
+#about .row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch;
+}
+
+/* Footer */
+footer {
+    position: relative !important;
+    z-index: 100 !important;
+    display: block !important;
+    width: 100% !important;
+    background: rgba(10, 10, 10, 0.95) !important;
+    /* Increased opacity for solid look */
+    /* backdrop-filter: blur(15px); REMOVED - no blur effect */
+    /* -webkit-backdrop-filter: blur(15px); REMOVED - no blur effect */
+    color: #ffffff !important;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2) !important;
+    padding: 2rem 0 !important;
+    margin-top: 2rem !important;
+    /* Changed from -2rem to 2rem to show bottom curves */
+    border-top: none !important;
+}
+
+body.light-mode footer {
+    background: #f8f9fa !important;
+    color: #212529 !important;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+img {
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* --- Restored Project Gallery Styles --- */
+.project-images {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.project-row {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.project-row:first-child .project-thumb-large {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.project-row:nth-child(2) .project-thumb-large {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.project-row:last-child .project-thumb-large {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.project-thumb-large {
+    cursor: pointer;
+    width: 90%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+
+#projects .row {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#projects .cv-section-card {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+/* Hero Links */
+.hero-text a {
+    color: #9ca3af !important;
+    transition: color 0.2s;
+}
+
+.hero-text a:hover {
+    color: #d1d5db !important;
+}

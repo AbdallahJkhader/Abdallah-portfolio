@@ -1,0 +1,342 @@
+/* Comprehensive Light Mode Redesign */
+
+/* 1. Reset & Gradients Removal (The "Nuclear Option") */
+body.light-mode::before,
+body.light-mode::after,
+html.light-mode::before,
+html.light-mode::after,
+body.light-mode .navbar::before,
+body.light-mode .navbar::after,
+body.light-mode .bg-dark-hero::before,
+body.light-mode .bg-dark-hero::after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    opacity: 0 !important;
+}
+
+html.light-mode {
+    background-color: #e9ecef !important;
+    background: #e9ecef !important;
+}
+
+body.light-mode {
+    background-color: #e9ecef !important;
+    color: #1f2937 !important;
+    background-image: none !important;
+}
+
+body.light-mode .bg-dark-hero {
+    background: #e9ecef !important;
+    background-color: #e9ecef !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+body.light-mode .navbar,
+body.light-mode .container-fluid,
+body.light-mode .hero-section {
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+
+/* 2. Main Layout & Sections */
+body.light-mode .main-content {
+    background: #ffffff !important;
+    box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 2rem !important;
+}
+
+body.light-mode .spa-section {
+    background: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode .spa-section:last-child {
+    border-bottom: none !important;
+}
+
+/* 3. Typography & Colors */
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
+body.light-mode h5,
+body.light-mode h6,
+body.light-mode p,
+body.light-mode span,
+body.light-mode div,
+body.light-mode li,
+body.light-mode i {
+    color: #1f2937 !important;
+    /* Dark Gray/Black */
+}
+
+body.light-mode .text-secondary,
+body.light-mode .text-muted,
+body.light-mode .small {
+    color: #4b5563 !important;
+}
+
+body.light-mode .hero-text .text-white,
+body.light-mode .hero-text h2 {
+    color: #000000 !important;
+}
+
+/* 4. Cards (SPA Section Columns) */
+body.light-mode .spa-section .col-md-6 {
+    background: #ffffff !important;
+    border: 1px solid #f1f5f9 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+    border-radius: 1rem !important;
+}
+
+body.light-mode .spa-section .col-md-6:hover {
+    background: #ffffff !important;
+    transform: translateY(-5px) !important;
+    /* Restore lift to match Dark Mode */
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    /* Stronger shadow on hover */
+    /* Border removed for generic cards */
+    border-color: #f1f5f9 !important;
+    /* Keep default */
+}
+
+/* Apply Blue Border ONLY to Skills on Hover */
+body.light-mode #skills .col-md-6:hover {
+    border-color: #2563eb !important;
+    border-width: 1px !important;
+}
+
+/* 5. Modern Cards (Projects/Experience) */
+
+
+body.light-mode .modern-card {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode .modern-card:hover {
+    border-color: #e5e7eb !important;
+    /* Keep default border, no blue change */
+    background: #ffffff !important;
+}
+
+body.light-mode .card-title {
+    color: #111827 !important;
+}
+
+body.light-mode .card-text {
+    color: #4b5563 !important;
+}
+
+/* 6. Buttons & Badges */
+body.light-mode .btn-primary {
+    background-color: #0d6efd !important;
+    border-color: #0d6efd !important;
+    color: #fff !important;
+}
+
+body.light-mode .project-btn,
+body.light-mode .btn-outline-info,
+body.light-mode .btn-outline-primary {
+    background-color: transparent !important;
+    color: #2563eb !important;
+    border: 2px solid #2563eb !important;
+}
+
+body.light-mode .project-btn:hover,
+body.light-mode .btn-outline-info:hover,
+body.light-mode .btn-outline-primary:hover {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+}
+
+body.light-mode .badge {
+    color: #fff !important;
+}
+
+body.light-mode .badge.bg-gradient-primary {
+    background: #000000 !important;
+    color: #fff !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 7. Navbar & Header */
+body.light-mode .navbar-brand {
+    color: #000 !important;
+}
+
+body.light-mode .nav-link {
+    color: #495057 !important;
+}
+
+body.light-mode .nav-link:hover,
+body.light-mode .nav-link.active {
+    color: #000 !important;
+}
+
+body.light-mode #themeToggle {
+    color: #212529 !important;
+}
+
+/* 8. Mobile Specifics for Light Mode */
+@media (max-width: 991px) {
+
+    /* Restore Glass Effect for Light Mode Mobile */
+    body.light-mode .main-content {
+        background: rgba(255, 255, 255, 0.75) !important;
+        /* Semi-transparent */
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        box-shadow: none !important;
+    }
+
+    body.light-mode .spa-section {
+        background: transparent !important;
+        border: none !important;
+    }
+
+    body.light-mode .spa-section .col-md-6,
+    body.light-mode .spa-section .col-6 {
+        background: #ffffff !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+        /* Lighter shadow for cards */
+        border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    }
+
+    body.light-mode .spa-section .col-md-6 h5,
+    body.light-mode .spa-section .col-6 h5,
+    body.light-mode .spa-section p,
+    body.light-mode .spa-section li,
+    body.light-mode .spa-section span,
+    body.light-mode .card-title,
+    body.light-mode .card-text {
+        color: #000000 !important;
+        /* Force Black */
+    }
+
+    /* Fix Mobile Menu in Light Mode */
+    body.light-mode .navbar-collapse {
+        background: #ffffff !important;
+        border: none !important;
+        box-shadow: none !important;
+        /* Remove shadow */
+    }
+
+    /* Explicitly remove shadow and background from the Navbar container itself on mobile */
+    body.light-mode .navbar,
+    body.light-mode .navbar .container-fluid {
+        background: transparent !important;
+        /* No strip */
+        box-shadow: none !important;
+        border: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    /* Force Light Aesthetics on Navbar Items (The "Pop Ups") in Light Mode Mobile */
+    body.light-mode .navbar-brand,
+    body.light-mode #themeToggle,
+    body.light-mode .navbar-toggler {
+        background: rgba(255, 255, 255, 0.9) !important;
+        /* White pill background */
+        border: 1px solid rgba(0, 0, 0, 0.05) !important;
+        /* Subtle border */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05) !important;
+        /* Subtle shadow */
+        color: #000 !important;
+        border-radius: 50px !important;
+        /* Pill shape */
+    }
+
+    body.light-mode .navbar-toggler-icon {
+        filter: invert(1) grayscale(100%) brightness(0);
+        /* Make svg icon black */
+    }
+
+    /* Restore Code Colors in Light Mode Mobile - HIGH SPECIFICITY to beat .spa-section span */
+    body.light-mode .code-content .code-keyword,
+    body.light-mode span.code-keyword {
+        color: #0000ff !important;
+    }
+
+    body.light-mode .code-content .code-class,
+    body.light-mode span.code-class {
+        color: #267f99 !important;
+    }
+
+    body.light-mode .code-content .code-string,
+    body.light-mode span.code-string {
+        color: #a31515 !important;
+    }
+
+    body.light-mode .code-content .code-number,
+    body.light-mode span.code-number {
+        color: #098658 !important;
+    }
+
+    body.light-mode .code-content .code-method,
+    body.light-mode span.code-method {
+        color: #795e26 !important;
+    }
+
+    /* Restore Tag Colors in Light Mode Mobile (Year/Date) */
+    body.light-mode .card-tag {
+        color: #2dd4bf !important;
+    }
+
+    body.light-mode .info-tag {
+        color: #60a5fa !important;
+    }
+
+    body.light-mode .code-string {
+        color: #a31515 !important;
+    }
+
+    body.light-mode .code-number {
+        color: #098658 !important;
+    }
+
+    body.light-mode .code-method {
+        color: #795e26 !important;
+    }
+}
+
+/* HIGH SPECIFICITY OVERRIDES FOR SKILLS TITLES */
+body.light-mode .spa-section .col-md-6 h5,
+body.light-mode .spa-section .col-6 h5,
+body.light-mode #skills .col-md-6 h5 {
+    color: #000000 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 10;
+}
+
+/* LIGHT MODE SCROLLBAR OVERRIDES */
+body.light-mode::-webkit-scrollbar {
+    width: 0.5em;
+    background: #f1f1f1 !important;
+    /* Light Track */
+}
+
+body.light-mode::-webkit-scrollbar-thumb {
+    background: #888 !important;
+    /* Darker Thumb */
+    border-radius: 1em;
+}
+
+body.light-mode::-webkit-scrollbar-thumb:hover {
+    background: #555 !important;
+}

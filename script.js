@@ -57,14 +57,100 @@ function initNavbar() {
         });
     });
 
+    // Mobile Brand Click: Show Say Hi & CV
+    const brand = document.querySelector('.navbar-brand');
+    if (brand) {
+        brand.addEventListener('click', function (e) {
+            // Check if mobile (using standard Bootstrap breakpoint 991px)
+            if (window.innerWidth <= 991) {
+                e.preventDefault(); // Stop scrolling to top
+
+                // Floating Pill Popup Content (Side-by-Side)
+                const content = `
+                    <div class="d-flex flex-column gap-2 w-100 px-1 pb-1">
+                        <!-- Buttons Row -->
+                        <div class="d-flex flex-row gap-2 w-100">
+                             <!-- My CV Pill -->
+                            <button id="mobile-cv-btn" class="popup-pill-btn flex-fill justify-content-center">
+                                <i class="bi bi-file-earmark-person fs-5"></i>
+                                <span class="fs-6">View CV</span>
+                            </button>
+                            
+                            <!-- Say Hi Pill -->
+                             <button id="mobile-say-hi-btn" class="popup-pill-btn flex-fill justify-content-center">
+                                <i class="bi bi-chat-text fs-5"></i>
+                                 <span class="fs-6">Say Hi</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Hidden Socials (Full Width Below) -->
+                        <div id="socials-container" class="overflow-hidden transition-all mt-1" style="max-height: 0; opacity: 0; transition: all 0.4s ease;">
+                            <div class="d-flex gap-3 justify-content-center flex-wrap pt-2">
+                               <a href="https://github.com/AbdallahJkhader" class="social-icon-link fs-2" target="_blank"><i class="bi bi-github"></i></a>
+                               <a href="https://www.linkedin.com/in/abdallah-j-khader-b70739230" class="social-icon-link fs-2" target="_blank"><i class="bi bi-linkedin"></i></a>
+                               <a href="https://wa.me/962782576216" class="social-icon-link fs-2" target="_blank"><i class="bi bi-whatsapp"></i></a>
+                               <a href="#" onclick="window.copyEmail()" class="social-icon-link fs-2"><i class="bi bi-envelope-fill"></i></a>
+                               <a href="#" onclick="window.copyPhone()" class="social-icon-link fs-2"><i class="bi bi-phone-fill"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                if (window.showInfoPanel) {
+                    window.showInfoPanel(content, 'quick-actions');
+
+                    // Attach Logic
+                    setTimeout(() => {
+                        // CV Logic
+                        const mobCvBtn = document.getElementById('mobile-cv-btn');
+                        if (mobCvBtn) {
+                            mobCvBtn.onclick = () => {
+                                const link = document.createElement('a');
+                                link.href = 'Abdallah J. Khader CV.pdf';
+                                link.target = '_blank';
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+
+                                mobCvBtn.innerHTML = '<span class="fs-5 fw-bold ms-2 text-success">Opened!</span><i class="bi bi-check-circle fs-4 me-2 text-success"></i>';
+                            };
+                        }
+
+                        // Say Hi Expand Logic
+                        const sayHiBtn = document.getElementById('mobile-say-hi-btn');
+                        const socialsDiv = document.getElementById('socials-container');
+
+                        if (sayHiBtn && socialsDiv) {
+                            sayHiBtn.onclick = () => {
+                                const isExpanded = socialsDiv.style.maxHeight !== '0px' && socialsDiv.style.maxHeight !== '0';
+                                if (isExpanded) {
+                                    socialsDiv.style.maxHeight = '0';
+                                    socialsDiv.style.opacity = '0';
+                                    sayHiBtn.querySelector('.bi').className = 'bi bi-chat-text fs-4 me-2';
+                                } else {
+                                    socialsDiv.style.maxHeight = '200px';
+                                    socialsDiv.style.opacity = '1';
+                                    sayHiBtn.querySelector('.bi').className = 'bi bi-chevron-up fs-4 me-2';
+                                }
+                            };
+                        }
+                    }, 50);
+                }
+            }
+        });
+    }
+
     // Close navbar when clicking outside
     document.addEventListener('click', function (e) {
         if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+            // ... existing close logic
             if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
                 new bootstrap.Collapse(navbarCollapse, { toggle: false }).hide();
             }
         }
     });
+
+
 
     // Close on Escape
     document.addEventListener('keydown', function (e) {
@@ -298,14 +384,15 @@ function initContactPanels() {
             const panel = currentOpenPanel;
             const backdrop = document.getElementById('panel-backdrop');
 
-            panel.style.transform = 'translate(-50%, -50%) scale(0)';
-            panel.style.opacity = '0';
+            // Remove class to trigger CSS exit transition
+            panel.classList.remove('is-visible');
 
             if (backdrop) {
                 backdrop.style.opacity = '0';
                 setTimeout(() => { if (document.body.contains(backdrop)) document.body.removeChild(backdrop); }, 300);
             }
 
+            // Wait for transition to finish before removing
             setTimeout(() => { if (document.body.contains(panel)) document.body.removeChild(panel); }, 300);
             currentOpenPanel = null;
         }
@@ -335,11 +422,11 @@ function initContactPanels() {
 
         currentOpenPanel = panel;
 
-        // Animate In
-        setTimeout(() => {
-            panel.style.transform = 'translate(-50%, -50%) scale(1)';
-            panel.style.opacity = '1';
-        }, 10);
+        // Animate In - Use CSS Class
+        // Allow browser paint cycle before adding class for transition
+        requestAnimationFrame(() => {
+            panel.classList.add('is-visible');
+        });
 
         // Close Handlers
         function closePanel() {
@@ -376,6 +463,9 @@ function initContactPanels() {
         return panel;
     }
 
+    // Expose Global Helper
+    window.showInfoPanel = createInfoPanel;
+
     // --- Attach Listeners ---
 
     // Contact Links
@@ -409,6 +499,19 @@ function initContactPanels() {
     if (whatsappLink) whatsappLink.onclick = (e) => {
         e.preventDefault();
         createInfoPanel('<i class="bi bi-whatsapp fs-1"></i><br><strong>+962 78 257 6216</strong><br><small>Click to open chat</small>', 'whatsapp');
+    };
+
+    // Global Copy Helpers for Mobile Popup
+    window.copyEmail = () => {
+        navigator.clipboard.writeText('abdallahjkhader@gmail.com').then(() => {
+            alert('Email copied: abdallahjkhader@gmail.com');
+        });
+    };
+
+    window.copyPhone = () => {
+        navigator.clipboard.writeText('+962782576216').then(() => {
+            alert('Phone copied: +962782576216');
+        });
     };
 
     // Project Details Buttons
