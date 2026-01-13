@@ -126,32 +126,22 @@ function initNavbar() {
             if (window.innerWidth <= 991) {
                 e.preventDefault(); // Stop scrolling to top
 
-                // Floating Pill Popup Content (Side-by-Side)
+                // Floating Pill Popup Content
                 const content = `
                     <div class="d-flex flex-column gap-2 w-100 px-1 pb-1">
                         <!-- Buttons Row -->
                         <div class="d-flex flex-row gap-2 w-100">
-                             <!-- My CV Pill -->
-                            <button id="mobile-cv-btn" class="popup-pill-btn flex-fill justify-content-center">
-                                <i class="bi bi-file-earmark-person fs-5"></i>
-                                <span class="fs-6">View CV</span>
-                            </button>
-                            
                             <!-- Say Hi Pill -->
                              <button id="mobile-say-hi-btn" class="popup-pill-btn flex-fill justify-content-center">
                                 <i class="bi bi-chat-text fs-5"></i>
                                  <span class="fs-6">Say Hi</span>
                             </button>
-                        </div>
-                        
-                        <!-- Hidden Socials (Full Width Below) -->
-                        <div id="socials-container" class="overflow-hidden transition-all mt-1" style="max-height: 0; opacity: 0; transition: all 0.4s ease;">
-                            <div class="d-flex gap-3 justify-content-center flex-wrap pt-2">
-                               <a href="https://github.com/AbdallahJkhader" class="social-icon-link fs-2" target="_blank"><i class="bi bi-github"></i></a>
-                               <a href="https://www.linkedin.com/in/abdallah-j-khader-b70739230" class="social-icon-link fs-2" target="_blank"><i class="bi bi-linkedin"></i></a>
-                               <a href="https://wa.me/962782576216" class="social-icon-link fs-2" target="_blank"><i class="bi bi-whatsapp"></i></a>
-                               <a href="#" onclick="window.copyEmail()" class="social-icon-link fs-2"><i class="bi bi-envelope-fill"></i></a>
-                            </div>
+
+                             <!-- My CV Pill -->
+                            <button id="mobile-cv-btn" class="popup-pill-btn flex-fill justify-content-center">
+                                <i class="bi bi-file-earmark-person fs-5"></i>
+                                <span class="fs-6">View CV</span>
+                            </button>
                         </div>
                     </div>
                 `;
@@ -176,22 +166,12 @@ function initNavbar() {
                             };
                         }
 
-                        // Say Hi Expand Logic
+                        // Say Hi Logic - Show social icons popup
                         const sayHiBtn = document.getElementById('mobile-say-hi-btn');
-                        const socialsDiv = document.getElementById('socials-container');
-
-                        if (sayHiBtn && socialsDiv) {
+                        if (sayHiBtn) {
                             sayHiBtn.onclick = () => {
-                                const isExpanded = socialsDiv.style.maxHeight !== '0px' && socialsDiv.style.maxHeight !== '0';
-                                if (isExpanded) {
-                                    socialsDiv.style.maxHeight = '0';
-                                    socialsDiv.style.opacity = '0';
-                                    sayHiBtn.querySelector('.bi').className = 'bi bi-chat-text fs-4 me-2';
-                                } else {
-                                    socialsDiv.style.maxHeight = '200px';
-                                    socialsDiv.style.opacity = '1';
-                                    sayHiBtn.querySelector('.bi').className = 'bi bi-chevron-up fs-4 me-2';
-                                }
+                                // Show social icons in bottom popup
+                                showSocialIconsPopup();
                             };
                         }
                     }, 50);
@@ -535,12 +515,7 @@ function initContactPanels() {
 
     // --- Attach Listeners ---
 
-    // Contact Links
-    const emailLink = document.getElementById('emailLink');
-    if (emailLink) emailLink.onclick = (e) => {
-        e.preventDefault();
-        createInfoPanel('<img src="images/gmail icon.png" alt="Gmail" width="40" height="35" style="vertical-align: middle;"><br><strong>abdallahjkhader@gmail.com</strong><br><small>Click to copy email address</small>', 'email');
-    };
+    // Contact Links (removed - now handled in desktop copy handlers section)
 
 
 
@@ -564,10 +539,108 @@ function initContactPanels() {
 
     // Global Copy Helpers for Mobile Popup
     window.copyEmail = () => {
-        navigator.clipboard.writeText('abdallahjkhader@gmail.com').then(() => {
-            alert('Email copied: abdallahjkhader@gmail.com');
-        });
+        navigator.clipboard.writeText('abdallahjkhader@gmail.com');
     };
+
+    // Shared function to show social icons popup (used by all Say Hi buttons)
+    window.showSocialIconsPopup = function () {
+        const content = `
+            <div class="d-flex flex-column gap-3 w-100 px-2 pb-2">
+                <!-- Icons Row -->
+                <div class="d-flex justify-content-center gap-4 pt-2">
+                    <button id="social-github-icon" class="btn btn-link p-0 text-white" style="font-size: 2rem; transition: transform 0.2s ease; text-decoration: none;">
+                        <i class="bi bi-github"></i>
+                    </button>
+                    <button id="social-linkedin-icon" class="btn btn-link p-0 text-white" style="font-size: 2rem; transition: transform 0.2s ease; text-decoration: none;">
+                        <i class="bi bi-linkedin"></i>
+                    </button>
+                    <button id="social-whatsapp-icon" class="btn btn-link p-0 text-white" style="font-size: 2rem; transition: transform 0.2s ease; text-decoration: none;">
+                        <i class="bi bi-whatsapp"></i>
+                    </button>
+                    <button id="social-phone-icon" class="btn btn-link p-0 text-white" style="font-size: 2rem; transition: transform 0.2s ease; text-decoration: none;">
+                        <i class="bi bi-phone-fill"></i>
+                    </button>
+                    <button id="social-email-icon" class="btn btn-link p-0 text-white" style="font-size: 2rem; transition: transform 0.2s ease; text-decoration: none;">
+                        <i class="bi bi-envelope-fill"></i>
+                    </button>
+                </div>
+                
+                <!-- Expandable Label -->
+                <div id="social-label" class="text-center" style="min-height: 20px; font-size: 0.9rem; color: rgba(255,255,255,0.7); transition: all 0.3s ease;">
+                </div>
+            </div>
+        `;
+
+        createInfoPanel(content, 'say-hi-social');
+
+        // Attach click and hover handlers after panel is created
+        setTimeout(() => {
+            const label = document.getElementById('social-label');
+
+            // Helper function to add hover lift effect
+            const addHoverEffect = (btn) => {
+                btn?.addEventListener('mouseenter', () => { btn.style.transform = 'translateY(-5px)'; });
+                btn?.addEventListener('mouseleave', () => { btn.style.transform = 'translateY(0)'; });
+            };
+
+            // GitHub
+            const githubBtn = document.getElementById('social-github-icon');
+            addHoverEffect(githubBtn);
+            githubBtn?.addEventListener('mouseenter', () => { label.textContent = 'Click to open'; });
+            githubBtn?.addEventListener('mouseleave', () => { label.textContent = ''; });
+            githubBtn?.addEventListener('click', () => { window.open('https://github.com/AbdallahJkhader', '_blank'); });
+
+            // LinkedIn
+            const linkedinBtn = document.getElementById('social-linkedin-icon');
+            addHoverEffect(linkedinBtn);
+            linkedinBtn?.addEventListener('mouseenter', () => { label.textContent = 'Click to open'; });
+            linkedinBtn?.addEventListener('mouseleave', () => { label.textContent = ''; });
+            linkedinBtn?.addEventListener('click', () => { window.open('https://www.linkedin.com/in/abdallah-j-khader-b70739230', '_blank'); });
+
+            // WhatsApp
+            const whatsappBtn = document.getElementById('social-whatsapp-icon');
+            addHoverEffect(whatsappBtn);
+            whatsappBtn?.addEventListener('mouseenter', () => { label.textContent = 'Click to open'; });
+            whatsappBtn?.addEventListener('mouseleave', () => { label.textContent = ''; });
+            whatsappBtn?.addEventListener('click', () => { window.open('https://wa.me/962782576216', '_blank'); });
+
+            // Phone - Show number and copy on click
+            const phoneBtn = document.getElementById('social-phone-icon');
+            addHoverEffect(phoneBtn);
+            phoneBtn?.addEventListener('mouseenter', () => { label.textContent = '+962782576216 - Click to copy'; });
+            phoneBtn?.addEventListener('mouseleave', () => { label.textContent = ''; });
+            phoneBtn?.addEventListener('click', () => {
+                navigator.clipboard.writeText('+962782576216').then(() => {
+                    label.textContent = 'Copied!';
+                    setTimeout(() => { label.textContent = ''; }, 2000);
+                });
+            });
+
+            // Email - Show email and copy on click
+            const emailBtn = document.getElementById('social-email-icon');
+            addHoverEffect(emailBtn);
+            emailBtn?.addEventListener('mouseenter', () => { label.textContent = 'abdallahjkhader@gmail.com - Click to copy'; });
+            emailBtn?.addEventListener('mouseleave', () => { label.textContent = ''; });
+            emailBtn?.addEventListener('click', () => {
+                window.copyEmail();
+                label.textContent = 'Copied!';
+                setTimeout(() => { label.textContent = ''; }, 2000);
+            });
+        }, 100);
+    };
+
+    // Say Hi Button - Show Popup on Mobile & Desktop
+    const sayHiBtn = document.getElementById('sayHiBtn');
+    if (sayHiBtn) {
+        sayHiBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Show social icons in bottom popup
+            window.showSocialIconsPopup();
+        });
+    }
+
+    // Desktop phone and email copy handlers (removed - no longer needed)
+
 
 
 
