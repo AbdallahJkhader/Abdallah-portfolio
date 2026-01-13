@@ -258,9 +258,9 @@ body.light-mode .social-icon-link:hover {
     backdrop-filter: none;
     /* No blur */
     -webkit-backdrop-filter: none;
-    padding: 1.5rem 1rem;
+    padding: 1rem 1rem;
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 1.5rem 1.5rem 0 0;
+    border-radius: 1.2rem 1.2rem 0 0;
     /* Rounded top corners only */
     box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.6);
     z-index: 1000001;
@@ -315,15 +315,15 @@ body.light-mode .menu-item-btn:active {
     border: none;
     background: transparent !important;
     border-radius: 0;
-    padding: 0.8rem 1.5rem;
+    padding: 0.6rem 1rem;
     color: #e5e7eb !important;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     flex: 1 1 0;
     min-width: 0;
     position: relative;
@@ -740,4 +740,33 @@ body.light-mode .code-number {
 
 body.light-mode .code-method {
     color: #795e26 !important;
+}
+/* Extra Small Devices (iPhone SE, etc.) */
+@media (max-width: 360px) {
+    .popup-pill-btn {
+        padding: 0.5rem 0.5rem !important;
+        font-size: 0.85rem !important;
+        gap: 6px !important;
+    }
+    
+    .contact-info-panel {
+        padding: 0.8rem 0.5rem !important;
+    }
+}
+
+/* Social Icons Container */
+.social-icons-container {
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.3s ease;
+}
+
+body.light-mode .social-icons-container {
+    background: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Hide default close button for project details panels */
+.contact-info-panel.project-details > button:not(.popup-pill-btn) {
+    display: none !important;
 }

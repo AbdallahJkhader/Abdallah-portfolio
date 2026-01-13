@@ -23,17 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function initNavbar() {
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
     const navbarCollapse = document.querySelector('.navbar-collapse');
-    const navbarToggler = document.querySelector('.navbar-toggler');
 
+    // Desktop Nav Click Logic
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
-
-            // Collapse navbar if open (mobile)
-            if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-                const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
-                bsCollapse.hide();
-            }
 
             // Update active state
             navLinks.forEach(l => l.classList.remove('active'));
@@ -56,6 +50,73 @@ function initNavbar() {
             }
         });
     });
+
+    // Mobile Navbar Toggler Logic (Bottom Sheet)
+    const toggler = document.getElementById('mobile-nav-toggler');
+    if (toggler) {
+        toggler.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const content = `
+                <div class="d-flex flex-column gap-2 w-100 px-1 pb-1">
+                    <h5 class="fw-bold mb-3 text-white">Menu</h5>
+                    <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#home">
+                        <i class="bi bi-house-door fs-5 me-2"></i> Home
+                    </button>
+                    <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#about">
+                        <i class="bi bi-person fs-5 me-2"></i> About
+                    </button>
+                    <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#skills">
+                        <i class="bi bi-code-slash fs-5 me-2"></i> Skills
+                    </button>
+                    <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#projects">
+                        <i class="bi bi-grid fs-5 me-2"></i> Projects
+                    </button>
+                    <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#experience">
+                        <i class="bi bi-briefcase fs-5 me-2"></i> Experience
+                    </button>
+                </div>
+            `;
+
+            if (window.showInfoPanel) {
+                const panel = window.showInfoPanel(content, 'mobile-nav');
+
+                // Attach click listeners to generated links
+                setTimeout(() => {
+                    const links = panel.querySelectorAll('.mobile-nav-link');
+                    links.forEach(link => {
+                        link.onclick = (ev) => {
+                            ev.preventDefault();
+                            const targetId = link.getAttribute('data-target');
+
+                            // Close panel
+                            // The close button is the one that is NOT a popup-pill-btn (added by createInfoPanel)
+                            // But cleaner way: simulate click on backdrop, or find the specific close button
+                            const closeBtn = panel.querySelector('button:not(.popup-pill-btn)');
+                            if (closeBtn) {
+                                closeBtn.click();
+                            } else {
+                                // Fallback: try removing the panel if button not found (failsafe)
+                                if (document.body.contains(panel)) {
+                                    const backdrop = document.getElementById('panel-backdrop');
+                                    if (backdrop) backdrop.click();
+                                }
+                            }
+
+                            // Scroll Logic
+                            if (targetId === '#home') {
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            } else {
+                                const section = document.querySelector(targetId);
+                                if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        };
+                    });
+                }, 50);
+            }
+        });
+    }
 
     // Mobile Brand Click: Show Say Hi & CV
     const brand = document.querySelector('.navbar-brand');
@@ -90,7 +151,6 @@ function initNavbar() {
                                <a href="https://www.linkedin.com/in/abdallah-j-khader-b70739230" class="social-icon-link fs-2" target="_blank"><i class="bi bi-linkedin"></i></a>
                                <a href="https://wa.me/962782576216" class="social-icon-link fs-2" target="_blank"><i class="bi bi-whatsapp"></i></a>
                                <a href="#" onclick="window.copyEmail()" class="social-icon-link fs-2"><i class="bi bi-envelope-fill"></i></a>
-                               <a href="#" onclick="window.copyPhone()" class="social-icon-link fs-2"><i class="bi bi-phone-fill"></i></a>
                             </div>
                         </div>
                     </div>
@@ -366,7 +426,13 @@ function initAOS() {
     if (typeof AOS !== 'undefined') {
         AOS.init({
             duration: 800,
-            once: true
+            once: true,
+            offset: 50 // Trigger slightly earlier
+        });
+
+        // Refresh AOS after all images/resources are loaded to ensure correct offsets
+        window.addEventListener('load', () => {
+            AOS.refresh();
         });
     }
 }
@@ -411,6 +477,7 @@ function initContactPanels() {
         // Panel
         const panel = document.createElement('div');
         panel.className = 'contact-info-panel';
+        if (type) panel.classList.add(type); // Add specific type class
         if (type === 'phone') panel.classList.add('phone-popup-mode');
         panel.innerHTML = content;
 
@@ -475,13 +542,7 @@ function initContactPanels() {
         createInfoPanel('<img src="images/gmail icon.png" alt="Gmail" width="40" height="35" style="vertical-align: middle;"><br><strong>abdallahjkhader@gmail.com</strong><br><small>Click to copy email address</small>', 'email');
     };
 
-    const phoneSpan = document.getElementById('phoneLink');
-    if (phoneSpan) phoneSpan.onclick = (e) => {
-        e.preventDefault();
-        const isLightMode = document.body.classList.contains('light-mode');
-        const iconSrc = isLightMode ? 'images/phone number black.png' : 'images/phone number white.png';
-        createInfoPanel(`<img src="${iconSrc}" alt="Phone Number" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">`, 'phone');
-    };
+
 
     const githubLink = document.querySelector('a[href*="github"]');
     if (githubLink) githubLink.onclick = (e) => {
@@ -508,11 +569,7 @@ function initContactPanels() {
         });
     };
 
-    window.copyPhone = () => {
-        navigator.clipboard.writeText('+962782576216').then(() => {
-            alert('Phone copied: +962782576216');
-        });
-    };
+
 
     // Project Details Buttons
     const detailBtns = document.querySelectorAll('.details-btn');
@@ -536,18 +593,42 @@ function initContactPanels() {
 
         function getSlideHTML(slideIndex) {
             const slide = slides[slideIndex];
-            const hasPrev = slideIndex > 0;
-            const hasNext = slideIndex < slides.length - 1;
 
-            // Unique IDs for buttons based on prefix to avoid conflict
+            // Generate Pagination Buttons
+            let paginationHTML = '<div class="d-flex gap-2">';
+            for (let i = 0; i < slides.length; i++) {
+                // Active style: solid primary. Inactive: outline secondary (or similar subtle style)
+                const isActive = i === slideIndex;
+                const activeClass = isActive ? 'btn-primary text-white' : 'btn-outline-secondary text-secondary';
+                const opacity = isActive ? '1' : '0.6';
+
+                paginationHTML += `
+                    <button id="${prefix}-page-${i}" class="btn btn-sm ${activeClass} fw-bold rounded-circle p-0 d-flex align-items-center justify-content-center" 
+                        style="width: 30px; height: 30px; opacity: ${opacity}; transition: all 0.2s;"
+                        title="Go to slide ${i + 1}">
+                        ${i + 1}
+                    </button>
+                `;
+            }
+
+            // Add Custom Close Button
+            paginationHTML += `
+                <button id="${prefix}-close-btn" class="btn btn-sm btn-outline-danger fw-bold rounded-circle p-0 d-flex align-items-center justify-content-center" 
+                    style="width: 30px; height: 30px; transition: all 0.2s;"
+                    title="Close">
+                    <i class="bi bi-x fs-5"></i>
+                </button>
+            `;
+
+            paginationHTML += '</div>';
+
             return `
                 <div class="text-start p-3 fade-in">
                     <div class="d-flex align-items-center mb-3">
                         <img src="${slide.icon}" alt="${slide.title}" width="${slide.iconWidth}" class="rounded-3 shadow-sm me-3" style="object-fit: contain;">
                         <h4 class="fw-bold mb-0">${slide.title}</h4>
-                        <div class="ms-auto d-flex gap-2">
-                            ${hasPrev ? `<i id="${prefix}-prev-btn" class="bi bi-arrow-left-circle-fill fs-2 cursor-pointer text-info" role="button" title="Previous"></i>` : ''}
-                            ${hasNext ? `<i id="${prefix}-next-btn" class="bi bi-arrow-right-circle-fill fs-2 cursor-pointer text-info" role="button" title="Next"></i>` : ''}
+                        <div class="ms-auto">
+                            ${paginationHTML}
                         </div>
                     </div>
                     <div class="carousel-content">${slide.content}</div>
@@ -563,18 +644,28 @@ function initContactPanels() {
             const container = document.getElementById(wrapperID);
             if (!container) return;
 
-            const prevBtn = document.getElementById(`${prefix}-prev-btn`);
-            const nextBtn = document.getElementById(`${prefix}-next-btn`);
+            // Attach listener to Close Button
+            const closeBtn = document.getElementById(`${prefix}-close-btn`);
+            if (closeBtn) {
+                closeBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    const backdrop = document.getElementById('panel-backdrop');
+                    if (backdrop) backdrop.click();
+                };
+            }
 
-            if (prevBtn) prevBtn.onclick = (e) => {
-                e.stopPropagation();
-                updateSlide(currentIndex - 1);
-            };
-
-            if (nextBtn) nextBtn.onclick = (e) => {
-                e.stopPropagation();
-                updateSlide(currentIndex + 1);
-            };
+            // Attach listeners to ALL page buttons
+            for (let i = 0; i < slides.length; i++) {
+                const pageBtn = document.getElementById(`${prefix}-page-${i}`);
+                if (pageBtn) {
+                    pageBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        if (i !== currentIndex) {
+                            updateSlide(i);
+                        }
+                    };
+                }
+            }
 
             function updateSlide(newIndex) {
                 container.innerHTML = getSlideHTML(newIndex);

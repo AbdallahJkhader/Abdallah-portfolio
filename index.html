@@ -125,8 +125,7 @@
       <button id="themeToggle" class="btn btn-link nav-link p-0 border-0 text-white" title="Toggle Theme">
         <i class="bi bi-sun-fill fs-5"></i>
       </button>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-        aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" id="mobile-nav-toggler" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
@@ -162,7 +161,7 @@
           <!-- Action Buttons Row -->
           <div class="d-flex gap-2 justify-content-start w-100 mb-3">
             <button id="sayHiBtn" class="btn btn-primary project-btn mb-0" style="width: 120px;">Say Hi</button>
-            <button id="downloadBtn" class="btn btn-outline-primary project-btn mb-0"
+            <button id="downloadBtn" class="btn btn-primary project-btn mb-0"
               style="font-family:'Montserrat',sans-serif; width: 120px;">
               View CV
             </button>
@@ -171,8 +170,8 @@
           <!-- Hidden Contact Tools (Appears below buttons) -->
           <div class="contact-tools-hidden text-start w-100"
             style="display: none; opacity: 0; transition: all 0.3s ease;">
-            <div class="d-flex align-items-center justify-content-start gap-3 p-2 rounded-3"
-              style="background: rgba(255,255,255,0.05); width: fit-content;">
+            <div class="d-flex align-items-center justify-content-start gap-3 p-2 rounded-3 social-icons-container"
+              style="width: fit-content;">
               <a href="https://github.com/AbdallahJkhader" class="social-icon-link text-white" target="_blank"
                 title="Visit my GitHub profile"><i class="bi bi-github fs-5"></i></a>
               <a href="https://www.linkedin.com/in/abdallah-j-khader-b70739230" class="social-icon-link text-white"
@@ -181,8 +180,6 @@
                 title="Chat on WhatsApp"><i class="bi bi-whatsapp fs-5"></i></a>
               <a href="#" id="emailLink" class="social-icon-link text-white" title="Email: abdallahjkhader@gmail.com"><i
                   class="bi bi-envelope-fill fs-5"></i></a>
-              <a href="#" id="phoneLink" class="social-icon-link text-white" title="Phone: +962782576216"><i
-                  class="bi bi-phone-fill fs-5"></i></a>
             </div>
           </div>
         </div>
