@@ -39,6 +39,11 @@ html {
     color: #d1d5db !important;
 }
 
+/* Border Colors for Section Headers */
+.border-primary {
+    border-color: #3b82f6 !important;
+}
+
 /* Light Mode Base Overrides */
 body.light-mode {
     background: #e9ecef !important;

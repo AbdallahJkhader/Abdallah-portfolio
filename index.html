@@ -152,8 +152,7 @@
           </h2>
           <!-- Ensure min-height prevents layout jump -->
           <div id="netdev" class="text-white fw-bold"
-            style="font-size:1.1rem;font-family:'Montserrat',sans-serif;letter-spacing:1px;display:none;">Backend .NET
-            Developer
+            style="font-size:1.1rem;font-family:'Montserrat',sans-serif;letter-spacing:1px;display:none;">
           </div>
         </div>
 
@@ -200,25 +199,27 @@
           <h3 class="fw-bold mb-5 ps-3 border-start border-5 border-primary text-start">02. Skills</h3>
           <div class="cv-section-card">
             <div class="row g-4">
-              <div class="col-md-6 text-center" data-aos="zoom-in" data-aos-delay="0" data-aos-duration="1500">
-                <img src="images/lanfuages and framworks icon.png" alt="Languages & Frameworks" width="60" height="60"
+              <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="0">
+                <img src="images/lanfuages and framworks icon.png" alt="Backend .NET Development" width="60" height="60"
                   class="mb-3">
                 <h5 class="fw-bold mb-2">Backend .NET Development</h5>
-                <p class="text-secondary mb-0">ASP.NET Core (Web API, MVC), C#, RESTful APIs.</p>
+                <p class="text-secondary mb-0">ASP.NET Core (MVC & Web API), RESTful APIs, Authentication &
+                  Authorization
+                  (JWT, Identity).</p>
               </div>
-              <div class="col-md-6 text-center" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="1500">
+              <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="150">
                 <img src="images/database icon.webp" alt="Database & ORM" width="60" height="60" class="mb-3">
                 <h5 class="fw-bold mb-2">Database & ORM</h5>
-                <p class="text-secondary mb-0">LINQ, Entity Framework Core (Code First), SQL Server.</p>
+                <p class="text-secondary mb-0">LINQ, Entity Framework Core (Code First), ADO.NET, SQL Server.</p>
               </div>
-              <div class="col-md-6 text-center" data-aos="zoom-in" data-aos-delay="600" data-aos-duration="1500">
+              <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="300">
                 <img src="images/clean code icon.png" alt="Architecture & Clean Code" width="60" height="60"
                   class="mb-3">
                 <h5 class="fw-bold mb-2">Architecture & Clean Code</h5>
                 <p class="text-secondary mb-0">SOLID, DRY/KISS, Dependency Injection (DI), Repository & Unit of Work
                   Patterns.</p>
               </div>
-              <div class="col-md-6 text-center" data-aos="zoom-in" data-aos-delay="900" data-aos-duration="1500">
+              <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="450">
                 <img src="images/web technologies icon.png" alt="Front-End & Tools" width="60" height="60" class="mb-3">
                 <h5 class="fw-bold mb-2">Front-End & Tools</h5>
                 <p class="text-secondary mb-0">HTML, CSS, JavaScript, Bootstrap, Git/GitHub, Postman.</p>
@@ -286,6 +287,24 @@
             <div class="col-md-6">
               <div class="modern-card">
                 <div class="modern-card-img-wrapper">
+                  <img src="images/Danish Jordanian Dairy logo.jpeg" alt="Danish Jordanian Dairy"
+                    class="modern-card-img logo-card-img">
+                </div>
+                <div class="modern-card-body">
+                  <h4 class="card-title">IT Support Engineer (Intern)</h4>
+                  <div class="card-tags">
+                    <span class="card-tag info-tag">Danish Jordanian Dairy</span>
+                    <span class="card-tag info-tag">Jul 25 - Sep 25</span>
+                  </div>
+                  <p class="card-text">Provided hardware support, supported the ERP system, and performed CRUD
+                    operations on data.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="modern-card">
+                <div class="modern-card-img-wrapper">
                   <img src="images/Extensya logo.jpeg" alt="Extensya" class="modern-card-img logo-card-img">
                 </div>
                 <div class="modern-card-body">
@@ -296,24 +315,6 @@
                   </div>
                   <p class="card-text">Resolved partner issues via phone and provided real-time support to ensure
                     customer satisfaction and smooth operations.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="modern-card">
-                <div class="modern-card-img-wrapper">
-                  <img src="images/Danish Jordanian Dairy logo.jpeg" alt="Danish Jordanian Dairy"
-                    class="modern-card-img logo-card-img">
-                </div>
-                <div class="modern-card-body">
-                  <h4 class="card-title">IT Support Engineer (Intern)</h4>
-                  <div class="card-tags">
-                    <span class="card-tag info-tag">Danish Jordanian Dairy</span>
-                    <span class="card-tag info-tag">Jul 25 - Sep 25</span>
-                  </div>
-                  <p class="card-text">Provided IT support, maintained systems, and contributed to the development
-                    of the company's technical infrastructure.</p>
                 </div>
               </div>
             </div>
@@ -331,25 +332,6 @@
   <script src="project-data.js"></script>
   <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-
-  <script>
-    document.getElementById('sayHiBtn').addEventListener('click', function () {
-      const tools = document.querySelector('.contact-tools-hidden');
-      if (tools.style.display === 'none') {
-        tools.style.display = 'block';
-        setTimeout(() => {
-          tools.style.opacity = '1';
-          tools.style.transform = 'translateY(0)';
-        }, 10);
-      } else {
-        tools.style.opacity = '0';
-        tools.style.transform = 'translateY(-10px)';
-        setTimeout(() => {
-          tools.style.display = 'none';
-        }, 300);
-      }
-    });
-  </script>
 </body>
 
 </html>

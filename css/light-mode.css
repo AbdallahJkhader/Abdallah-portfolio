@@ -48,6 +48,7 @@ body.light-mode .main-content {
     background: #ffffff !important;
     box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.1);
     border-radius: 2rem !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
 body.light-mode .spa-section {
@@ -55,8 +56,6 @@ body.light-mode .spa-section {
     background-image: none !important;
     box-shadow: none !important;
     border: none !important;
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
     border-radius: 0 !important;
     margin-bottom: 0 !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
@@ -86,6 +85,11 @@ body.light-mode .text-secondary,
 body.light-mode .text-muted,
 body.light-mode .small {
     color: #4b5563 !important;
+}
+
+/* Exception: Keep social app icons white */
+body.light-mode .social-app-icon i {
+    color: #ffffff !important;
 }
 
 body.light-mode .hero-text .text-white,
@@ -210,7 +214,8 @@ body.light-mode #themeToggle {
         /* Semi-transparent */
         backdrop-filter: blur(20px) !important;
         -webkit-backdrop-filter: blur(20px) !important;
-        box-shadow: none !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
     }
 
     body.light-mode .spa-section {

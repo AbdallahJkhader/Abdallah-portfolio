@@ -4,6 +4,14 @@
  * Refactored for modularity and clean execution.
  */
 
+// Prevent browser from restoring scroll position on refresh
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+// Force scroll to top immediately (before DOM loads)
+window.scrollTo(0, 0);
+
 document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
     initTheme();
@@ -80,7 +88,7 @@ function initNavbar() {
             `;
 
             if (window.showInfoPanel) {
-                const panel = window.showInfoPanel(content, 'mobile-nav');
+                const panel = window.showInfoPanel(content, 'mobile-nav floating-bubble');
 
                 // Attach click listeners to generated links
                 setTimeout(() => {
@@ -90,14 +98,10 @@ function initNavbar() {
                             ev.preventDefault();
                             const targetId = link.getAttribute('data-target');
 
-                            // Close panel
-                            // The close button is the one that is NOT a popup-pill-btn (added by createInfoPanel)
-                            // But cleaner way: simulate click on backdrop, or find the specific close button
                             const closeBtn = panel.querySelector('button:not(.popup-pill-btn)');
                             if (closeBtn) {
                                 closeBtn.click();
                             } else {
-                                // Fallback: try removing the panel if button not found (failsafe)
                                 if (document.body.contains(panel)) {
                                     const backdrop = document.getElementById('panel-backdrop');
                                     if (backdrop) backdrop.click();
@@ -118,64 +122,13 @@ function initNavbar() {
         });
     }
 
-    // Mobile Brand Click: Show Say Hi & CV
+    // Mobile Brand Click: Show Quick Actions
     const brand = document.querySelector('.navbar-brand');
     if (brand) {
         brand.addEventListener('click', function (e) {
-            // Check if mobile (using standard Bootstrap breakpoint 991px)
             if (window.innerWidth <= 991) {
-                e.preventDefault(); // Stop scrolling to top
-
-                // Floating Pill Popup Content
-                const content = `
-                    <div class="d-flex flex-column gap-2 w-100 px-1 pb-1">
-                        <!-- Buttons Row -->
-                        <div class="d-flex flex-row gap-2 w-100">
-                            <!-- Say Hi Pill -->
-                             <button id="mobile-say-hi-btn" class="popup-pill-btn flex-fill justify-content-center">
-                                <i class="bi bi-chat-text fs-5"></i>
-                                 <span class="fs-6">Say Hi</span>
-                            </button>
-
-                             <!-- My CV Pill -->
-                            <button id="mobile-cv-btn" class="popup-pill-btn flex-fill justify-content-center">
-                                <i class="bi bi-file-earmark-person fs-5"></i>
-                                <span class="fs-6">View CV</span>
-                            </button>
-                        </div>
-                    </div>
-                `;
-
-                if (window.showInfoPanel) {
-                    window.showInfoPanel(content, 'quick-actions');
-
-                    // Attach Logic
-                    setTimeout(() => {
-                        // CV Logic
-                        const mobCvBtn = document.getElementById('mobile-cv-btn');
-                        if (mobCvBtn) {
-                            mobCvBtn.onclick = () => {
-                                const link = document.createElement('a');
-                                link.href = 'Abdallah J. Khader CV.pdf';
-                                link.target = '_blank';
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-
-                                mobCvBtn.innerHTML = '<span class="fs-5 fw-bold ms-2 text-success">Opened!</span><i class="bi bi-check-circle fs-4 me-2 text-success"></i>';
-                            };
-                        }
-
-                        // Say Hi Logic - Show social icons popup
-                        const sayHiBtn = document.getElementById('mobile-say-hi-btn');
-                        if (sayHiBtn) {
-                            sayHiBtn.onclick = () => {
-                                // Show social icons in bottom popup
-                                showSocialIconsPopup();
-                            };
-                        }
-                    }, 50);
-                }
+                e.preventDefault();
+                window.showQuickActionsPopup();
             }
         });
     }
@@ -183,14 +136,11 @@ function initNavbar() {
     // Close navbar when clicking outside
     document.addEventListener('click', function (e) {
         if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-            // ... existing close logic
-            if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
+            if (!navbarCollapse.contains(e.target) && !toggler.contains(e.target)) {
                 new bootstrap.Collapse(navbarCollapse, { toggle: false }).hide();
             }
         }
     });
-
-
 
     // Close on Escape
     document.addEventListener('keydown', function (e) {
@@ -219,6 +169,9 @@ function initTheme() {
     }
 
     themeToggleBtn.addEventListener('click', function () {
+        // Save current scroll position
+        const currentScrollY = window.scrollY;
+
         document.body.classList.toggle('light-mode');
 
         if (document.body.classList.contains('light-mode')) {
@@ -230,6 +183,25 @@ function initTheme() {
             themeIcon.classList.add('bi-sun-fill');
             localStorage.setItem('theme', 'dark');
         }
+
+        // Restore scroll position multiple times to handle CSS reflow
+        // Immediate restoration
+        window.scrollTo(0, currentScrollY);
+
+        // After next paint
+        requestAnimationFrame(() => {
+            window.scrollTo(0, currentScrollY);
+
+            // After CSS has been applied
+            setTimeout(() => {
+                window.scrollTo(0, currentScrollY);
+            }, 10);
+
+            // Final restoration after all transitions
+            setTimeout(() => {
+                window.scrollTo(0, currentScrollY);
+            }, 50);
+        });
     });
 }
 
@@ -407,7 +379,8 @@ function initAOS() {
         AOS.init({
             duration: 800,
             once: true,
-            offset: 50 // Trigger slightly earlier
+            offset: 0, // Trigger immediately when element enters viewport
+            easing: 'ease-in-out'
         });
 
         // Refresh AOS after all images/resources are loaded to ensure correct offsets
@@ -417,32 +390,33 @@ function initAOS() {
     }
 }
 
+// Global Panel State (needed for window.showInfoPanel to work)
+let currentOpenPanel = null;
+
+function closeExistingPanel() {
+    if (currentOpenPanel) {
+        const panel = currentOpenPanel;
+        const backdrop = document.getElementById('panel-backdrop');
+
+        // Remove class to trigger CSS exit transition
+        panel.classList.remove('is-visible');
+
+        if (backdrop) {
+            backdrop.style.opacity = '0';
+            setTimeout(() => { if (document.body.contains(backdrop)) document.body.removeChild(backdrop); }, 300);
+        }
+
+        // Wait for transition to finish before removing
+        setTimeout(() => { if (document.body.contains(panel)) document.body.removeChild(panel); }, 300);
+        currentOpenPanel = null;
+    }
+}
+
 /**
  * 6. Contact Panels & Project Modals
  * Reusable modal logic for contacts and project details.
  */
 function initContactPanels() {
-    let currentOpenPanel = null;
-
-    // Helper: Close Panel
-    function closeExistingPanel() {
-        if (currentOpenPanel) {
-            const panel = currentOpenPanel;
-            const backdrop = document.getElementById('panel-backdrop');
-
-            // Remove class to trigger CSS exit transition
-            panel.classList.remove('is-visible');
-
-            if (backdrop) {
-                backdrop.style.opacity = '0';
-                setTimeout(() => { if (document.body.contains(backdrop)) document.body.removeChild(backdrop); }, 300);
-            }
-
-            // Wait for transition to finish before removing
-            setTimeout(() => { if (document.body.contains(panel)) document.body.removeChild(panel); }, 300);
-            currentOpenPanel = null;
-        }
-    }
 
     // Helper: Create Panel
     function createInfoPanel(content, type) {
@@ -457,8 +431,13 @@ function initContactPanels() {
         // Panel
         const panel = document.createElement('div');
         panel.className = 'contact-info-panel';
-        if (type) panel.classList.add(type); // Add specific type class
-        if (type === 'phone') panel.classList.add('phone-popup-mode');
+        if (type) {
+            // Handle multiple classes separated by spaces
+            type.split(' ').forEach(cls => {
+                if (cls.trim()) panel.classList.add(cls.trim());
+            });
+        }
+        if (type && type.includes('phone')) panel.classList.add('phone-popup-mode');
         panel.innerHTML = content;
 
         // Close Button
@@ -542,107 +521,191 @@ function initContactPanels() {
         navigator.clipboard.writeText('abdallahjkhader@gmail.com');
     };
 
-    // Shared function to show social icons popup (used by all Say Hi buttons)
+    // Shared function for Social Icons popup (Say Hi)
     window.showSocialIconsPopup = function () {
         const content = `
-            <div class="d-flex flex-column gap-3 w-100 px-2 pb-2">
-                <!-- Icons Row -->
-                <div class="d-flex justify-content-center gap-4 pt-2">
-                    <button id="social-github-icon" class="btn btn-link p-0 text-white" style="font-size: 2rem; transition: transform 0.2s ease; text-decoration: none;">
+            <div class="social-apps-grid">
+                <div class="social-app-item" id="social-github-btn">
+                    <div class="social-app-icon">
                         <i class="bi bi-github"></i>
-                    </button>
-                    <button id="social-linkedin-icon" class="btn btn-link p-0 text-white" style="font-size: 2rem; transition: transform 0.2s ease; text-decoration: none;">
-                        <i class="bi bi-linkedin"></i>
-                    </button>
-                    <button id="social-whatsapp-icon" class="btn btn-link p-0 text-white" style="font-size: 2rem; transition: transform 0.2s ease; text-decoration: none;">
-                        <i class="bi bi-whatsapp"></i>
-                    </button>
-                    <button id="social-phone-icon" class="btn btn-link p-0 text-white" style="font-size: 2rem; transition: transform 0.2s ease; text-decoration: none;">
-                        <i class="bi bi-phone-fill"></i>
-                    </button>
-                    <button id="social-email-icon" class="btn btn-link p-0 text-white" style="font-size: 2rem; transition: transform 0.2s ease; text-decoration: none;">
-                        <i class="bi bi-envelope-fill"></i>
-                    </button>
+                    </div>
+                    <div class="social-app-label">GitHub</div>
                 </div>
                 
-                <!-- Expandable Label -->
-                <div id="social-label" class="text-center" style="min-height: 20px; font-size: 0.9rem; color: rgba(255,255,255,0.7); transition: all 0.3s ease;">
+                <div class="social-app-item" id="social-linkedin-btn">
+                    <div class="social-app-icon">
+                        <i class="bi bi-linkedin"></i>
+                    </div>
+                    <div class="social-app-label">LinkedIn</div>
+                </div>
+                
+                <div class="social-app-item" id="social-whatsapp-btn">
+                    <div class="social-app-icon">
+                        <i class="bi bi-whatsapp"></i>
+                    </div>
+                    <div class="social-app-label">WhatsApp</div>
+                </div>
+                
+                <div class="social-app-item" id="social-email-btn">
+                    <div class="social-app-icon">
+                        <i class="bi bi-envelope-fill"></i>
+                    </div>
+                    <div class="social-app-label">Email</div>
+                </div>
+                
+                <div class="social-app-item" id="social-phone-btn">
+                    <div class="social-app-icon">
+                        <i class="bi bi-phone-fill"></i>
+                    </div>
+                    <div class="social-app-label">Phone</div>
                 </div>
             </div>
         `;
 
-        createInfoPanel(content, 'say-hi-social');
+        window.showInfoPanel(content, 'say-hi-social floating-bubble');
 
-        // Attach click and hover handlers after panel is created
+        // Attach listeners
         setTimeout(() => {
-            const label = document.getElementById('social-label');
+            const replaceWithCopied = (buttonId, text) => {
+                const button = document.getElementById(buttonId);
+                if (button) {
+                    const icon = button.querySelector('.social-app-icon');
+                    const label = button.querySelector('.social-app-label');
+                    const originalIconHTML = icon.innerHTML;
+                    const originalLabelText = label.textContent;
 
-            // Helper function to add hover lift effect
-            const addHoverEffect = (btn) => {
-                btn?.addEventListener('mouseenter', () => { btn.style.transform = 'translateY(-5px)'; });
-                btn?.addEventListener('mouseleave', () => { btn.style.transform = 'translateY(0)'; });
+                    // Replace with "Copied" text and copied content
+                    icon.innerHTML = '<span style="font-size: 0.7rem; font-weight: 600;">Copied</span>';
+                    label.innerHTML = `<span style="font-size: 0.7rem; line-height: 1.2;">${text}</span>`;
+                    icon.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+
+                    // Restore after 3 seconds
+                    setTimeout(() => {
+                        icon.innerHTML = originalIconHTML;
+                        label.innerHTML = originalLabelText;
+                        icon.style.background = '';
+                    }, 3000);
+                }
             };
 
-            // GitHub
-            const githubBtn = document.getElementById('social-github-icon');
-            addHoverEffect(githubBtn);
-            githubBtn?.addEventListener('mouseenter', () => { label.textContent = 'Click to open'; });
-            githubBtn?.addEventListener('mouseleave', () => { label.textContent = ''; });
-            githubBtn?.addEventListener('click', () => { window.open('https://github.com/AbdallahJkhader', '_blank'); });
+            document.getElementById('social-github-btn')?.addEventListener('click', () => {
+                window.open('https://github.com/AbdallahJkhader', '_blank');
+            });
 
-            // LinkedIn
-            const linkedinBtn = document.getElementById('social-linkedin-icon');
-            addHoverEffect(linkedinBtn);
-            linkedinBtn?.addEventListener('mouseenter', () => { label.textContent = 'Click to open'; });
-            linkedinBtn?.addEventListener('mouseleave', () => { label.textContent = ''; });
-            linkedinBtn?.addEventListener('click', () => { window.open('https://www.linkedin.com/in/abdallah-j-khader-b70739230', '_blank'); });
+            document.getElementById('social-linkedin-btn')?.addEventListener('click', () => {
+                window.open('https://www.linkedin.com/in/abdallah-j-khader-b70739230', '_blank');
+            });
 
-            // WhatsApp
-            const whatsappBtn = document.getElementById('social-whatsapp-icon');
-            addHoverEffect(whatsappBtn);
-            whatsappBtn?.addEventListener('mouseenter', () => { label.textContent = 'Click to open'; });
-            whatsappBtn?.addEventListener('mouseleave', () => { label.textContent = ''; });
-            whatsappBtn?.addEventListener('click', () => { window.open('https://wa.me/962782576216', '_blank'); });
+            document.getElementById('social-whatsapp-btn')?.addEventListener('click', () => {
+                window.open('https://wa.me/962782576216', '_blank');
+            });
 
-            // Phone - Show number and copy on click
-            const phoneBtn = document.getElementById('social-phone-icon');
-            addHoverEffect(phoneBtn);
-            phoneBtn?.addEventListener('mouseenter', () => { label.textContent = '+962782576216 - Click to copy'; });
-            phoneBtn?.addEventListener('mouseleave', () => { label.textContent = ''; });
-            phoneBtn?.addEventListener('click', () => {
+            document.getElementById('social-phone-btn')?.addEventListener('click', () => {
                 navigator.clipboard.writeText('+962782576216').then(() => {
-                    label.textContent = 'Copied!';
-                    setTimeout(() => { label.textContent = ''; }, 2000);
+                    replaceWithCopied('social-phone-btn', '+962782576216');
                 });
             });
 
-            // Email - Show email and copy on click
-            const emailBtn = document.getElementById('social-email-icon');
-            addHoverEffect(emailBtn);
-            emailBtn?.addEventListener('mouseenter', () => { label.textContent = 'abdallahjkhader@gmail.com - Click to copy'; });
-            emailBtn?.addEventListener('mouseleave', () => { label.textContent = ''; });
-            emailBtn?.addEventListener('click', () => {
-                window.copyEmail();
-                label.textContent = 'Copied!';
-                setTimeout(() => { label.textContent = ''; }, 2000);
+            document.getElementById('social-email-btn')?.addEventListener('click', () => {
+                navigator.clipboard.writeText('abdallahjkhader@gmail.com').then(() => {
+                    replaceWithCopied('social-email-btn', 'abdallahjkhader@gmail.com');
+                });
             });
-        }, 100);
+
+            // Enable mouse drag scrolling for desktop
+            const grid = document.querySelector('.social-apps-grid');
+            if (grid) {
+                let isDown = false;
+                let startX;
+                let scrollLeft;
+
+                grid.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    grid.style.cursor = 'grabbing';
+                    startX = e.pageX - grid.offsetLeft;
+                    scrollLeft = grid.scrollLeft;
+                });
+
+                grid.addEventListener('mouseleave', () => {
+                    isDown = false;
+                    grid.style.cursor = 'grab';
+                });
+
+                grid.addEventListener('mouseup', () => {
+                    isDown = false;
+                    grid.style.cursor = 'grab';
+                });
+
+                grid.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - grid.offsetLeft;
+                    const walk = (x - startX) * 2; // Scroll speed multiplier
+                    grid.scrollLeft = scrollLeft - walk;
+                });
+
+                // Set initial cursor
+                grid.style.cursor = 'grab';
+            }
+        }, 50);
     };
 
-    // Say Hi Button - Show Popup on Mobile & Desktop
+    // Shared function for Quick Actions popup (Say Hi / View CV)
+    window.showQuickActionsPopup = function () {
+        const content = `
+            <div class="d-flex flex-column gap-2 w-100 px-1 pb-1">
+                <div class="d-flex flex-row gap-2 w-100">
+                    <button id="mobile-say-hi-btn" class="popup-pill-btn flex-fill justify-content-center">
+                        <i class="bi bi-chat-text fs-5"></i>
+                        <span class="fs-6">Say Hi</span>
+                    </button>
+
+                    <button id="mobile-cv-btn" class="popup-pill-btn flex-fill justify-content-center">
+                        <i class="bi bi-file-earmark-person fs-5"></i>
+                        <span class="fs-6">View CV</span>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        if (window.showInfoPanel) {
+            window.showInfoPanel(content, 'quick-actions floating-bubble');
+
+            setTimeout(() => {
+                // CV Logic
+                const mobCvBtn = document.getElementById('mobile-cv-btn');
+                if (mobCvBtn) {
+                    mobCvBtn.onclick = () => {
+                        const link = document.createElement('a');
+                        link.href = 'Abdallah J. Khader CV.pdf';
+                        link.target = '_blank';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        mobCvBtn.innerHTML = '<span class="fs-6 fw-bold ms-2 text-success">Opened!</span><i class="bi bi-check-circle fs-5 me-2 text-success"></i>';
+                    };
+                }
+
+                // Say Hi Logic
+                const sayHiBtn = document.getElementById('mobile-say-hi-btn');
+                if (sayHiBtn) {
+                    sayHiBtn.onclick = () => {
+                        showSocialIconsPopup();
+                    };
+                }
+            }, 50);
+        }
+    };
+
+    // Say Hi Button - Hero Section
     const sayHiBtn = document.getElementById('sayHiBtn');
     if (sayHiBtn) {
         sayHiBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            // Show social icons in bottom popup
+            // Always show social icons popup directly
             window.showSocialIconsPopup();
         });
     }
-
-    // Desktop phone and email copy handlers (removed - no longer needed)
-
-
-
 
     // Project Details Buttons
     const detailBtns = document.querySelectorAll('.details-btn');
@@ -655,7 +718,7 @@ function initContactPanels() {
             } else if (btn.id === 'restoMBtn') {
                 openProjectCarousel(window.ProjectData.restoMSlides, 'restom');
             } else {
-                createInfoPanel('<i class="bi bi-hourglass-split fs-1"></i><br><strong>Coming Soon!</strong><br><small>This feature is under development</small>', 'coming-soon');
+                window.showInfoPanel('<i class="bi bi-hourglass-split fs-1"></i><br><strong>Coming Soon!</strong><br><small>This feature is under development</small>', 'coming-soon');
             }
         });
     });
@@ -670,7 +733,6 @@ function initContactPanels() {
             // Generate Pagination Buttons
             let paginationHTML = '<div class="d-flex gap-2">';
             for (let i = 0; i < slides.length; i++) {
-                // Active style: solid primary. Inactive: outline secondary (or similar subtle style)
                 const isActive = i === slideIndex;
                 const activeClass = isActive ? 'btn-primary text-white' : 'btn-outline-secondary text-secondary';
                 const opacity = isActive ? '1' : '0.6';
@@ -711,13 +773,12 @@ function initContactPanels() {
 
         const wrapperID = `${prefix}-carousel-content`;
         const initialHTML = `<div id="${wrapperID}">${getSlideHTML(0)}</div>`;
-        createInfoPanel(initialHTML, 'project-details');
+        window.showInfoPanel(initialHTML, 'project-details');
 
         function attachCarouselListeners(currentIndex) {
             const container = document.getElementById(wrapperID);
             if (!container) return;
 
-            // Attach listener to Close Button
             const closeBtn = document.getElementById(`${prefix}-close-btn`);
             if (closeBtn) {
                 closeBtn.onclick = (e) => {
@@ -727,7 +788,6 @@ function initContactPanels() {
                 };
             }
 
-            // Attach listeners to ALL page buttons
             for (let i = 0; i < slides.length; i++) {
                 const pageBtn = document.getElementById(`${prefix}-page-${i}`);
                 if (pageBtn) {
