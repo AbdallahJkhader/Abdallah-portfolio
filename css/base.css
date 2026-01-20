@@ -40,8 +40,13 @@ html {
 }
 
 /* Border Colors for Section Headers */
-.border-primary {
-    border-color: #3b82f6 !important;
+/* Border Colors for Section Headers */
+body:not(.light-mode) .border-primary {
+    border-color: #198754 !important;
+}
+
+body.light-mode .border-primary {
+    border-color: #2563eb !important;
 }
 
 /* Light Mode Base Overrides */

@@ -35,6 +35,18 @@ body.light-mode .bg-dark-hero {
     border: none !important;
 }
 
+body.light-mode #hero-video-dark {
+    display: none !important;
+}
+
+/* Show light mode video only on desktop */
+@media (min-width: 992px) {
+    body.light-mode #hero-video-light {
+        display: block !important;
+        opacity: 0.3 !important;
+    }
+}
+
 body.light-mode .navbar,
 body.light-mode .container-fluid,
 body.light-mode .hero-section {
@@ -46,9 +58,10 @@ body.light-mode .hero-section {
 /* 2. Main Layout & Sections */
 body.light-mode .main-content {
     background: #ffffff !important;
-    box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 2rem !important;
+    box-shadow: none !important;
+    border-radius: 2rem 2rem 0 0 !important;
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    border-bottom: none !important;
 }
 
 body.light-mode .spa-section {
@@ -90,6 +103,12 @@ body.light-mode .small {
 /* Exception: Keep social app icons white */
 body.light-mode .social-app-icon i {
     color: #ffffff !important;
+}
+
+/* Fix: Apply scan variable to container so both h2 and div inherit it */
+body.light-mode .hero-text {
+    --scan-base-color: #000000;
+    --scan-line-color: #2563eb;
 }
 
 body.light-mode .hero-text .text-white,
@@ -193,7 +212,7 @@ body.light-mode .navbar-brand {
 }
 
 body.light-mode .nav-link {
-    color: #495057 !important;
+    color: #000 !important;
 }
 
 body.light-mode .nav-link:hover,
@@ -202,7 +221,11 @@ body.light-mode .nav-link.active {
 }
 
 body.light-mode #themeToggle {
-    color: #212529 !important;
+    color: #000 !important;
+}
+
+body.light-mode #themeToggle i {
+    color: #000 !important;
 }
 
 /* 8. Mobile Specifics for Light Mode */

@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initAboutTypewriter();
     initContactPanels();
     initCVDownload();
-    initSidebarScroll();
     initAOS();
 });
 
@@ -59,6 +58,27 @@ function initNavbar() {
         });
     });
 
+    // Scroll Logic for Navbar Blur
+    // Toggles .navbar-blur class when scrolling past the Hero section
+    function handleNavbarBlur() {
+        const navbar = document.querySelector('.navbar');
+        if (!navbar) return;
+
+        // Threshold: 90% of viewport height (approx end of Hero)
+        const threshold = window.innerHeight * 0.9;
+
+        if (window.scrollY > threshold) {
+            navbar.classList.add('navbar-blur');
+        } else {
+            navbar.classList.remove('navbar-blur');
+        }
+    }
+
+    // Attach listener
+    window.addEventListener('scroll', handleNavbarBlur);
+    // Trigger once on load
+    handleNavbarBlur();
+
     // Mobile Navbar Toggler Logic (Bottom Sheet)
     const toggler = document.getElementById('mobile-nav-toggler');
     if (toggler) {
@@ -70,19 +90,19 @@ function initNavbar() {
                 <div class="d-flex flex-column gap-2 w-100 px-1 pb-1">
                     <h5 class="fw-bold mb-3 text-white">Menu</h5>
                     <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#home">
-                        <i class="bi bi-house-door fs-5 me-2"></i> Home
+                        <i class="bi bi-house-door-fill fs-5 me-2"></i> Home
                     </button>
                     <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#about">
-                        <i class="bi bi-person fs-5 me-2"></i> About
+                        <i class="bi bi-person-lines-fill fs-5 me-2"></i> About
                     </button>
                     <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#skills">
-                        <i class="bi bi-code-slash fs-5 me-2"></i> Skills
+                        <i class="bi bi-cpu-fill fs-5 me-2"></i> Skills
                     </button>
                     <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#projects">
-                        <i class="bi bi-grid fs-5 me-2"></i> Projects
+                        <i class="bi bi-layers-fill fs-5 me-2"></i> Projects
                     </button>
                     <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#experience">
-                        <i class="bi bi-briefcase fs-5 me-2"></i> Experience
+                        <i class="bi bi-briefcase-fill fs-5 me-2"></i> Experience
                     </button>
                 </div>
             `;
@@ -159,6 +179,23 @@ function initTheme() {
     if (!themeToggleBtn) return;
 
     const themeIcon = themeToggleBtn.querySelector('i');
+    const darkVideo = document.getElementById('hero-video-dark');
+    const lightVideo = document.getElementById('hero-video-light');
+
+    // Helper function to switch videos
+    function switchVideo(isLightMode) {
+        if (darkVideo && lightVideo) {
+            if (isLightMode) {
+                darkVideo.style.display = 'none';
+                lightVideo.style.display = 'block';
+                lightVideo.play();
+            } else {
+                lightVideo.style.display = 'none';
+                darkVideo.style.display = 'block';
+                darkVideo.play();
+            }
+        }
+    }
 
     // Load saved preference
     const savedTheme = localStorage.getItem('theme');
@@ -166,6 +203,7 @@ function initTheme() {
         document.body.classList.add('light-mode');
         themeIcon.classList.remove('bi-sun-fill');
         themeIcon.classList.add('bi-moon-fill');
+        switchVideo(true);
     }
 
     themeToggleBtn.addEventListener('click', function () {
@@ -178,10 +216,17 @@ function initTheme() {
             themeIcon.classList.remove('bi-sun-fill');
             themeIcon.classList.add('bi-moon-fill');
             localStorage.setItem('theme', 'light');
+            switchVideo(true);
         } else {
             themeIcon.classList.remove('bi-moon-fill');
             themeIcon.classList.add('bi-sun-fill');
             localStorage.setItem('theme', 'dark');
+            switchVideo(false);
+        }
+
+        // Update hero gradient to match new theme
+        if (window.updateHeroGradient) {
+            window.updateHeroGradient();
         }
 
         // Restore scroll position multiple times to handle CSS reflow
@@ -253,6 +298,9 @@ function initScrollSpy() {
 /**
  * 4. Hero Section Typewriter
  */
+/**
+ * 4. Hero Section Typewriter
+ */
 function initHeroTypewriter() {
     const text1 = "Hello, I'm Abdallah";
     const text2 = "Backend .NET Developer";
@@ -261,6 +309,11 @@ function initHeroTypewriter() {
 
     if (!el1) return;
 
+    // Apply scanning text class
+    el1.classList.add('scanning-text');
+    if (el2) el2.classList.add('scanning-text');
+
+    // Typewriter Logic
     let i = 0, j = 0;
 
     function typeWriter1() {
@@ -306,7 +359,8 @@ function initAboutTypewriter() {
     <span class="code-keyword">public string</span> Name => <span class="code-string">"Abdallah J. Khader"</span>;
     <span class="code-keyword">public DateTime</span> BirthDate => <span class="code-keyword">new</span> <span class="code-class">DateTime</span>(2004, 12, 10);
     <span class="code-keyword">public string</span> Location => <span class="code-string">"Amman, Jordan"</span>;
-    <span class="code-keyword">public List</span>&lt;<span class="code-keyword">string</span>&gt; OpenTo => [<span class="code-string">"Onsite"</span>, <span class="code-string">"Freelancing"</span>, <span class="code-string">"Remote"</span>];
+    <span class="code-keyword">public string</span> Nationality => <span class="code-string">"Jordanian"</span>;
+    <span class="code-keyword">public List</span>&lt;<span class="code-keyword">string</span>&gt; OpenTo => [<span class="code-string">"Freelancing"</span>, <span class="code-string">"Remote"</span>];
     <span class="code-keyword">public bool</span> IsAvailable => OpenTo.Count > 0;
 
     <span class="code-keyword">public string</span> <span class="code-function">Create</span>() => <span class="code-string">"She said: 'We need commitment'. I did: 'git commit'."</span>;
@@ -729,33 +783,36 @@ function initContactPanels() {
 
         function getSlideHTML(slideIndex) {
             const slide = slides[slideIndex];
+            const currentNumber = slideIndex + 1;
+            const totalSlides = slides.length;
 
-            // Generate Pagination Buttons
-            let paginationHTML = '<div class="d-flex gap-2">';
-            for (let i = 0; i < slides.length; i++) {
-                const isActive = i === slideIndex;
-                const activeClass = isActive ? 'btn-primary text-white' : 'btn-outline-secondary text-secondary';
-                const opacity = isActive ? '1' : '0.6';
+            // Generate Arrow Navigation Buttons
+            const prevDisabled = slideIndex === 0 ? 'disabled style="opacity: 0.3; cursor: not-allowed;"' : '';
+            const nextDisabled = slideIndex === totalSlides - 1 ? 'disabled style="opacity: 0.3; cursor: not-allowed;"' : '';
 
-                paginationHTML += `
-                    <button id="${prefix}-page-${i}" class="btn btn-sm ${activeClass} fw-bold rounded-circle p-0 d-flex align-items-center justify-content-center" 
-                        style="width: 30px; height: 30px; opacity: ${opacity}; transition: all 0.2s;"
-                        title="Go to slide ${i + 1}">
-                        ${i + 1}
+            // Arrow Controls HTML
+            let controlsHTML = `
+                <div class="d-flex align-items-center gap-2">
+                    <button id="${prefix}-prev-btn" class="btn btn-sm btn-outline-secondary fw-bold rounded-circle p-0 d-flex align-items-center justify-content-center" 
+                        style="width: 32px; height: 32px; transition: all 0.2s;" ${prevDisabled} title="Previous">
+                        <i class="bi bi-chevron-left"></i>
                     </button>
-                `;
-            }
+                    
+                    <span class="text-muted small fw-bold mx-1" style="font-family: monospace;">${currentNumber}/${totalSlides}</span>
 
-            // Add Custom Close Button
-            paginationHTML += `
-                <button id="${prefix}-close-btn" class="btn btn-sm btn-outline-danger fw-bold rounded-circle p-0 d-flex align-items-center justify-content-center" 
-                    style="width: 30px; height: 30px; transition: all 0.2s;"
-                    title="Close">
-                    <i class="bi bi-x fs-5"></i>
-                </button>
+                    <button id="${prefix}-next-btn" class="btn btn-sm btn-outline-secondary fw-bold rounded-circle p-0 d-flex align-items-center justify-content-center" 
+                        style="width: 32px; height: 32px; transition: all 0.2s;" ${nextDisabled} title="Next">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+
+                    <div class="vr mx-2"></div>
+
+                    <button id="${prefix}-close-btn" class="btn btn-sm btn-outline-danger fw-bold rounded-circle p-0 d-flex align-items-center justify-content-center" 
+                        style="width: 32px; height: 32px; transition: all 0.2s;" title="Close">
+                        <i class="bi bi-x fs-5"></i>
+                    </button>
+                </div>
             `;
-
-            paginationHTML += '</div>';
 
             return `
                 <div class="text-start p-3 fade-in">
@@ -763,7 +820,7 @@ function initContactPanels() {
                         <img src="${slide.icon}" alt="${slide.title}" width="${slide.iconWidth}" class="rounded-3 shadow-sm me-3" style="object-fit: contain;">
                         <h4 class="fw-bold mb-0">${slide.title}</h4>
                         <div class="ms-auto">
-                            ${paginationHTML}
+                            ${controlsHTML}
                         </div>
                     </div>
                     <div class="carousel-content">${slide.content}</div>
@@ -779,6 +836,7 @@ function initContactPanels() {
             const container = document.getElementById(wrapperID);
             if (!container) return;
 
+            // Close Button
             const closeBtn = document.getElementById(`${prefix}-close-btn`);
             if (closeBtn) {
                 closeBtn.onclick = (e) => {
@@ -788,16 +846,26 @@ function initContactPanels() {
                 };
             }
 
-            for (let i = 0; i < slides.length; i++) {
-                const pageBtn = document.getElementById(`${prefix}-page-${i}`);
-                if (pageBtn) {
-                    pageBtn.onclick = (e) => {
-                        e.stopPropagation();
-                        if (i !== currentIndex) {
-                            updateSlide(i);
-                        }
-                    };
-                }
+            // Previous Button
+            const prevBtn = document.getElementById(`${prefix}-prev-btn`);
+            if (prevBtn && !prevBtn.disabled) {
+                prevBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    if (currentIndex > 0) {
+                        updateSlide(currentIndex - 1);
+                    }
+                };
+            }
+
+            // Next Button
+            const nextBtn = document.getElementById(`${prefix}-next-btn`);
+            if (nextBtn && !nextBtn.disabled) {
+                nextBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    if (currentIndex < slides.length - 1) {
+                        updateSlide(currentIndex + 1);
+                    }
+                };
             }
 
             function updateSlide(newIndex) {
@@ -838,19 +906,3 @@ function initCVDownload() {
     }
 }
 
-/**
- * 8. Sticky Sidebar Logic
- */
-function initSidebarScroll() {
-    window.addEventListener('scroll', function () {
-        const aboutSection = document.getElementById('about');
-        if (aboutSection) {
-            const aboutTop = aboutSection.getBoundingClientRect().top;
-            if (aboutTop <= 400) {
-                document.body.classList.add('scrolled-sidebar-active');
-            } else {
-                document.body.classList.remove('scrolled-sidebar-active');
-            }
-        }
-    });
-}

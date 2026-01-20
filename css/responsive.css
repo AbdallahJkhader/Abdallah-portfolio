@@ -20,6 +20,12 @@
         background-color: #0a0a0a !important;
     }
 
+    /* Hide Videos on Mobile */
+    #hero-video-dark,
+    #hero-video-light {
+        display: none !important;
+    }
+
     /* Force Background in Light Mode - High Specificity Mobile Override */
     html body.light-mode .bg-dark-hero {
         /* Using background shorthand to override any color/image specific rules */
@@ -314,9 +320,9 @@
         margin-left: 0 !important;
         order: 1 !important;
         /* Ensure second */
-        background: rgba(0, 0, 0, 0.9) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
         border-radius: 50px !important;
     }
 
@@ -361,7 +367,7 @@
     /* Reduce Title Size and Force Center on Mobile */
     .hero-text h2,
     #typewriter {
-        font-size: 1.6rem !important;
+        font-size: 2rem !important;
         text-align: center !important;
         margin: 0 auto 0.5rem auto !important;
         width: 100% !important;
@@ -423,85 +429,19 @@
 @media (min-width: 992px) {
     body:not(.light-mode) .main-content {
         background: #000000 !important;
-        border-radius: 2rem !important;
+        border-radius: 2rem 2rem 0 0 !important;
+        border-bottom: none !important;
         padding: 2rem !important;
     }
 
-    /* Sticky Sidebar Active State */
-    body.scrolled-sidebar-active .hero-section {
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        padding: 140px 1rem 0 1rem !important;
-        width: 260px !important;
-        position: fixed !important;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        z-index: 900 !important;
+    .main-content {
+        border-radius: 1rem 1rem 0 0 !important;
+        border-bottom: none !important;
     }
 
-    body.scrolled-sidebar-active .main-content {
-        margin-left: 280px !important;
-        margin-right: 15% !important;
-        max-width: 900px !important;
-    }
-
-    body.scrolled-sidebar-active .hero-profile-img {
-        width: 180px !important;
-        height: 180px !important;
-        transform: translateY(-20px) !important;
-    }
-
-    body.scrolled-sidebar-active .hero-img {
-        margin: 0 auto 1.5rem auto !important;
-        /* Remove right margin to center */
-    }
-
-    body.scrolled-sidebar-active .hero-text h2,
-    body.scrolled-sidebar-active #netdev {
+    /* Hide profile image on desktop by default */
+    .hero-img {
         display: none !important;
-    }
-
-    /* Stack buttons vertically and center them */
-    body.scrolled-sidebar-active .hero-text .d-flex.gap-2.justify-content-start {
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 10px !important;
-        width: 100% !important;
-    }
-
-    /* Ensure buttons have consistent width when stacked */
-    body.scrolled-sidebar-active .hero-text button {
-        width: 160px !important;
-    }
-
-    body.scrolled-sidebar-active .project-btn {
-        width: 100%;
-        font-size: 0.75rem !important;
-        padding: 0.5rem 1rem !important;
-    }
-
-    /* Adjust social icons container BELOW the buttons */
-    body.scrolled-sidebar-active .hero-text .contact-tools-hidden {
-        text-align: center !important;
-        display: flex !important;
-        justify-content: center !important;
-        width: 100% !important;
-        margin-top: 10px !important;
-    }
-
-    body.scrolled-sidebar-active .hero-text .contact-tools-hidden>div {
-        justify-content: center !important;
-        width: auto !important;
-        margin: 0 auto !important;
-    }
-
-    body.scrolled-sidebar-active .hero-text .mb-3.d-flex.align-items-center {
-        justify-content: center !important;
-        flex-wrap: wrap;
-        align-items: center !important;
     }
 
     /* Borders Removed per User Request */

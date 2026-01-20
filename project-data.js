@@ -1,28 +1,21 @@
 window.ProjectData = window.ProjectData || {};
 
 window.ProjectData.focusReadSlides = [
-    // Slide 1: Overview
+    // Slide 1: Overview & Problem Statement
     {
         id: 1,
         title: 'Focus & Read',
         icon: 'images/focusandreadlogo.jpg',
         iconWidth: 80,
         content: `
+            <h6 class="fw-bold text-primary mb-2">Overview:</h6>
             <p class="small mb-3">
                 An integrated web platform specifically designed to assist students with ADHD in organizing their academic lives, improving focus, and leveraging AI to simplify the learning process.
             </p>
             <p class="small mb-3">
-                The project provides a structured environment tailored for neurodivergent minds, combining intelligent file management, deep focus tracking, and smart study tools. It helps students stay motivated through streak tracking while enabling teachers to monitor progress and engagement.
+                The project provides a structured environment tailored for neurodivergent minds, combining intelligent file management, deep focus tracking, and smart study tools.
             </p>
-        `
-    },
-    // Slide 2: Problem Statement (Original)
-    {
-        id: 2,
-        title: 'Problem Statement',
-        icon: 'images/ADHD icon.png',
-        iconWidth: 70,
-        content: `
+            <h6 class="fw-bold text-danger mb-2 mt-3">Problem Statement:</h6>
             <p class="small mb-3">
                 Traditional study tools often lack features specifically tailored for neurodivergent minds.
                 Students with ADHD frequently struggle with maintaining focus, organizing tasks, and managing time effectively
@@ -32,9 +25,9 @@ window.ProjectData.focusReadSlides = [
             </p>
         `
     },
-    // Slide 3: Key Features
+    // Slide 2: Key Features
     {
-        id: 3,
+        id: 2,
         title: 'Key Features',
         icon: 'images/req doc icon.png',
         iconWidth: 70,
@@ -59,24 +52,24 @@ window.ProjectData.focusReadSlides = [
             </div>
         `
     },
-    // Slide 4: Project Video
+    // Slide 3: Project Video
     {
-        id: 4,
+        id: 3,
         title: 'Project Video',
         icon: 'images/focusandreadlogo.jpg',
         iconWidth: 50,
         content: `
             <div class="w-100 text-center">
-                <video controls class="rounded shadow-sm" style="max-width: 100%; max-height: 380px; width: auto; height: auto; background-color: #000;">
+                <video controls class="rounded shadow-sm" style="max-width: 100%; max-height: 280px; width: auto; height: auto; background-color: #000;">
                     <source src="videos/focus video.MP4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
         `
     },
-    // Slide 5: Tech Stack
+    // Slide 4: Tech Stack
     {
-        id: 5,
+        id: 4,
         title: 'Tech Stack',
         icon: 'images/web technologies icon.png',
         iconWidth: 50,
@@ -113,28 +106,21 @@ window.ProjectData.focusReadSlides = [
 ];
 
 window.ProjectData.restoMSlides = [
-    // Slide 1: Overview
+    // Slide 1: Overview & Problem Statement
     {
         id: 1,
         title: 'RestoM',
         icon: 'images/RestoM logo.jpg',
         iconWidth: 80,
         content: `
+            <h6 class="fw-bold text-primary mb-2">Overview:</h6>
             <p class="small mb-3">
                 RestoM is a comprehensive, full-stack restaurant management solution designed to bridge the gap between front-of-house service and kitchen operations.
             </p>
             <p class="small mb-3">
                 It provides a real-time, unified platform for managing orders, tables, and inventory, ensuring a seamless flow from order taking to meal preparation and billing.
             </p>
-        `
-    },
-    // Slide 2: Problem Statement
-    {
-        id: 2,
-        title: 'Problem Statement',
-        icon: 'images/RestoM logo.jpg',
-        iconWidth: 60,
-        content: `
+            <h6 class="fw-bold text-danger mb-2 mt-3">Problem Statement:</h6>
             <p class="small mb-3">
                 Manual restaurant operations often lead to miscommunication between the front-of-house and kitchen, resulting in incorrect orders and delays. 
                 Inventory mismanagement can cause unexpected shortages, while a lack of data visibility hinders strategic decision-making. 
@@ -142,9 +128,9 @@ window.ProjectData.restoMSlides = [
             </p>
         `
     },
-    // Slide 3: Key Features
+    // Slide 2: Key Features
     {
-        id: 3,
+        id: 2,
         title: 'Key Features',
         icon: 'images/req doc icon.png',
         iconWidth: 60,
@@ -162,24 +148,24 @@ window.ProjectData.restoMSlides = [
             </div>
         `
     },
-    // Slide 4: Project Video
+    // Slide 3: Project Video
     {
-        id: 4,
+        id: 3,
         title: 'Project Video',
         icon: 'images/RestoM logo.jpg',
         iconWidth: 50,
         content: `
             <div class="w-100 text-center">
-                <video controls class="rounded shadow-sm" style="max-width: 100%; max-height: 380px; width: auto; height: auto; background-color: #000;">
+                <video controls class="rounded shadow-sm" style="max-width: 100%; max-height: 280px; width: auto; height: auto; background-color: #000;">
                     <source src="videos/RestoM video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
         `
     },
-    // Slide 5: Built With
+    // Slide 4: Built With
     {
-        id: 5,
+        id: 4,
         title: 'Built With',
         icon: 'images/web technologies icon.png',
         iconWidth: 50,

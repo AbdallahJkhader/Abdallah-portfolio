@@ -1,18 +1,57 @@
 /* Navbar Components */
 .navbar {
-    background: rgba(10, 10, 10, 0.7) !important;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background: transparent !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     border: none !important;
     border-radius: 0 !important;
-    padding-top: 1.2rem;
-    padding-bottom: 1.2rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
     position: sticky !important;
     top: 0;
     z-index: 999;
-    transition: top 0.4s;
+    transition: all 0.4s ease;
+    /* Transformed top and background */
     font-family: 'Montserrat', Arial, sans-serif;
     font-size: 1.1rem;
+}
+
+/* Desktop Navbar Fully Transparent - No Background, No Blur (Default) */
+@media (min-width: 992px) {
+    .navbar {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-bottom: none !important;
+    }
+
+    body.light-mode .navbar {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-bottom: none !important;
+    }
+}
+
+/* Scrolled Navbar State (Glass Effect) - Applied via JS Class */
+/* Must come AFTER the default media query to override it */
+.navbar.navbar-blur {
+    background: rgba(10, 10, 10, 0.85) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Light Mode Blur */
+body.light-mode .navbar.navbar-blur {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .navbar.hide-navbar {
@@ -23,6 +62,21 @@
     color: #ffffff !important;
     font-size: 1.5rem;
     letter-spacing: 1px;
+}
+
+#themeToggle {
+    color: #ffffff !important;
+}
+
+#themeToggle i {
+    color: #ffffff !important;
+}
+
+#themeToggle:focus,
+#themeToggle:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 
 .nav-link {
@@ -44,10 +98,21 @@
     bottom: -2px;
     left: 50%;
     width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #6b7280, #9ca3af);
+    height: 3px;
+    /* Slightly thicker for visibility */
     transition: all 0.3s ease;
     transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+/* Default Dark Mode Underline - Green */
+body:not(.light-mode) .nav-link::after {
+    background: #198754 !important;
+}
+
+/* Light Mode Underline - Blue */
+body.light-mode .nav-link::after {
+    background: #2563eb !important;
 }
 
 .nav-link:hover::after,
@@ -73,20 +138,13 @@
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255,1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-/* Light Mode Navbar Overrides */
-body.light-mode .navbar {
-    background: rgba(255, 255, 255, 0.7) !important;
-    border-bottom: none !important;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-}
 
 body.light-mode .navbar-brand {
     color: #000 !important;
 }
 
 body.light-mode .nav-link {
-    color: #495057 !important;
+    color: #000 !important;
 }
 
 body.light-mode .nav-link:hover,
@@ -128,20 +186,20 @@ body.light-mode .navbar-toggler-icon {
 body:not(.light-mode) .project-btn,
 body:not(.light-mode) .btn-outline-info,
 body:not(.light-mode) .btn-outline-primary {
-    background-color: transparent !important;
-    color: #3b82f6 !important;
-    border: 2px solid #3b82f6 !important;
-    box-shadow: none !important;
+    background-color: #198754 !important;
+    color: #ffffff !important;
+    border: 2px solid #198754 !important;
+    box-shadow: 0 4px 12px rgba(25, 135, 84, 0.3) !important;
 }
 
 body:not(.light-mode) .project-btn:hover,
 body:not(.light-mode) .btn-outline-info:hover,
 body:not(.light-mode) .btn-outline-primary:hover {
-    background: #3b82f6 !important;
+    background: #157347 !important;
     color: #ffffff !important;
     opacity: 1 !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4) !important;
+    box-shadow: 0 6px 12px rgba(25, 135, 84, 0.4) !important;
 }
 
 body.light-mode .project-btn,
@@ -482,6 +540,83 @@ body.light-mode .contact-info-panel.floating-bubble {
 
 /* Mobile Bottom Sheet Override REMOVED - Reverting to Centered Card */
 
+/* --- Mobile Menu Items Styling --- */
+.mobile-nav-link {
+    background: transparent !important;
+    /* Removed box background */
+    border-radius: 12px;
+    margin-bottom: 4px;
+    /* Reduced spacing */
+    padding: 10px 20px !important;
+    border: none !important;
+    /* Removed border */
+    transition: all 0.2s ease !important;
+    justify-content: flex-start !important;
+    font-weight: 600 !important;
+    /* Slightly bolder text */
+    letter-spacing: 0.5px;
+    color: #e5e7eb !important;
+    /* Default Text Color */
+}
+
+/* Hover/Active State (Dark Mode) */
+.mobile-nav-link:hover,
+.mobile-nav-link:active {
+    background: transparent !important;
+    transform: translateX(8px);
+    /* More pronounced slide */
+    border: none !important;
+    color: #198754 !important;
+    /* Green Accent */
+}
+
+/* Icon Styling in Menu */
+.mobile-nav-link i {
+    color: #9ca3af;
+    transition: color 0.2s;
+    font-size: 1.3rem !important;
+    /* Even larger icons */
+    margin-right: 15px !important;
+}
+
+.mobile-nav-link:hover i,
+.mobile-nav-link:active i {
+    color: #198754 !important;
+    /* Green Accent */
+}
+
+/* Light Mode Overrides */
+body.light-mode .mobile-nav-link {
+    background: transparent !important;
+    border: none !important;
+    color: #374151 !important;
+}
+
+body.light-mode .mobile-nav-link:hover,
+body.light-mode .mobile-nav-link:active {
+    background: transparent !important;
+    border: none !important;
+    color: #2563eb !important;
+    /* Blue Accent */
+    box-shadow: none !important;
+    /* Remove shadow */
+}
+
+body.light-mode .mobile-nav-link i {
+    color: #6b7280 !important;
+}
+
+body.light-mode .mobile-nav-link:hover i,
+body.light-mode .mobile-nav-link:active i {
+    color: #2563eb !important;
+    /* Blue Accent */
+}
+
+/* Remove the underline animation for these specific links */
+.mobile-nav-link::after {
+    display: none !important;
+}
+
 /* Pill Button Styles - Matching Navbar Design */
 .popup-pill-btn {
     border: none;
@@ -811,6 +946,9 @@ body.light-mode .contact-info-panel {
     width: 100% !important;
     max-width: 600px;
     margin: 0 auto;
+    min-height: 250px;
+    /* Prevent resizing during animation */
+    /* Height matched to content (Summary text min-height is 160px + header + padding) */
 }
 
 .code-header {
