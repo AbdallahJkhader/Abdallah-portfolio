@@ -397,32 +397,34 @@ function initAboutTypewriter() {
     function typeWriterCode() {
         if (cIndex < codeTextColored.length) {
             let char = codeTextColored.charAt(cIndex);
+            let textChunk = '';
 
             if (char === '<') {
                 let tagEnd = codeTextColored.indexOf('>', cIndex);
                 if (tagEnd !== -1) {
-                    currentCodeBuffer += codeTextColored.substring(cIndex, tagEnd + 1);
+                    textChunk = codeTextColored.substring(cIndex, tagEnd + 1);
                     cIndex = tagEnd + 1;
-                    typeWriterCode(); // Recurse to skip delay for tags
-                    return;
                 }
             } else if (char === '&') {
                 let entityEnd = codeTextColored.indexOf(';', cIndex);
                 if (entityEnd !== -1) {
-                    currentCodeBuffer += codeTextColored.substring(cIndex, entityEnd + 1);
+                    textChunk = codeTextColored.substring(cIndex, entityEnd + 1);
                     cIndex = entityEnd + 1;
                 } else {
-                    currentCodeBuffer += char;
+                    textChunk = char;
                     cIndex++;
                 }
             } else {
-                currentCodeBuffer += char;
+                textChunk = char;
                 cIndex++;
             }
 
-            codeEl.innerHTML = currentCodeBuffer;
-            // Faster typing on mobile
-            const typingSpeed = window.innerWidth < 992 ? 4 : 5;
+            // Optimization: Append only the new chunk instead of resetting the whole innerHTML
+            codeEl.insertAdjacentHTML('beforeend', textChunk);
+
+            // Speed Adjustment: 4ms/5ms was too fast (faster than 60Hz refresh rate), causing lag.
+            // 20ms is ~50fps, much smoother and less tax on CPU.
+            const typingSpeed = window.innerWidth < 992 ? 20 : 25;
             setTimeout(typeWriterCode, typingSpeed);
         }
     }

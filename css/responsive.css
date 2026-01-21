@@ -35,9 +35,9 @@
     }
 
     .main-content {
-        margin-right: auto !important;
-        margin-left: auto !important;
-        width: 95%;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+        width: 100% !important;
         /* Glass effect */
         backdrop-filter: blur(20px) !important;
         -webkit-backdrop-filter: blur(20px) !important;
@@ -48,7 +48,9 @@
         position: relative;
         z-index: 2;
         /* Add border and shadow for consistency with light mode */
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border: none !important;
+        border-radius: 0 !important;
+        /* border: 1px solid rgba(255, 255, 255, 0.1) !important; REMOVED for full width */
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
     }
 
@@ -104,6 +106,12 @@
         /* Force White Override */
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
         border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    }
+
+    /* Optimize Code Window for Mobile Performance */
+    .code-window {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+        /* Reduced from 32px blur */
     }
 
     .hero-section {
@@ -336,7 +344,13 @@
 
 @media (max-width: 768px) {
     .main-content {
-        padding: 2rem 1.5rem;
+        padding: 2rem 0 !important;
+        /* Remove side padding for full width */
+    }
+
+    /* Remove inner padding that was causing gaps */
+    .main-content main.col-12 {
+        padding: 0 !important;
     }
 
     .spa-section {
@@ -367,7 +381,8 @@
     /* Reduce Title Size and Force Center on Mobile */
     .hero-text h2,
     #typewriter {
-        font-size: 2.5rem !important;
+        font-size: 2rem !important;
+        /* Reduced from 2.5rem */
         text-align: center !important;
         margin: 0 auto 0.5rem auto !important;
         width: 100% !important;
@@ -384,7 +399,8 @@
     }
 
     #netdev {
-        font-size: 1.2rem !important;
+        font-size: 1rem !important;
+        /* Reduced from 1.2rem */
         text-align: center !important;
         width: 100% !important;
         display: block !important;
@@ -402,15 +418,30 @@
 
     /* Extreme Width Fix: Remove section padding and pull row outwards */
     #projects.spa-section,
-    #experience.spa-section {
+    #experience.spa-section,
+    #skills.spa-section {
         padding-left: 0 !important;
         padding-right: 0 !important;
+    }
+
+    /* Restore Padding for Titles in Full-Width Sections */
+    #projects.spa-section h3,
+    #experience.spa-section h3,
+    #skills.spa-section h3 {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
     }
 
 
 
     .contact-info-panel h3 {
         font-size: 1.25rem !important;
+    }
+
+    /* Restore Padding for About Text since Container Padding is Gone */
+    #about.spa-section {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
     }
 
     /* Skills Section: Horizontal Scroll on Mobile */
@@ -426,21 +457,20 @@
         overflow-y: hidden !important;
         -webkit-overflow-scrolling: touch !important;
         scroll-snap-type: x mandatory !important;
-        scroll-padding-left: 0.5rem !important;
+        scroll-padding-left: 0 !important;
         gap: 1rem !important;
         padding-bottom: 1rem !important;
-        padding-left: 0.5rem !important;
-        padding-right: 0.5rem !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
         margin: 0 !important;
         touch-action: pan-x !important;
     }
 
     #skills .col-md-6 {
-        flex: 0 0 75% !important;
-        max-width: 75% !important;
+        flex: 0 0 90% !important;
+        max-width: 90% !important;
         scroll-snap-align: center !important;
         min-height: 250px !important;
-        touch-action: pan-x !important;
     }
 
     /* Hide scrollbar but keep functionality */
@@ -464,17 +494,21 @@
         scroll-padding-left: 0.5rem !important;
         gap: 1rem !important;
         padding-bottom: 1rem !important;
-        padding-left: 0.5rem !important;
-        padding-right: 0.5rem !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
         margin: 0 !important;
         touch-action: pan-x !important;
+        align-items: flex-start !important;
+        /* Prevent stretching */
     }
 
     #projects .col-md-6 {
-        flex: 0 0 85% !important;
-        max-width: 85% !important;
+        flex: 0 0 90% !important;
+        /* Widen to reduce height */
+        max-width: 90% !important;
         scroll-snap-align: center !important;
-        touch-action: pan-x !important;
+        min-height: auto !important;
+        /* Let content dictate height */
     }
 
     #projects .row::-webkit-scrollbar {
@@ -497,17 +531,18 @@
         scroll-padding-left: 0.5rem !important;
         gap: 1rem !important;
         padding-bottom: 1rem !important;
-        padding-left: 0.5rem !important;
-        padding-right: 0.5rem !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
         margin: 0 !important;
         touch-action: pan-x !important;
+        align-items: flex-start !important;
     }
 
     #experience .col-md-6 {
-        flex: 0 0 85% !important;
-        max-width: 85% !important;
+        flex: 0 0 90% !important;
+        max-width: 90% !important;
         scroll-snap-align: center !important;
-        touch-action: pan-x !important;
+        min-height: auto !important;
     }
 
     #experience .row::-webkit-scrollbar {
