@@ -463,7 +463,7 @@
         padding-left: 0 !important;
         padding-right: 0 !important;
         margin: 0 !important;
-        touch-action: pan-x !important;
+        touch-action: pan-y pan-x !important;
     }
 
     #skills .col-md-6 {
@@ -497,7 +497,7 @@
         padding-left: 0 !important;
         padding-right: 0 !important;
         margin: 0 !important;
-        touch-action: pan-x !important;
+        touch-action: pan-y pan-x !important;
         align-items: flex-start !important;
         /* Prevent stretching */
     }
@@ -534,7 +534,7 @@
         padding-left: 0 !important;
         padding-right: 0 !important;
         margin: 0 !important;
-        touch-action: pan-x !important;
+        touch-action: pan-y pan-x !important;
         align-items: flex-start !important;
     }
 

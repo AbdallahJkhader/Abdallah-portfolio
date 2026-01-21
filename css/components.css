@@ -965,7 +965,7 @@ body.light-mode .contact-info-panel {
     width: 100% !important;
     max-width: 600px;
     margin: 0 auto;
-    min-height: 350px;
+    min-height: 440px;
     /* Prevent resizing during animation */
     /* Height matched to content (Summary text min-height is 160px + header + padding) */
 }

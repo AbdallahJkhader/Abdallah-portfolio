@@ -381,10 +381,18 @@ function initAboutTypewriter() {
             summaryEl.style.transition = 'opacity 1.5s ease-in-out';
             setTimeout(() => summaryEl.style.opacity = 1, 100);
 
-            // Code: Typewriter
-            codeEl.innerHTML = '';
+            // Code: Typewriter Logic
             codeEl.style.opacity = 1;
-            typeWriterCode();
+
+            // Check if mobile (less than 992px)
+            if (window.innerWidth < 992) {
+                // Mobile: Show static text instantly
+                codeEl.innerHTML = codeTextColored;
+            } else {
+                // Desktop: Animate
+                codeEl.innerHTML = '';
+                typeWriterCode();
+            }
 
             observer.disconnect();
         }
@@ -422,9 +430,8 @@ function initAboutTypewriter() {
             // Optimization: Append only the new chunk instead of resetting the whole innerHTML
             codeEl.insertAdjacentHTML('beforeend', textChunk);
 
-            // Speed Adjustment: 4ms/5ms was too fast (faster than 60Hz refresh rate), causing lag.
-            // 20ms is ~50fps, much smoother and less tax on CPU.
-            const typingSpeed = window.innerWidth < 992 ? 20 : 25;
+            // Speed Adjustment: Desktop animation speed
+            const typingSpeed = 5;
             setTimeout(typeWriterCode, typingSpeed);
         }
     }
@@ -918,6 +925,9 @@ function initCVDownload() {
  */
 function initDragScroll() {
     const sections = ['#skills .row', '#projects .row', '#experience .row'];
+
+    // Disable custom drag scroll on touch devices to prevent interference with native scrolling
+    if (window.matchMedia('(pointer: coarse)').matches) return;
 
     sections.forEach(selector => {
         const container = document.querySelector(selector);
