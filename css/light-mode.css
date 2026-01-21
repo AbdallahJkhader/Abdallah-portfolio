@@ -43,7 +43,7 @@ body.light-mode #hero-video-dark {
 @media (min-width: 992px) {
     body.light-mode #hero-video-light {
         display: block !important;
-        opacity: 0.3 !important;
+        opacity: 0.4 !important;
     }
 }
 
@@ -358,6 +358,19 @@ body.light-mode #themeToggle i {
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+    }
+
+    /* Reduce background image opacity slightly on mobile */
+    body.light-mode .bg-dark-hero::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        pointer-events: none;
+        z-index: 1;
     }
 }
 

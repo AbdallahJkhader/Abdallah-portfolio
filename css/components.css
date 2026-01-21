@@ -54,6 +54,25 @@ body.light-mode .navbar.navbar-blur {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
+/* Mobile: Keep navbar transparent even when scrolled */
+@media (max-width: 991px) {
+    .navbar.navbar-blur {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-bottom: none !important;
+        box-shadow: none !important;
+    }
+
+    body.light-mode .navbar.navbar-blur {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-bottom: none !important;
+        box-shadow: none !important;
+    }
+}
+
 .navbar.hide-navbar {
     top: -80px;
 }
@@ -946,7 +965,7 @@ body.light-mode .contact-info-panel {
     width: 100% !important;
     max-width: 600px;
     margin: 0 auto;
-    min-height: 250px;
+    min-height: 350px;
     /* Prevent resizing during animation */
     /* Height matched to content (Summary text min-height is 160px + header + padding) */
 }

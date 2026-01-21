@@ -29,7 +29,7 @@
     /* Force Background in Light Mode - High Specificity Mobile Override */
     html body.light-mode .bg-dark-hero {
         /* Using background shorthand to override any color/image specific rules */
-        background: url('../images/background-white.jpg') no-repeat center center / cover !important;
+        background: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), url('../images/background-white.jpg') no-repeat center center / cover !important;
         border: none !important;
         box-shadow: none !important;
     }
@@ -367,7 +367,7 @@
     /* Reduce Title Size and Force Center on Mobile */
     .hero-text h2,
     #typewriter {
-        font-size: 2rem !important;
+        font-size: 2.5rem !important;
         text-align: center !important;
         margin: 0 auto 0.5rem auto !important;
         width: 100% !important;
@@ -384,7 +384,7 @@
     }
 
     #netdev {
-        font-size: 1rem !important;
+        font-size: 1.2rem !important;
         text-align: center !important;
         width: 100% !important;
         display: block !important;
@@ -407,19 +407,156 @@
         padding-right: 0 !important;
     }
 
-    #projects .row,
-    #experience .row {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        width: 100% !important;
-        display: flex;
-        justify-content: center;
-    }
-
 
 
     .contact-info-panel h3 {
         font-size: 1.25rem !important;
+    }
+
+    /* Skills Section: Horizontal Scroll on Mobile */
+    #skills .cv-section-card {
+        overflow: visible !important;
+        padding: 0 !important;
+    }
+
+    #skills .row {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        scroll-snap-type: x mandatory !important;
+        scroll-padding-left: 0.5rem !important;
+        gap: 1rem !important;
+        padding-bottom: 1rem !important;
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+        margin: 0 !important;
+        touch-action: pan-x !important;
+    }
+
+    #skills .col-md-6 {
+        flex: 0 0 75% !important;
+        max-width: 75% !important;
+        scroll-snap-align: center !important;
+        min-height: 250px !important;
+        touch-action: pan-x !important;
+    }
+
+    /* Hide scrollbar but keep functionality */
+    #skills .row::-webkit-scrollbar {
+        display: none;
+    }
+
+    #skills .row {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* Projects Section: Horizontal Scroll on Mobile */
+    #projects .row {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        scroll-snap-type: x mandatory !important;
+        scroll-padding-left: 0.5rem !important;
+        gap: 1rem !important;
+        padding-bottom: 1rem !important;
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+        margin: 0 !important;
+        touch-action: pan-x !important;
+    }
+
+    #projects .col-md-6 {
+        flex: 0 0 85% !important;
+        max-width: 85% !important;
+        scroll-snap-align: center !important;
+        touch-action: pan-x !important;
+    }
+
+    #projects .row::-webkit-scrollbar {
+        display: none;
+    }
+
+    #projects .row {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* Experience Section: Horizontal Scroll on Mobile */
+    #experience .row {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        scroll-snap-type: x mandatory !important;
+        scroll-padding-left: 0.5rem !important;
+        gap: 1rem !important;
+        padding-bottom: 1rem !important;
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+        margin: 0 !important;
+        touch-action: pan-x !important;
+    }
+
+    #experience .col-md-6 {
+        flex: 0 0 85% !important;
+        max-width: 85% !important;
+        scroll-snap-align: center !important;
+        touch-action: pan-x !important;
+    }
+
+    #experience .row::-webkit-scrollbar {
+        display: none;
+    }
+
+    #experience .row {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* Reduce Project Card Sizes on Mobile */
+    #projects .modern-card {
+        padding: 1rem !important;
+    }
+
+    #projects .modern-card-img-wrapper {
+        max-width: 120px !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    #projects .modern-card-body {
+        padding: 1rem !important;
+    }
+
+    #projects .card-title {
+        font-size: 1.1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    #projects .card-text {
+        font-size: 1rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    #projects .card-tag {
+        font-size: 0.75rem !important;
+        padding: 0.3rem 0.6rem !important;
+    }
+
+    #projects .card-actions a {
+        font-size: 0.85rem !important;
+        padding: 0.4rem 0.8rem !important;
+    }
+
+    /* Skills Section: Smaller Description Text */
+    #skills .col-md-6 p,
+    #skills .col-md-6 li {
+        font-size: 0.85rem !important;
     }
 
 }

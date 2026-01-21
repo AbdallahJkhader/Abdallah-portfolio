@@ -160,7 +160,7 @@
           </h2>
           <!-- Ensure min-height prevents layout jump -->
           <div id="netdev" class="text-white fw-bold"
-            style="font-size:1.1rem;font-family:'Montserrat',sans-serif;letter-spacing:1px;display:none;">
+            style="font-size:1.1rem;font-family:'Montserrat',sans-serif;letter-spacing:1px;min-height:1.5rem;visibility:hidden;">
           </div>
         </div>
 
@@ -172,6 +172,11 @@
               style="font-family:'Montserrat',sans-serif; width: 120px;">
               View CV
             </button>
+          </div>
+
+          <!-- Scroll Indicator -->
+          <div class="scroll-indicator">
+            <i class="bi bi-chevron-down"></i>
           </div>
 
         </div>
@@ -187,8 +192,7 @@
           <h3 class="fw-bold mb-5 ps-3 border-start border-5 border-primary text-start">01. About</h3>
           <div class="row g-4 align-items-center">
             <div class="col-lg-6">
-              <p id="about-summary" class="text-secondary"
-                style="font-size: 1.1rem; line-height: 1.8; min-height: 160px;"></p>
+              <p id="about-summary" class="text-secondary" style="font-size: 1.1rem; line-height: 1.8;"></p>
             </div>
             <div class="col-lg-6">
               <div class="code-window">
@@ -215,19 +219,19 @@
                   Authorization
                   (JWT, Identity).</p>
               </div>
-              <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="150">
+              <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="50">
                 <img src="images/database icon.webp" alt="Database & ORM" width="60" height="60" class="mb-3">
                 <h5 class="fw-bold mb-2">Database & ORM</h5>
                 <p class="text-secondary mb-0">LINQ, Entity Framework Core (Code First), ADO.NET, SQL Server.</p>
               </div>
-              <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="300">
+              <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="100">
                 <img src="images/clean code icon.png" alt="Architecture & Clean Code" width="60" height="60"
                   class="mb-3">
                 <h5 class="fw-bold mb-2">Architecture & Clean Code</h5>
                 <p class="text-secondary mb-0">SOLID, DRY/KISS, Dependency Injection (DI), Repository & Unit of Work
                   Patterns.</p>
               </div>
-              <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="450">
+              <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="150">
                 <img src="images/web technologies icon.png" alt="Front-End & Tools" width="60" height="60" class="mb-3">
                 <h5 class="fw-bold mb-2">Front-End & Tools</h5>
                 <p class="text-secondary mb-0">HTML, CSS, JavaScript, Bootstrap, Git/GitHub, Postman.</p>
@@ -290,7 +294,7 @@
         </section>
         <section id="experience" class="spa-section mb-5" data-aos="fade-up">
           <h3 class="fw-bold mb-5 ps-3 border-start border-5 border-primary text-start">04. Experience</h3>
-          <div class="row g-4 justify-content-center">
+          <div class="row g-4">
 
             <div class="col-md-6">
               <div class="modern-card">

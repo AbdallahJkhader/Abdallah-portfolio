@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initContactPanels();
     initCVDownload();
     initAOS();
+    initDragScroll();
 });
 
 /**
@@ -324,7 +325,7 @@ function initHeroTypewriter() {
         } else {
             if (el2) {
                 el2.textContent = '';
-                el2.style.display = 'block';
+                el2.style.visibility = 'visible';
                 typeWriter2();
             }
         }
@@ -339,7 +340,7 @@ function initHeroTypewriter() {
     }
 
     el1.textContent = '';
-    if (el2) el2.style.display = 'none';
+    if (el2) el2.style.visibility = 'hidden';
     typeWriter1();
 }
 
@@ -420,7 +421,9 @@ function initAboutTypewriter() {
             }
 
             codeEl.innerHTML = currentCodeBuffer;
-            setTimeout(typeWriterCode, 5); // Fast code typing
+            // Faster typing on mobile
+            const typingSpeed = window.innerWidth < 992 ? 4 : 5;
+            setTimeout(typeWriterCode, typingSpeed);
         }
     }
 }
@@ -431,10 +434,11 @@ function initAboutTypewriter() {
 function initAOS() {
     if (typeof AOS !== 'undefined') {
         AOS.init({
-            duration: 800,
+            duration: 600,
             once: true,
-            offset: 0, // Trigger immediately when element enters viewport
-            easing: 'ease-in-out'
+            offset: 120, // Trigger earlier when element is 120px from viewport
+            easing: 'ease-in-out',
+            delay: 0
         });
 
         // Refresh AOS after all images/resources are loaded to ensure correct offsets
@@ -904,5 +908,54 @@ function initCVDownload() {
             }, 3000);
         });
     }
+}
+
+/**
+ * 10. Drag to Scroll for Skills, Projects, Experience
+ * Enables mouse drag scrolling on desktop at mobile viewport sizes
+ */
+function initDragScroll() {
+    const sections = ['#skills .row', '#projects .row', '#experience .row'];
+
+    sections.forEach(selector => {
+        const container = document.querySelector(selector);
+        if (!container) return;
+
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        container.addEventListener('mousedown', (e) => {
+            isDown = true;
+            container.style.cursor = 'grabbing';
+            container.style.userSelect = 'none';
+            startX = e.pageX - container.offsetLeft;
+            scrollLeft = container.scrollLeft;
+        });
+
+        container.addEventListener('mouseleave', () => {
+            isDown = false;
+            container.style.cursor = 'grab';
+        });
+
+        container.addEventListener('mouseup', () => {
+            isDown = false;
+            container.style.cursor = 'grab';
+        });
+
+        container.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - container.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll speed multiplier
+            container.scrollLeft = scrollLeft - walk;
+        });
+
+        // Set initial cursor style
+        container.style.cursor = 'grab';
+
+        // Reset scroll position to start
+        container.scrollLeft = 0;
+    });
 }
 
