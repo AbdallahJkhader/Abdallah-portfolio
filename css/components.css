@@ -860,8 +860,9 @@ body.light-mode .contact-info-panel {
 .card-actions {
     margin-top: auto;
     display: flex;
-    gap: 15px;
+    gap: 10px;
     align-items: center;
+    justify-content: center;
 }
 
 .card-link {
@@ -872,6 +873,8 @@ body.light-mode .contact-info-panel {
     align-items: center;
     gap: 6px;
     transition: color 0.2s;
+    font-size: 0.85rem;
+    padding: 0.4rem 1rem;
 }
 
 .card-link:hover {

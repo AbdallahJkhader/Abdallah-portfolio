@@ -91,19 +91,22 @@ function initNavbar() {
                 <div class="d-flex flex-column gap-2 w-100 px-1 pb-1">
                     <h5 class="fw-bold mb-3 text-white">Menu</h5>
                     <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#home">
-                        <i class="bi bi-house-door-fill fs-5 me-2"></i> Home
+                        Home
                     </button>
                     <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#about">
-                        <i class="bi bi-person-lines-fill fs-5 me-2"></i> About
+                        About
                     </button>
                     <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#skills">
-                        <i class="bi bi-cpu-fill fs-5 me-2"></i> Skills
-                    </button>
-                    <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#projects">
-                        <i class="bi bi-layers-fill fs-5 me-2"></i> Projects
+                        Skills
                     </button>
                     <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#experience">
-                        <i class="bi bi-briefcase-fill fs-5 me-2"></i> Experience
+                        Experience
+                    </button>
+                    <button class="popup-pill-btn w-100 justify-content-start ps-4 mobile-nav-link" data-target="#projects">
+                        Projects
+                    </button>
+                    <button class="popup-pill-btn w-100 justify-content-start ps-4" id="mobile-contact-btn">
+                        Contact Us
                     </button>
                 </div>
             `;
@@ -138,6 +141,30 @@ function initNavbar() {
                             }
                         };
                     });
+
+                    // Contact Us button handler
+                    const contactBtn = panel.querySelector('#mobile-contact-btn');
+                    if (contactBtn) {
+                        contactBtn.onclick = (ev) => {
+                            ev.preventDefault();
+                            // Close navigation panel first
+                            const closeBtn = panel.querySelector('button:not(.popup-pill-btn)');
+                            if (closeBtn) {
+                                closeBtn.click();
+                            } else {
+                                if (document.body.contains(panel)) {
+                                    const backdrop = document.getElementById('panel-backdrop');
+                                    if (backdrop) backdrop.click();
+                                }
+                            }
+                            // Open social icons popup (same as Say Hi)
+                            setTimeout(() => {
+                                if (window.showSocialIconsPopup) {
+                                    window.showSocialIconsPopup();
+                                }
+                            }, 300);
+                        };
+                    }
                 }, 50);
             }
         });
@@ -198,6 +225,18 @@ function initTheme() {
         }
     }
 
+    // Helper function to switch AiGlean logo
+    function switchAiGleanLogo(isLightMode) {
+        const aigleanLogo = document.getElementById('aiglean-logo');
+        if (aigleanLogo) {
+            if (isLightMode) {
+                aigleanLogo.src = 'images/AiGlean logo White Mood.jpg';
+            } else {
+                aigleanLogo.src = 'images/AiGlean logo Dark Mood.jpg';
+            }
+        }
+    }
+
     // Load saved preference
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
@@ -205,6 +244,7 @@ function initTheme() {
         themeIcon.classList.remove('bi-sun-fill');
         themeIcon.classList.add('bi-moon-fill');
         switchVideo(true);
+        switchAiGleanLogo(true);
     }
 
     themeToggleBtn.addEventListener('click', function () {
@@ -218,11 +258,13 @@ function initTheme() {
             themeIcon.classList.add('bi-moon-fill');
             localStorage.setItem('theme', 'light');
             switchVideo(true);
+            switchAiGleanLogo(true);
         } else {
             themeIcon.classList.remove('bi-moon-fill');
             themeIcon.classList.add('bi-sun-fill');
             localStorage.setItem('theme', 'dark');
             switchVideo(false);
+            switchAiGleanLogo(false);
         }
 
         // Update hero gradient to match new theme
@@ -352,7 +394,7 @@ function initAboutTypewriter() {
     const codeEl = document.getElementById('about-code');
     if (!summaryEl || !codeEl) return;
 
-    const summaryText = ".NET Developer with hands-on experience in building web applications using ASP.NET Core (MVC & Web API). Focused on writing clean, maintainable code by applying SOLID principles and design patterns like Repository and Unit of Work. Proficient in SQL Server and Entity Framework Core, with a strong interest in developing structured and scalable backend solutions.";
+    const summaryText = "Software Engineer specializing in Backend .NET Development with hands-on experience in building scalable Web APIs and web applications using ASP.NET Core MVC and Entity Framework Core. Passionate about writing clean, maintainable code by applying SOLID principles and Clean Architecture concepts. Skilled in implementing backend business logic and working with SQL Server to deliver structured and reliable backend solutions.";
 
     // Code block content with syntax highlighting spans
     const codeTextColored = `<span class="code-keyword">public class</span> <span class="code-class">Developer</span>
@@ -368,9 +410,6 @@ function initAboutTypewriter() {
 }
 
 <span class="code-class">Console</span>.<span class="code-function">WriteLine</span>(<span class="code-keyword">new</span> <span class="code-class">Developer</span>().<span class="code-function">Create</span>());`;
-
-    let cIndex = 0;
-    let currentCodeBuffer = '';
 
     // Observer to start animation when visible
     const observer = new IntersectionObserver((entries) => {
@@ -389,9 +428,9 @@ function initAboutTypewriter() {
                 // Mobile: Show static text instantly
                 codeEl.innerHTML = codeTextColored;
             } else {
-                // Desktop: Animate
+                // Desktop: Animate using DOM Traversal to preserve colors
                 codeEl.innerHTML = '';
-                typeWriterCode();
+                startDomTypewriter(codeEl, codeTextColored);
             }
 
             observer.disconnect();
@@ -400,43 +439,81 @@ function initAboutTypewriter() {
 
     observer.observe(document.getElementById('about'));
 
-    // Removed typeWriterSummary as we are now fading in
+    // --- DOM-Aware Typewriter Logic ---
+    function startDomTypewriter(targetElement, htmlContent) {
+        // 1. Parse HTML into a temporary DOM structure
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlContent;
 
-    function typeWriterCode() {
-        if (cIndex < codeTextColored.length) {
-            let char = codeTextColored.charAt(cIndex);
-            let textChunk = '';
+        // 2. Queue of actions (functions) to execute sequentially
+        const actionQueue = [];
 
-            if (char === '<') {
-                let tagEnd = codeTextColored.indexOf('>', cIndex);
-                if (tagEnd !== -1) {
-                    textChunk = codeTextColored.substring(cIndex, tagEnd + 1);
-                    cIndex = tagEnd + 1;
+        // 3. Recursive function to traverse nodes and build the queue
+        function traverseAndQueue(node, parentIsTarget = false) {
+            if (node.nodeType === Node.TEXT_NODE) {
+                const text = node.textContent;
+                // Add an action for each character
+                for (let i = 0; i < text.length; i++) {
+                    actionQueue.push(() => {
+                        // If parent is the main target, append text node directly
+                        // If parent is a sub-element (span), append text to that span
+                        if (parentIsTarget) {
+                            targetElement.insertAdjacentText('beforeend', text[i]);
+                        } else {
+                            // Find the last element added to target (which corresponds to 'node.parentNode')
+                            // Ideally, we passed the context. 
+                            // SIMPLIFICATION: We can't easily find the "live" parent node in the DOM 
+                            // if we don't track it.
+                            // BETTER APPROACH: The queue should hold the *context*.
+                        }
+                    });
                 }
-            } else if (char === '&') {
-                let entityEnd = codeTextColored.indexOf(';', cIndex);
-                if (entityEnd !== -1) {
-                    textChunk = codeTextColored.substring(cIndex, entityEnd + 1);
-                    cIndex = entityEnd + 1;
-                } else {
-                    textChunk = char;
-                    cIndex++;
-                }
-            } else {
-                textChunk = char;
-                cIndex++;
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                // Action: Create the element in the live DOM
+                const tagName = node.tagName.toLowerCase();
+                const className = node.className;
+
+                // We need to capture the *reference* to the created live element to append text to it later.
+                // This suggests the queue needs to be smarter or recursive execution is better than a flat queue.
             }
-
-            // Optimization: Append only the new chunk instead of resetting the whole innerHTML
-            codeEl.insertAdjacentHTML('beforeend', textChunk);
-
-            // Speed Adjustment: Desktop animation speed
-            const typingSpeed = 5;
-            setTimeout(typeWriterCode, typingSpeed);
         }
+
+        // --- REVISED APPROACH: Asynchronous Recursion ---
+
+        async function typeNode(node, parentElement) {
+            if (node.nodeType === Node.TEXT_NODE) {
+                const text = node.textContent;
+                for (let i = 0; i < text.length; i++) {
+                    parentElement.insertAdjacentText('beforeend', text[i]);
+                    // Typing speed
+                    await new Promise(r => setTimeout(r, 5));
+                }
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                // Create the element (e.g., span)
+                const newEl = document.createElement(node.tagName);
+                if (node.className) newEl.className = node.className;
+
+                // Append it to the parent immediately so it exists (even if empty)
+                parentElement.appendChild(newEl);
+
+                // Recursively type children into this new element
+                const childNodes = Array.from(node.childNodes);
+                for (const child of childNodes) {
+                    await typeNode(child, newEl);
+                }
+            }
+        }
+
+        // Run the recursive typer
+        // Create an async wrapper to let the loop run
+        (async () => {
+            const childNodes = Array.from(tempDiv.childNodes);
+            for (const node of childNodes) {
+                await typeNode(node, targetElement);
+            }
+        })();
     }
 }
-
 /**
  * 9. AOS Animation Initialization
  */

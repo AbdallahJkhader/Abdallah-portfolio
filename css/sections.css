@@ -236,6 +236,15 @@
     margin-bottom: 0.8rem;
 }
 
+/* FIX: Remove generic hover background for Projects and Experience */
+#projects .col-md-6:hover,
+#experience .col-md-6:hover {
+    background: transparent;
+    box-shadow: none;
+    border: 1px solid transparent;
+    transform: none;
+}
+
 /* Modern Image Styling for Sections (Icons directly in cols) */
 .spa-section .col-md-6>img {
     border-radius: 1rem;
