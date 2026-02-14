@@ -16,6 +16,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Montserrat:wght@700&display=swap"
     rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Preload light mode background image to prevent delay on theme switch -->
+  <link rel="preload" href="images/background-white.jpg" as="image">
   <style>
     html {
       background-color: #0a0a0a !important;
@@ -141,14 +143,7 @@
     </div>
   </nav>
   <div class="bg-dark-hero">
-    <video autoplay muted loop playsinline preload="auto" id="hero-video-dark">
-      <source src="videos/opening video dark.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <video autoplay muted loop playsinline preload="auto" id="hero-video-light" style="display: none;">
-      <source src="videos/opening video light.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <!-- Videos removed - using static background images instead -->
     <section id="home" class="hero-section d-flex align-items-center justify-content-between"
       style="width: 100%; height: 90vh; min-height: 90vh;">
       <div class="hero-img mb-3">

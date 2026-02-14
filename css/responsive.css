@@ -66,12 +66,12 @@
         color: #ffffff !important;
     }
 
-    /* Projects & Experience: Add Border on Mobile in Dark Mode */
+    /* Projects & Experience: Transparent on Mobile in Dark Mode */
     body:not(.light-mode) #projects .col-md-6,
     body:not(.light-mode) #experience .col-md-6 {
-        background: #111111 !important;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
         color: #ffffff !important;
     }
 
@@ -92,12 +92,12 @@
         border: 1px solid rgba(0, 0, 0, 0.05) !important;
     }
 
-    /* Projects & Experience: Add Border on Light Mode Mobile */
+    /* Projects & Experience: Transparent on Light Mode Mobile */
     body.light-mode #projects .col-md-6,
     body.light-mode #experience .col-md-6 {
-        background: #ffffff !important;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
-        border: 1px solid rgba(0, 0, 0, 0.05) !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
     }
 
     /* Skills: White Background with Border on Light Mode Mobile */
@@ -340,6 +340,28 @@
         order: 2 !important;
         /* Ensure last */
     }
+
+    /* Floating Navbar Style for Desktop */
+    .navbar {
+        background: rgba(20, 20, 20, 0.85) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+        padding: 0.75rem 2rem !important;
+        margin: 1rem auto !important;
+        max-width: 95% !important;
+        border-radius: 50px !important;
+        position: relative !important;
+    }
+
+    body.light-mode .navbar {
+        background: #f3f4f6 !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    }
 }
 
 @media (max-width: 768px) {
@@ -507,8 +529,8 @@
         /* Widen to reduce height */
         max-width: 90% !important;
         scroll-snap-align: center !important;
-        min-height: auto !important;
-        /* Let content dictate height */
+        min-height: 450px !important;
+        /* Fixed height for consistency */
     }
 
     #projects .row::-webkit-scrollbar {
@@ -542,7 +564,7 @@
         flex: 0 0 90% !important;
         max-width: 90% !important;
         scroll-snap-align: center !important;
-        min-height: auto !important;
+        min-height: 450px !important;
     }
 
     #experience .row::-webkit-scrollbar {

@@ -74,6 +74,25 @@
     .hero-section {
         padding-top: 4rem !important;
     }
+
+    /* Hide video on desktop */
+    #hero-video-dark,
+    #hero-video-light {
+        display: none !important;
+    }
+
+    /* Add centered background image for desktop dark mode */
+    body:not(.light-mode) .bg-dark-hero {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 70%, rgba(10, 10, 10, 0.95) 100%), url('../images/backgronud picture.jpg') no-repeat center center !important;
+        background-size: 70% auto !important;
+        /* Smaller and centered */
+    }
+
+    /* Add centered background image for desktop light mode - Pure White */
+    body.light-mode .bg-dark-hero {
+        background: #ffffff !important;
+        /* Pure white, no image */
+    }
 }
 
 .hero-img {

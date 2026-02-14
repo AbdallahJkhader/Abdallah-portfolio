@@ -28,11 +28,24 @@ body.light-mode {
     background-image: none !important;
 }
 
-body.light-mode .bg-dark-hero {
-    background: #e9ecef !important;
-    background-color: #e9ecef !important;
-    box-shadow: none !important;
-    border: none !important;
+/* Desktop: Pure white home */
+@media (min-width: 992px) {
+    body.light-mode .bg-dark-hero {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+}
+
+/* Mobile: Keep gray background */
+@media (max-width: 991px) {
+    body.light-mode .bg-dark-hero {
+        background: #e9ecef !important;
+        background-color: #e9ecef !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
 }
 
 body.light-mode #hero-video-dark {
@@ -47,12 +60,16 @@ body.light-mode #hero-video-dark {
     }
 }
 
-body.light-mode .navbar,
-body.light-mode .container-fluid,
-body.light-mode .hero-section {
-    background-color: transparent !important;
-    background-image: none !important;
-    box-shadow: none !important;
+/* Remove transparent override for navbar on desktop */
+@media (max-width: 991px) {
+
+    body.light-mode .navbar,
+    body.light-mode .container-fluid,
+    body.light-mode .hero-section {
+        background-color: transparent !important;
+        background-image: none !important;
+        box-shadow: none !important;
+    }
 }
 
 /* 2. Main Layout & Sections */

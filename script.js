@@ -106,7 +106,7 @@ function initNavbar() {
                         Projects
                     </button>
                     <button class="popup-pill-btn w-100 justify-content-start ps-4" id="mobile-contact-btn">
-                        Contact Us
+                        Say Hi
                     </button>
                 </div>
             `;
@@ -142,7 +142,7 @@ function initNavbar() {
                         };
                     });
 
-                    // Contact Us button handler
+                    // Say Hi button handler
                     const contactBtn = panel.querySelector('#mobile-contact-btn');
                     if (contactBtn) {
                         contactBtn.onclick = (ev) => {
@@ -976,7 +976,7 @@ function initCVDownload() {
     if (downloadBtn) {
         downloadBtn.addEventListener('click', function () {
             const link = document.createElement('a');
-            link.href = 'Abdallah J. Khader CV.pdf';
+            link.href = 'Abdallah J. Khader CV .pdf';
             link.target = '_blank';
             document.body.appendChild(link);
             link.click();
