@@ -341,9 +341,6 @@ function initScrollSpy() {
 /**
  * 4. Hero Section Typewriter
  */
-/**
- * 4. Hero Section Typewriter
- */
 function initHeroTypewriter() {
     const text1 = "Hello, I'm Abdallah";
     const text2 = "Backend .NET Developer";
@@ -394,7 +391,7 @@ function initAboutTypewriter() {
     const codeEl = document.getElementById('about-code');
     if (!summaryEl || !codeEl) return;
 
-    const summaryText = "Software Engineer specializing in Backend .NET Development with hands-on experience in building scalable Web APIs and web applications using ASP.NET Core MVC and Entity Framework Core. Passionate about writing clean, maintainable code by applying SOLID principles and Clean Architecture concepts. Skilled in implementing backend business logic and working with SQL Server to deliver structured and reliable backend solutions.";
+    const summaryText = "Software Engineer specializing in Backend .NET Development with extensive experience in designing and developing scalable web applications and APIs using ASP.NET Core MVC, Web API, and Entity Framework Core. Experienced with nopCommerce Architecture and skilled in implementing complex backend business logic, optimizing SQL Server interactions, and delivering maintainable, high-quality solutions.";
 
     // Code block content with syntax highlighting spans
     const codeTextColored = `<span class="code-keyword">public class</span> <span class="code-class">Developer</span>
@@ -851,7 +848,22 @@ function initContactPanels() {
         });
     }
 
-    // Project Details Buttons
+    // Navbar Say Hi button
+    const navSayHiBtn = document.getElementById('navSayHiBtn');
+    if (navSayHiBtn) {
+        navSayHiBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.showSocialIconsPopup();
+        });
+    }
+
+    const downloadBtn = document.getElementById('downloadBtn');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open('Abdallah Jamal Khader.pdf', '_blank');
+        });
+    }
     const detailBtns = document.querySelectorAll('.details-btn');
     detailBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {

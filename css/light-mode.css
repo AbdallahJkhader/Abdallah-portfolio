@@ -28,11 +28,20 @@ body.light-mode {
     background-image: none !important;
 }
 
-/* Desktop: Pure white home */
+/* Mobile: Show background image on mobile */
+@media (max-width: 991px) {
+    body.light-mode .bg-dark-hero {
+        background: url('../images/background-white.png') no-repeat center center / cover !important;
+        background-color: #f5f2eb !important;
+    }
+}
+
+/* Desktop: Image on right side without blur */
 @media (min-width: 992px) {
     body.light-mode .bg-dark-hero {
-        background: #ffffff !important;
-        background-color: #ffffff !important;
+        background: url('../images/background-white.png') no-repeat right bottom !important;
+        background-size: 35% auto !important;
+        background-color: #f5f2eb !important;
         box-shadow: none !important;
         border: none !important;
     }

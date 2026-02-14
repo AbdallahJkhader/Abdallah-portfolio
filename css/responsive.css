@@ -16,7 +16,7 @@
         z-index: 0 !important;
 
         /* Dark Mode / Default Mobile Background - Using shorthand to override Everything */
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 70%, rgba(10, 10, 10, 0.95) 100%), url('../images/backgronud picture.jpg') no-repeat center center / cover !important;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 70%, rgba(10, 10, 10, 0.95) 100%), url('../images/background-dark.png') no-repeat center center / cover !important;
         background-color: #0a0a0a !important;
     }
 
@@ -28,8 +28,9 @@
 
     /* Force Background in Light Mode - High Specificity Mobile Override */
     html body.light-mode .bg-dark-hero {
-        /* Using background shorthand to override any color/image specific rules */
-        background: linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)), url('../images/background-white.jpg') no-repeat center center / cover !important;
+        /* Using background shorthand to show image clearly on mobile */
+        background: url('../images/background-white.png') no-repeat center center / cover !important;
+        background-color: #f5f2eb !important;
         border: none !important;
         box-shadow: none !important;
     }
@@ -622,7 +623,7 @@
 /* Desktop Sidebar Layout Logic */
 @media (min-width: 992px) {
     body:not(.light-mode) .main-content {
-        background: #000000 !important;
+        background: #0f141c !important;
         border-radius: 2rem 2rem 0 0 !important;
         border-bottom: none !important;
         padding: 2rem !important;
@@ -633,7 +634,7 @@
         border-bottom: none !important;
     }
 
-    /* Hide profile image on desktop by default */
+    /* Hide circular profile image on desktop - show only background */
     .hero-img {
         display: none !important;
     }
